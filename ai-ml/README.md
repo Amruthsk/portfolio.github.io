@@ -12,7 +12,7 @@ Located in [`/fintech`](./fintech/README.md)
 - Live Dashboard (Real-time + Microservices)
 
 ## 🤖 AI/ML Projects
-Located in [`/ai-ml`](./ai-ml/README.md)
+Located in [`/ai-ml`](./ai-ml)
 
 - Fraud Detection System (coming soon...)
 
