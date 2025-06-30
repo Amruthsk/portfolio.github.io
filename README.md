@@ -16,7 +16,4 @@ Located in [`/ai-ml`](./ai-ml/README.md)
 
 - Fraud Detection System (coming soon...)
 
-## ₿ Crypto Projects
-Located in [`/crypto`](./crypto)
 
-- DeFi Dashboard (coming soon...)
