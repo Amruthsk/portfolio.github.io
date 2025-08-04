@@ -1,0 +1,2 @@
+-- not recommended
+-- db automatically guess to join dont use NATURAL JOIN
