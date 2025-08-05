@@ -422,16 +422,38 @@ console.log("unary operators - !, typeof");
 // comparison operator
 console.log("comparison operator");
 //abstract equality
-//1st step check type
-// == - 
-console.log(10 == 10);
-console.log('10' == 10);// true- converts to number
+//1st step checks type of operands
+// == -2nd step 
+console.log(10 == 10);// true type same exactly like ===
+console.log(null == undefined); //true - considered as same
+console.log(undefined == null); // true - ''
+console.log('10' == 10);// string , number -->prefer number comparison converts string to number and then compare true- converts to number
+console.log(12 == '12');// true - any operand string- convert to number and compare
 console.log(10 == 20);
 console.log(10 != 20);      
 console.log(10 != 10);
+console.log(true == 1);// true any operand boolean - convert it to number and compare ;true -> 1 
+console.log(false == 0);//true , false -> 0
+console.log(false == '0');//true , false -> 0, y -> to number 0 , com
 console.log("strict equality operator");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //strict equality
-//1st step check type
+
+//1st step checks type operands
 // === - 
 console.log('10' === 10); // false - no conversion 
 console.log('10' !== 10); // true - no conversion
@@ -443,4 +465,25 @@ console.log(10 !== 10);
 //ToBoolean - abstract operation
 // false - undefined, null 
 //for numbers - false - +0,-0,Nan
-// 
+// for string - false - length =0
+
+// undefined, null, Nan, +0, -0, false, "" - only falsy value
+
+//-24 - truthy
+
+// takes argument - return boolean
+
+//Logical NOT operator(!)
+let ten = 10;
+console.log(!a) ;//false
+
+let ud = undefined;
+console.log(!ud);
+
+// if else conditions
+if (ud){
+  console.log("Truthy")
+}
+else{
+  console.log("falsy")
+}
