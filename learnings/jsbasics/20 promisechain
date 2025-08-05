@@ -1,0 +1,20 @@
+const cart = ["shirt", "pant", "shoes"];
+//consuming promises-consumer part
+//create order
+const promise = createOrder(cart);// returns promise order id
+//proceed to payments
+//attach cb(proceed to payments) to this promise
+promise.then(function(){
+    proceedToPayment(orderId)
+})
+
+
+//creating a promise - own create order function 
+
+//promise rejection
+
+//error handling
+
+//advanced promise chaining
+
+//advanced error handling
