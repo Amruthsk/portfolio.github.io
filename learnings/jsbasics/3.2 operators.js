@@ -98,21 +98,6 @@ console.log(40 || undefined);//40 1st true return true
 console.log(40 || false);//40 1st true return true
 console.log("" || -0);//-0 1st false see 2nd return false
 
-// comparison operator
-console.log("comparison operator");
-//abstract equality
-console.log(10 == 10);
-console.log('10' == 10);// true- converts to number
-console.log(10 == 20);
-console.log(10 != 20);      
-console.log(10 != 10);
-//strict equality
-console.log('10' === 10); // false - no conversion 
-console.log('10' !== 10); // true - no conversion
-console.log('10' === '10'); // true - no conversion
-console.log(10 === 20);
-console.log(10 !== 20);
-console.log(10 !== 10);
 
 //relational operator - <, >, <=, >=
 //takes two operands and compares them - returns true or false
@@ -151,84 +136,7 @@ console.log(27>>2);// right shift
 console.log(10 >> 1);// right shift
 
 
-console.log("unary operator");
-//requires only operand
-//++ increment by 1 unit
-console.log("unary increment operator");
-//1)assign 2)increment
-let a = 10;
 
-console.log(a);// a
-
-console.log("a old value",a++);// post-increment - 1st returns a value before incrementing 2nd increment
-
-console.log('next step a increment',a);
-//1)increment 2) assignment
-let g = a++;
-console.log("value of a & g after post increment: ",a,g);
-
-let b = 10;
-
-console.log(b);
-// increment 
-console.log(++b);// pre-increment - returns value after incrementing
-
-console.log(b);
-
-//1st assign & then increment
-let w = 20;
-let u = w++;
-console.log("value of w & u after post increment:",w,u);
-w++;
-console.log("value of w & u after post increment:", w, u);
-
-//1st increment & then assign
-let e = 20;
-let t = ++e;
-console.log("value of e & t after pre increment:", e, t);
-e++;
-console.log("value of e & t after pre increment:", e, t);
-
-
-console.log('unary decrement operator')
-//1st assign 2nd decrement
-let c = 1;
-console.log(c);
-console.log(c--);// post-decrement - returns value before decrementing
-console.log(c);
-
-let d = 1;
-
-console.log(d);
-console.log(--d);// pre-decrement - returns value after decrementing
-console.log(d);
-
-console.log("+ unary plus")
-//tries to convert type a variable if its not already a number
-//does not change the original operator 
-//but returns converted value
-//string to number or invalid number NAN
-let p ="9";
-let v = +p;
-console.log(typeof p);
-console.log(typeof v);
-console.log(p);
-console.log(v);
-
-
-console.log("- unary plus");
-//tries to convert type a variable if its not already a number
-//does not change the original operator
-//but returns converted value & makes the result negative(negate)+ -> - or - -> +
-//string to number or invalid number NAN
-let r = "3";
-let i = -r;
-console.log(typeof r);
-console.log(typeof i);
-console.log(r);
-console.log(i);
-
-console.log("unary operators - !, typeof")
 
 console.log(
   "Coercion - coercion is a process triggered by operators acting on mismatched types"
@@ -249,7 +157,7 @@ console.log(
 //Abstract operation - js internally executes (we cannot use it/we cannot call it )
 //what,why,how it does
 //implicitly - perform  automatic type conversion
-//ip- only ny valid js data type 
+//ip- only  valid js data type 
 //data type conversion
 // To Primitive, To Boolean, To string, To number....
 
@@ -287,8 +195,9 @@ console.log("11" - 2);//9
 console.log(11 - "232df");// 11- NaN ->NaN
 console.log(11- "0xa")//1  hexadecimal number system- 0x" denotes a hexadecimal number - uses 16 unique symbols: the digits 0-9 and the letters A-F
 
+// in ToNumber when input is object it takes Toprimitive
 
-// "important everything is mentioned in the documentation. give me the access of the documentation. I will tell you the answer of the operation"
+// "important answer :  everything is mentioned in the documentation. give me the access of the documentation. I will tell you the answer of the operation"
 
 // "expected to understand and where to find"
 
@@ -297,4 +206,241 @@ console.log("!ToPrimitive abstract operation - not for end user" );
 console.log("Toprimitive(input,preferred types)  ---> converts the input to non object type(number,string,boolean)")
 
 
+ console.log("To Primitive cases")
+ // non object -input --> directly sends output- non object
+
+ // object-input
+ // case 1 - preferred type not present - default -1st output for default - ----> changes to number 2nd output after check most prefered type is number 
+ // case 2 - if  prefrred type - string - string - output
+ // case 3 - if  preferred type - number - number - output
+ // refer to docs if asked know where to find
+
+
+// hint can have 2 values - string or a number
+// if hint  is a string  create a method name array ["tostring"array, value of]  
+//  result - non object (primitive)- retrun
+// result - object - type error
+
+// if hint  is a number  create a method name array [value of,"tostring"array]
+//result non object - retrun
+//result object - type error
+
+
+// ToNumber -> object -> Toprimitive ->primvalue -> return of ToNumber
+
+let obj = {
+
+}; 
+// even empty object has default string
+
+console.log (obj.toString()); // returns object object - default return - string
+
+console.log(typeof (obj.toString())); // returns by default string
+
+console.log(typeof (obj.valueOf())); // returns by default object
+
+
+//can be override
+let obj2 = {
+  toString(){
+    //default return
+    return 9
+  }
+}; 
+
+console.log (obj2.toString()); // returns  9
+
+console.log(typeof (obj2.toString())); // returns  number
+
+console.log(typeof (obj2.valueOf())); // returns  object value not overwrited
+
+//override
+let obj3 = {
+ x: 10 ,
  
+ valueOf(){
+    //default return
+    return 10
+  }
+}; 
+
+console.log (obj3.toString()); // returns  object objedt
+
+console.log(typeof (obj3.toString())); // returns  string
+
+console.log(typeof (obj3.valueOf())); // returns  number
+
+
+let ob = {};
+
+// subracting - convert to numbr 
+console.log(10 - ob); // Nan
+// object -(toNumber)-> // ToNumber -> object -> Toprimitive,hint number --> oridnartoPrimitive-(number - value0f{object},Tostring[object][object])->primvalue string0 object-> return of ToNumber(string ) -> nan
+
+let obja = {x:9, y: 8}
+// subracting - convert to numbr 
+// object -(toNumber)-> // ToNumber -> object -> Toprimitive,hint number --> oridnartoPrimitive-(number - value0f{object},Tostring[object][object])->primvalue string-object-> return of ToNumber(string ) -> nan
+console.log(10 - obja); // Nan
+
+let objb = {x:9, valueOf(){return 99} }
+// subracting - convert to numbr 
+// object -(toNumber)-> // ToNumber -> object -> Toprimitive,hint number --> oridnarytoPrimitive-(  value0f{99},Tostring[object][object])->primvalue 99-object-> return of ToNumber(99 ) -> 99
+
+console.log(100 - objb); // 1
+
+
+
+let objc = {x:9, valueOf(){return 99}, toString(){return 88} }
+// subracting - convert to numbr 
+// object -(toNumber)-> // ToNumber -> object -> Toprimitive,hint number --> oridnarytoPrimitive-(  value0f{99},Tostring[88])->primvalue 99-object-> return of ToNumber(99 ) -> 99
+
+console.log(100 - objc); // 1
+
+
+let objd = {x:9,toString(){return 88} }
+// object -(toNumber)-> // ToNumber -> object -> Toprimitive,hint number --> oridnarytoPrimitive-(  value0f{object},Tostring[88])->primvalue 88-object-> return of ToNumber(88 ) -> 99
+
+// subracting - convert to numbr 
+console.log(100 - objd); // 1
+
+
+let obje = {x:9,toString(){return "88"} }
+// object -(toNumber)-> // ToNumber -> object -> Toprimitive,hint number --> oridnarytoPrimitive-(  value0f{object},Tostring[88])->primvalue 88-string-> return of ToNumber(88 string) -> 88 easy to convert
+
+// subracting - convert to numbr 
+console.log(100 - obje); // 1
+
+// object - typeerror - cant convert to primitive
+let objf = {x:9,toString(){return {}} }
+// subracting - convert to numbr 
+// object -(toNumber)-> // ToNumber -> object -> Toprimitive,hint number --> oridnarytoPrimitive-(  value0f{object},Tostring[object]-its string )->primvalue both converted into string
+
+//console.log(100 - objf); // type error
+
+
+//Subraction operation - preference to ToNumber & has a hint
+
+
+//Coercion in Addition operation
+//addition operation - preference to Toprimitive & no hint
+let obz = {};
+
+// addition - convert to numbr 
+console.log("18" + obz); // 
+// addition operation -(Toprimitive)-> // Toprimitive -> string remains --object -> Toprimitive,hint number --> oridnartoPrimitive-(number - value0f{object},Tostring[object][object])->primvalue [object][object]-> return both string  & concatenate -> 18[object Object]
+
+console.log(18 + obz); // 
+// addition operation -(Toprimitive)-> // Toprimitive -> number converted to string --object -> Toprimitive,hint number --> oridnartoPrimitive-(number - value0f{object},Tostring[object][object])->primvalue [object][object]-> return both string  & concatenate -> 18[object Object]
+
+//v
+//if any 1 string always convert both to string & string concatenation
+//if any both number always addition operation 
+//if object
+
+
+// coercion with unary + operator -> always preference toNumber
+console.log("unary operator");
+//requires only operand
+//++ increment by 1 unit
+console.log("unary increment operator");
+//1)assign 2)increment
+let a = 10;
+
+console.log(a); // a
+
+console.log("a old value", a++); // post-increment - 1st returns a value before incrementing 2nd increment
+
+console.log("next step a increment", a);
+//1)increment 2) assignment
+let g = a++;
+console.log("value of a & g after post increment: ", a, g);
+
+let b = 10;
+
+console.log(b);
+// increment
+console.log(++b); // pre-increment - returns value after incrementing
+
+console.log(b);
+
+//1st assign & then increment
+let w = 20;
+let u = w++;
+console.log("value of w & u after post increment:", w, u);
+w++;
+console.log("value of w & u after post increment:", w, u);
+
+//1st increment & then assign
+let e = 20;
+let t = ++e;
+console.log("value of e & t after pre increment:", e, t);
+e++;
+console.log("value of e & t after pre increment:", e, t);
+
+console.log("unary decrement operator");
+//1st assign 2nd decrement
+let c = 1;
+console.log(c);
+console.log(c--); // post-decrement - returns value before decrementing
+console.log(c);
+
+let d = 1;
+
+console.log(d);
+console.log(--d); // pre-decrement - returns value after decrementing
+console.log(d);
+
+console.log("+ unary plus");
+//tries to convert type a variable if its not already a number
+//does not change the original operator
+//but returns converted value
+//string to number or invalid number NAN
+let p = "9";
+let v = +p;
+console.log(typeof p);
+console.log(typeof v);
+console.log(p);
+console.log(v);
+
+console.log("- unary plus");
+//tries to convert type a variable if its not already a number
+//does not change the original operator
+//but returns converted value & makes the result negative(negate)+ -> - or - -> +
+//string to number or invalid number NAN
+let r = "3";
+let i = -r;
+console.log(typeof r);
+console.log(typeof i);
+console.log(r);
+console.log(i);
+
+console.log("unary operators - !, typeof");
+
+// Equality operator
+// 2 types - abstract, strict
+
+// comparison operator
+console.log("comparison operator");
+//abstract equality
+//1st step check type
+// == - 
+console.log(10 == 10);
+console.log('10' == 10);// true- converts to number
+console.log(10 == 20);
+console.log(10 != 20);      
+console.log(10 != 10);
+console.log("strict equality operator");
+//strict equality
+//1st step check type
+// === - 
+console.log('10' === 10); // false - no conversion 
+console.log('10' !== 10); // true - no conversion
+console.log('10' === '10'); // true - no conversion
+console.log(10 === 20);
+console.log(10 !== 20);
+console.log(10 !== 10);
+
+//ToBoolean - abstract operation
+// false - undefined, null 
+//for numbers - false - +0,-0,Nan
+// 
