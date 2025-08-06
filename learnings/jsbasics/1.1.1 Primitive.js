@@ -2,10 +2,50 @@
 /* this
 is 
 multiline comment*/
+// //-non executable,-ignore,-absence of execution
 
 // Data types - how data is stored in memory
 //number
 //special numbers - 0, -0, NaN, Infinity, -Infinity
+
+let idTag = "ENGINE-1";
+let dts = typeof idTag;
+console.log(" data type :", dts);//string
+
+let bearingSize = 10.25;
+let dtn = typeof bearingSize;
+console.log(" data type :", dtn);//number
+
+let powerSwitch = true;
+console.log(" data type :", typeof powerSwitch);//boolean
+
+let reservedDrawer = null;
+console.log(" data type :", typeof reservedDrawer);//object
+
+// null != undefined
+
+let unlabeledDrawer;
+console.log(unlabeledDrawer);//undefined
+console.log(" data type :", typeof unlabeledDrawer);//undefined
+
+let serialPlate1 = Symbol('plate');
+let serialPlate2 = Symbol('plate');
+console.log(" data  :", serialPlate1);
+console.log(" data  :", serialPlate1);
+
+console.log(serialPlate1 === serialPlate2);
+console.log(" data type :", typeof serialPlate1);//symbol
+
+
+let industrialGear = 900719925474099100n;
+console.log(" data type :", typeof industrialGear);//bigint
+
+
+let originalTag = "PART-a";
+originalTagu = originalTag.toUpperCase();
+console.log(originalTagu);
+console.log(originalTag);
+
 console.log("number data type");
 console.log(10); // 10 is a number
 console.log(10.5); // 10.5 is a number
@@ -14,6 +54,7 @@ console.log(10.5); // 10.5 is a number
 console.log(0); // 0 is a number - zero value
 console.log(-0); // -0 is a number - negative zero value
 console.log(NaN); // NaN is a number - not a number - invalid number
+console.log("datatype:", typeof NaN);
 console.log(Infinity); // Infinity is a number - greater than maximum limit of number type
 console.log(-Infinity); // -Infinity is a number - less than minimum limit of number type
 console.log(1 / 0); // Infinity - division by zero
@@ -69,18 +110,18 @@ console.log(text5);
 // give sense of emptiness - null, undefined
 //null - no roll now- holder present
 //where null used - no value assigned - holder present but no value assigned
-let b = 10;
-b = null;
+let nl = 10;
+nl = null;
 
 //undefined - never given a value - no holder
 //where undefined used - no value assigned - holder not present
 //allocated memory placeholder-undefined  until assined the value
 
-let a;
+let m;//'state of not-yet-being-defined'
 
 var marks = 100;
 var name = "Coding is easy";
-var age;
+var age;//'state of not-yet-being-defined'
 var company = null;
 var salary = undefined;
 var isStudent = false;
@@ -133,9 +174,11 @@ console.log(
 //ip bool - true - op -1, ip false->op-0
 
 //example - subraction - given argument -number - js abstract operation converts the given argument toNumber
+//The subtraction operator triggers `ToNumber`
 
-console.log(10 - null); // null - 0 ->10
-console.log(10 - undefined); //undefined- NaN -> NaN
+console.log(10 - null); // ------>10    subraction -> [ToNumber(X) - ToNumber(null)] ->null - 0 
+//[X - Y] → [ToNumber(X) - ToNumber(Y)]
+console.log(10 - undefined); //-----> NaN        [Number - ToNumber(undefined)] → [Number - NaN] → [NaN]
 
 //ToNumber(10);// reference error not availabe to executed by us but js can use
 console.log(2 - 7); // - 5
@@ -144,14 +187,14 @@ console.log(2 - undefined); //2-undefined-> 2- NaN -> NaN
 console.log(2 - true); //boolean ,  2-1 -> 1
 console.log(2 - false); //boolean ,  2-0 -> 2
 
-//string to number  only for subraction toNumber ^ the data type
-console.log(11 - "8"); // 3
-console.log("8" + 1); //  81
-console.log(1 + "8"); //18
+//string to number  only for The `
+console.log(11 - "8"); // ----> 3 subtraction operator triggers `ToNumber `ToNumber`
+console.log("8" + 1); // ----> 81  [String + X] → [String + ToString(X)] string concatenation
+console.log(1 + "8"); //----->18 tostring
 console.log("11" - "8"); //3
 console.log("11" - "2"); //9
 console.log("11" - 2); //9
-console.log(11 - "232df"); // 11- NaN ->NaN
+console.log(11 - "232df"); //----->NaN   11- NaN
 console.log(11 - "0xa"); //1  hexadecimal number system- 0x" denotes a hexadecimal number - uses 16 unique symbols: the digits 0-9 and the letters A-F
 
 // in ToNumber when input is object it takes Toprimitive
@@ -226,8 +269,8 @@ console.log(typeof obj3.valueOf()); // returns  number
 
 let ob = {};
 
-// subracting - convert to numbr
-console.log(10 - ob); // Nan
+// subracting - convert to number
+console.log(10 - ob); //----> Nan   [Num - Obj] → [Num - ToNumber(Obj)] → [Num - ToNumber(ToPrimitive,hint number(Obj))- value0f{object},Tostring[object][object]] → [Num - NaN] → [NaN]
 // object -(toNumber)-> // ToNumber -> object -> Toprimitive,hint number --> oridnartoPrimitive-(number - value0f{object},Tostring[object][object])->primvalue string0 object-> return of ToNumber(string ) -> nan
 
 let obja = { x: 9, y: 8 };
@@ -244,7 +287,8 @@ let objb = {
 // subracting - convert to numbr
 // object -(toNumber)-> // ToNumber -> object -> Toprimitive,hint number --> oridnarytoPrimitive-(  value0f{99},Tostring[object][object])->primvalue 99-object-> return of ToNumber(99 ) -> 99
 
-console.log(100 - objb); // 1
+console.log(100 - objb); // --->1  [Num - Obj] → [Num - ToNumber(Obj)] → [Num - ToNumber(ToPrimitive,hint number(Obj))- value0f{99},Tostring[object][object]]
+//[Num - ObjWith_valueOf] → [Num - ToNumber(ToPrimitive(Obj))] → [Num - 99] → [1]
 
 let objc = {
   x: 9,
@@ -400,9 +444,9 @@ console.log("comparison operator");
 //1st step checks type of operands
 // == -2nd step
 console.log(10 == 10); // true type same exactly like ===
-console.log(null == undefined); //true - considered as same
+console.log(null == undefined); //----->true - considered as same-if one operand is `null` and the other is `undefined`, return `true`
 console.log(undefined == null); // true - ''
-console.log("10" == 10); // string , number -->prefer number comparison converts string to number and then compare true- converts to number
+console.log("10" == 10); // string , number -->prefer number comparison converts string tonumber and then compare true- converts to number- [String == Number] → [ToNumber(String) == Number]
 console.log(12 == "12"); // true - any operand string- convert to number and compare
 console.log(10 == 20);
 console.log(10 != 20);
@@ -432,7 +476,7 @@ console.log("strict equality operator");
 //
 // if any number NaN - > false
 console.log(NaN === NaN);
-console.log("10" === 10); // false - no conversion
+console.log("10" === 10); // --->false - no conversion  [Type(X) !== Type(Y)] → [X === Y is false]
 console.log("10" !== 10); // true - no conversion
 console.log("10" === "10"); // true - no conversion
 console.log(10 === 20);
@@ -462,7 +506,7 @@ let obje1 = { x: 10 };
 let obje2 = { x: 10 };
 let obje3 = { y: 10 };
 console.log(obje1 === obje1); //true - same object (memory), same place,same memory value
-console.log(obje1 === obje2); //false
+console.log(obje1 === obje2); //----->false  "For non-primitive types (objects), the equality operators compare references (memory addresses). They are only equal if they are the exact same object."
 console.log(obje2 === obje2); //true - same object (memory)
 console.log(obje1 === obje3); //false
 console.log(obje3 === obje2); //false
@@ -481,7 +525,7 @@ console.log(obje3 === obje3); //true - same object (memory)
 
 //Logical NOT operator(!)
 let ten = 10;
-console.log(!a); //false
+console.log(!ten); //false
 
 let ud = undefined;
 console.log(!ud);
@@ -510,7 +554,7 @@ console.log("" + 0); // +0  -> 0
 console.log("" + -0); //  -0 -> 0
 
 //empty array to empty string
-console.log("" + []); // [ ]-> ''
+console.log("" + []); // [ ]-> '' ["" + Array] → ["" + Array.toString()]
 // empty object  to object object
 console.log("" + {});
 
@@ -600,3 +644,23 @@ console.log("-");
 //primitive - tostring,tonumber....error
 //primitive converts to become non primitive
 //objects have tostring, tonumber
+
+
+let prim = "hello";
+len = prim.length;
+
+console.log(len);//5 This should be an error, a primitive has no properties!
+
+// 5 -Because property access was attempted on a primitive.
+//(Boxing): "When a property is accessed on a primitive value, JavaScript performs an implicit Karma of Transformation. It temporarily wraps the primitive in a corresponding Object wrapper (e.g., `new String("hello")`) to perform the action, and then discards the object. This temporary creation is called 'boxing'
+//[Primitive.property] → [new ObjectWrapper(Primitive).property]
+
+// (-, +, ==, !) is a gatekeeper 
+//check datatype
+//The Subtraction Gate (-) - Everyone must be a number! - force everythin ToNumber
+//The Addition Gate (+) - This gatekeeper is easily influenced by strings-Plans have changed! Everyone becomes a string, and we're just gluing you all together!"
+//forces non-strings through the ToString machine.
+
+//The Loose Equality Gate (==)
+//The Strict Equality Gate (===): This is the strictest gatekeeper types non idential access denied
+
