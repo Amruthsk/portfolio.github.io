@@ -1,26 +1,26 @@
 // //basic closure
-// function x() {   //closure x
-//   var a = 7;
-//   function y() {
-//     console.log(a);
-//   }
-//   y(); //calling function y
-// }
+function x() {   //closure x
+  var a = 7;
+  function y() {
+    console.log(a);
+  }
+  y(); //calling function y
+}
 
-// x();
+ x();
 
 //can assign functions to variable
 
-// function x() {
-//   //closure x
-//   var a = function y() {
-//     console.log(a);
-//   };
+function x() {
+  //closure x
+  var a = function y() {
+    console.log(a);
+  };
 
-//   y(); //calling function y
-// }
+  y(); //calling function y
+}
 
-// x();
+x();
 
 //can pass  a function as a parameter insid a fun
 // function x() {
@@ -81,16 +81,16 @@
 
 //whole thing inside the function
 // one more level deep inside
-function z(){
-    var b = 900;
-    function x() {
-      //closure x
-      var a = 7;
-      function y() {
-        console.log(a,b);
-      }
-     y();
-    }
-    x();
-}
-z();
+// function z(){
+//     var b = 900;
+//     function x() {
+//       //closure x
+//       var a = 7;
+//       function y() {
+//         console.log(a,b);
+//       }
+//      y();
+//     }
+//     x();
+// }
+// z();

@@ -2,34 +2,36 @@
 // console.log('abcd');
 // //block - {}
 // //compound statement
-// {
-//     var a = 10;
-//     console.log(a);
-// }
+{
+    var a = 10;
+    console.log(a);
+}
 
 // //using compound statement in place of single statement
 
-// if(true)console.log("abcd");
+if(true)console.log("abcd");
 
 // //use it where js requires one statement
+
+
 // // need to use block to combine multiple statements - group these statement using block
-// if (true) {
-//   var a = 10;
-//   console.log(a);
-// };
+if (true) {
+  var a = 10;
+  console.log(a);
+};
 
 //scope -what all x,f()are accessible in the place
 
-// {
-//     var a = 100;
-//     let b = 20;
-//     const c = 30;
-//     console.log(a);
-//     console.log(b);
-//     console.log(c);
-// }
+{
+    var ea = 100;
+    let b = 20;
+    const c = 30;
+    console.log(a);
+    console.log(b);
+    console.log(c);
+}
 
-//     console.log(a);
+        console.log(ea);
 //     //console.log(b); //reference error  b is not defined
 //    // console.log(c); //reference error  b is not defined
 

@@ -6,18 +6,43 @@
 //-> Process - program in running state
 //software (program)run - process - ram allocates(memory-storage area)
 
-var n = 2;
+var n = 2; //1-global
 
-function square(num) {
-  var ans = num * num;
+function square(num) {//1-global scope function square
+  var ans = num * num; //1- var ans inside function scope
   return ans;
 }
 console.log(square(n)); // Prints 4
 var square4 = square(4); // Prints 16
 console.log(square4); // Prints 16
 
+//phase 1 - parsing - look for formal  declaration -let,const,var & scope resoulution
+//1st declaration into global scope
+//variable declartion - think about the scope
+//function declaration - function creates scope of function - assign the variables the  scope of function according to the let,const,var
+//function declaration - function creates scope of function - assign the variables the scope of function according to let,const,var
+
+//phase 2 - execution - allocate value for the declared variable
+//funciton call(use) - execute - assign
+//informal variable  - u see inside the fuction scope dint find go  one scope out and ask for the variable value in global scope
+//informal variable  - auto global - assigns the value to global
+//informal variable - causes reference error not defiend if used before the phase 2
+
+// autoglobal -informal variable declaratio - automatically becomes auto global - gets the scope of global - this is done in the phase 2 execution part
+//access before the execution part - reference error not defined - content not yet prepared
+// access after the execution part - autoglobal makes the variable global scope
+
+// this is sloppy mode - --- - different from strict mode
+// strict mode - throw errors, can run fast, only supports future ecma scripts
+
+// strict mode for whole file - at start "use strict";
+// strict mode for particular function - witin function "use strict"; ... many more
+
+// strict mode wont allow to make a global variable  - throws error
+// strict mode - restricted mode to run js  - restrict autoglobal 
+
 //1st global execution context
-//memeory creation phase 1: allocate space to variables and functions
+//memeory creation phase 1: allocate space to variables & their corresponding scope and functions
 // n:undefined
 //square :{whole code}
 //square4: undefined
@@ -63,13 +88,14 @@ console.log(veryBigNumber);
 
 let veryBigInt = 789454548787797979797979797979979797979865656n;
 console.log(veryBigInt);
-//scope - visibility- where to look  for things
+//-----------------------------------------------------------------------------------------
+//scope - visibility- where to look  for things- is created by { }
 
 // visibility of variables and functions
 
 //any variable or function inside code will be used in one of the following 2 ways
 //1) get value or  some value assigned to it
-//2) some value will be tetrieved from it
+//2) some value will be retrieved from it
 
 //js compiled? or interpretted?
 //compiled - C, C++ - Read once and executed
@@ -84,12 +110,18 @@ console.log(veryBigInt);
 //phase 2 - execution
 
 //Parsing - scope resolution - variable & fuction - assign particular scope
-// 3 types of scope 1)global 2)function 3) block
+// 3 types of scope 1)global 2)function 3) block 4) module(node.js)
+
 //1)global - acessible everywhere - range of visibility
+
 //2)function - within whole function- range of visibility
+
 //3)block - available only within block only for let and var (not for var)
 
 //1)global - acessible everywhere
+
+
+ 
 console.log(subject); // -not avaiable before intialization /decralarion - let
 //for let - error
 //for var - undefined
@@ -105,8 +137,8 @@ console.log(subject); //global - acessible outside
 // function - creates a scope
 
 
-//var - function or global scope only - no block or module scoping
-//var supports hoisting
+//var - only available in for function scope or global scope only - no block or module scoping
+//var supports hoisting - processecd before execution
 
 
 //Declaration Grammar - keywords - own purpose/speacial meaning, usecase - cant be used as variable
@@ -116,6 +148,102 @@ console.log(subject); //global - acessible outside
 //n:store values inside a program
 //variables- memory buckets that stores values & has name & 
 
+//let - block scoped - only belongs to the block
+
+
+console.log("block and function scope");
+{
+  var ab = 10; // still accessible outsid the block(no meaning to block) scope bcoz var-global scope
+}
+//var supports global & functional - visible outside the block
+
+console.log(ab);//10
+
+if(false){
+  var ed = 5;
+}
+
+console.log(ed);//undefined
+
+if (true) {
+  var ed = 5;
+}
+console.log(ed);//5
+
+//var supports global & functional - but visible outside the block
+ function var1()
+{
+  console.log(y);// y is accessible here - throughout the function - decided by parsing
+  var y = 18; // not accessible outside
+}
+
+//console.log(y)// ReferenceError: y is not defined 
+
+
+//let - block scope -only visible within the block
+
+{
+  let gh = 9; // not accessible outside
+}
+
+//console.log (gh);//reference error - not defined
+
+ function let1() {
+   console.log(y); // y is not accessible here
+   let y = 18; // not accessible outside
+   console.log(y); // y is  accessible here after it is intialized
+ }
+//------------------------------------------------------------------------
+
+// p1- object : console p2- execution log
+ console.log("hi");
+//console..log("hi");//  syntactical error- fails in  p1
+//console.lo("hi");// no syntax error use which is not existing p2 - fails in p2
+
+// therefore it has 2 phases
+
+console.log ("nested scope - oneway  inside to outside")
+// closures
+function fun(){
+  //fun ->p1-> global scope
+  var x = 10; // x ->p1-> fun scope- p2-10 assign
+  function gun() {
+    // gun() -> p1 -> fun scope
+    var y = 20; // y->p1 -> gun scope p2- 20 assign
+    console.log(x); // - go from inside to out - 10
+    console.log(y); // within the scope 20
+  }
+  console.log("first in fun- out");
+  //console.log (y)//p1 - error cant see inside from out
+  gun();
+  console.log("I am out", x);
+  //console.log(y); // p-2 error cant see inside from out even after assigned
+}
+
+fun(); // invokes p2
+//----------------------------------------------------------------
+
+// 2 types of scope
+//1) Lexical scope - scoping determined at p1 phase parsing phase - js
+//2) dynamic scope - no p1 -scoping determined at p2 phase running phase
+
+// p1- prasing - look for formal declaration and assign the scope
+// lexiccal scoping
+var teacher = "A"; //p1 teacher -> global scope-p2 -> 1.assign A
+function ask(question){//p1 ask -> global scope-p2 ->funciton declaration/ question - why
+  console.log(teacher,question);//p2 -> ask teacher value outside in the global - A,question - why
+}
+
+function fun() {
+  //p1 fun -> global scope - p2 ->funciton declaration
+  var teacher = "b"; //p2 teacher->fun scope p2 ->assign b
+  ask("why?");//p2 look out
+}
+
+fun();//p2 invoked calling 
+
+
+//---------------------------------------------------------------------
 //let & const declarations are hoisted and are in TDZ
 
 //console.log(b);//undefined - global space
