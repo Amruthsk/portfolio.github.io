@@ -36,3 +36,39 @@ while (i < 5) {
 
   i++;
 }
+
+
+function getEvenNumbers(inputArray) { // p `inputArray`
+
+  //  Handle the "not an array" edge case.
+  if (!Array.isArray(inputArray)) {
+     console.error("Invalid input: An array is required.");
+    return; // Return an empty [] to prevent errors.
+  }
+
+  // a: Create the new Dravya to hold the result.
+  const evenNumbers = [];
+
+  //  The repetitive examination of the input .
+  for (const item of inputArray) {
+    
+    //  (Inference): A nested inference to check the value.
+    // H  Is the item a number AND is its remainder when divided by 2 zero?
+    if (typeof item === 'number' && item % 2 === 0) {
+      
+      // K perform the action of adding the item
+      // to our new Dravya.
+      evenNumbers.push(item);
+    }
+  }
+
+  // K `return` action delivers the final (Result).
+  return evenNumbers;
+}
+// edge cases
+console.log(getEvenNumbers([10, 12, 3, 4, 5, 34, 9, 0, -2])); // Expected: [10, 12, 4, 34, 0, -2]
+console.log(getEvenNumbers([1, 3, 5]));                   // Expected: []
+console.log(getEvenNumbers([]));                          // Expected: []
+console.log(getEvenNumbers([2, 'a', 4, null, 8]));       // Expected: [2, 4, 8]
+console.log(getEvenNumbers("not an array"));              // Expected: []
+console.log(getEvenNumbers([null,undefined,4,6])); 
