@@ -39,7 +39,44 @@ var res = Math.sqrt(a);
 
 console.log(res);
 
+
 //user defined function
+//
+// * kw - first part 
+//function(){}; key difference - first part of line function - function declaration
+function fun(){ //function declaration
+  //some impl
+}
+
+
+// function expression - let kw
+let f = function fun() {// function expression
+
+  //some impl
+};
+
+let g = function () { 
+  // function expression - let kw
+  //some impl
+};
+
+//iife immedietly invoked function expression  ()
+
+(function x() {
+  //function expression - (  kw
+  //some impl
+})();// immedietly invoking
+
+
+(function () {
+  //function expression - ( 
+  //some impl
+})();// iife - defined and invoked 
+
+let y = ()=>{
+  //function expression - let kw
+}
+
 //function declaration -need to be invoked
 var a;
 var b;

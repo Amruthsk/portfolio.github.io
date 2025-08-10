@@ -24,3 +24,4 @@ console.log("Triple equal to: Strictly equality");
 console.log(a === z); //false
 console.log(a === x); //false
 console.log(z === x); //true
+

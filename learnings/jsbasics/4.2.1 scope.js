@@ -244,7 +244,15 @@ fun();//p2 invoked calling
 
 
 //---------------------------------------------------------------------
-//let & const declarations are hoisted and are in TDZ
+//hosting - execute function or variable before declare it - result effect of lexical scoping
+//scope manager
+gun(); //p1-nothing p2- finds the function and runs it
+
+function gun(){//p1-gun-global scope
+  console.log("shoot");
+}
+
+
 
 //console.log(b);//undefined - global space
 //console.log(c);//reference error not defined - access to global space
@@ -268,7 +276,25 @@ var b = 300;//can be redeclared
 // const c = 100;
 // c = 6;
 
+//let_block
+var teacher = "A"; //p1 teacher -> global p2
+function fun() {
+  //p1 fun -> global
+  var teacher = "B"; //p1 teacher -> scope of function - no error even when called before
+  let content = "js"; ////p1 content -> fun scope- content will be access only post declaration
+  if (content == "js") {
+    let hours = "120+";
+    console.log(hours);
+  }
+  console.log(teacher, content);
+}
 
+fun();
+console.log(teacher);
+//console.log(content); -error
+
+ //var function scope
+ //let blockscope
 
 // function start(){
 //     for(let i=0; i < 5; i++){
@@ -280,6 +306,7 @@ var b = 300;//can be redeclared
 // start();
 // Es6 : let,const => block -scoped - only inside block
 
+console.log("stop fun")
 function stop() {
   for (var i = 0; i < 5; i++) {
     console.log(i); //local
@@ -292,6 +319,7 @@ stop();
 // semicolon => instruction => statement -*E;
 
 //variable names  -  Rules 
+
 //1) variables can contain small alphabets, capital alphabets, 
 // digits,underscore(_) or dollor$
 
@@ -311,6 +339,7 @@ stop();
 
 // a();
 
+console.log("e function");
 function e() {
   //global
   var d = 10000; //local
@@ -359,3 +388,41 @@ function stop() {
 }
 
 start();
+
+// var inside a block - can be accessed anywhere
+//  use case of var
+//after let var should not be declared
+// use var before let
+// can use var directly  no need initialization 
+//problem i accessible even outside
+
+//use case for let 
+//used in loops - cleaner 
+
+// var allows redeclaration
+var y = 6;
+var y = 8;
+console.log (y);
+// let doesnot allows redeclaration but can be reassigned
+
+let h = 9;
+h = 10;
+//can be reassigned
+console.log(h)
+
+//but does not allow redeclaration of same variable
+// let h = 11;// error
+
+
+//const - block- cant be reassigned
+// cont x = 20;
+// x = 9; // error
+
+// but can be updated
+const obj = {x: 10};
+obj.x = 1010;
+
+console.log(obj.x)
+
+
+//let & const - block scope declarations are hoisted and are in TDZ
