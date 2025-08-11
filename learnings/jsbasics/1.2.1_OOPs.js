@@ -1,3 +1,54 @@
+// Object- oops
+//complex blueprint (Class)- > property and methods
+//property
+//generalize - design- property-(datamembers)
+//behaviours -methods - (member function)
+
+//unique- door number,owner,color 
+// using the blueprint can create multiple products
+//like iphone, macbook - real life entites - objects
+
+// object - properties -different, behaviour -same
+
+
+// class-> create objects
+
+//property of the objects help sto uniquely identify two objects
+
+// blueprint = class
+// class-> objects
+
+// using class kw -> prepare blueprint
+
+//class <name>{
+//property
+
+//mehtods behaviours
+
+//}
+
+//to create the entities and manage entities - objects
+//kw - "new"
+//kw - "this"
+
+//create class
+//noletvarconst
+class Product {
+  //property- data members - no need of let var const
+  name;
+  price;
+  discount;
+  desc;
+  //method- member function -no need of function keyword
+  display(){
+
+  }
+
+  buy(){
+
+  }
+}
+
 // function Circle(radius) {
   
 //   this.radius = radius;
@@ -124,32 +175,32 @@
 
 // add remove property
 
-function Circle(radius) {
+// function Circle(radius) {
   
-  this.radius = radius;
-  this.draw = function () {
-    console.log("draw");
-  };
-  // happens automatically when using new kw
-}
+//   this.radius = radius;
+//   this.draw = function () {
+//     console.log("draw");
+//   };
+//   // happens automatically when using new kw
+// }
 
-const circle = new Circle(10);
+// const circle = new Circle(10);
 
-// dot location easy
-circle.locationx ={x:1};
+// // dot location easy
+// circle.locationx ={x:1};
 
-// bracket notation 
-circle['locationy'] = {y:1};
-circle["prop"] = { prop: undefined };
+// // bracket notation 
+// circle['locationy'] = {y:1};
+// circle["prop"] = { prop: undefined };
 
-//for dynamic access-
-const propertyz = 'locationz'
-circle[propertyz] = {z: 1 };
+// //for dynamic access-
+// const propertyz = 'locationz'
+// circle[propertyz] = {z: 1 };
 
-circle["password"] = { pass:'abc' };
+// circle["password"] = { pass:'abc' };
 
-//delete property from existing object dont want to send password,card info
-delete circle['password'];
+// //delete property from existing object dont want to send password,card info
+// delete circle['password'];
 
 
 
@@ -200,4 +251,4 @@ delete circle['password'];
 //     console.log('circle has a radius');
 
 
-circle.password
+// circle.password
