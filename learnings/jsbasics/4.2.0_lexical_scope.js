@@ -26,6 +26,7 @@ function deployFromUnitJones(someSoldier) {
   console.log("\n>>> Sergeant Jones is giving a command...");
   someSoldier(); // CALLING the soldier from a different context.
 }
+//
 
 // Let's create our soldier from Unit Smith
 const soldierFromSmith = setupUnitSmith();

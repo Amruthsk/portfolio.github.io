@@ -20,6 +20,5 @@ function isPrime(n) {
 let ans = isPrime(11);
 console.log(ans);
 
-console.log("Star pattern");
-console.log("pattern1");
+
 

@@ -289,6 +289,9 @@ function fun() {
   console.log(teacher, content);
 }
 
+console.log(
+  "A function's scope chain is determined by where it is defined in the code (lexically), not by where it is called (dynamically)."
+);
 fun();
 console.log(teacher);
 //console.log(content); -error
@@ -424,5 +427,7 @@ obj.x = 1010;
 
 console.log(obj.x)
 
-
+//Temporal dead zone
 //let & const - block scope declarations are hoisted and are in TDZ
+//[Access `var` before assignment-p1 hoisted and initialized to `undefined] → [Perceive `undefined`]
+//[Access `let` in TDZ-p1-hoisted (their names are known to the scope), but they are not initialized ] → [ReferenceError]
