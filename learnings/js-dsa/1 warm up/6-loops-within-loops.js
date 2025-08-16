@@ -64,7 +64,7 @@ for (let i = 0; i < 3; i++) {
   }
 }
 
-console.log("j=i ; j>0limit, j-- reverse both");
+console.log("i=5 ; i > 0; i--");
 for (let i = 5; i > 0; i--) {
   for (let j = 0; j < i; j++) {
     console.log(i, j);

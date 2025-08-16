@@ -354,12 +354,9 @@ console.log(pattern6);
 console.log("Diamond pattern7");
 
 function upperTriangle(n) {
-<<<<<<< HEAD
   //Handle edge cases first.
  
 
-=======
->>>>>>> 743a783653bd882a8488384dd794680a9146802f
   for (let row = 1; row <= n; row++) {
     let star = "";
     for (space = 1; space <= n - row; space++) {
@@ -388,7 +385,6 @@ function lowerTriangle(n) {
 }
 
 //combine the pattern
-<<<<<<< HEAD
 // Input n=3: Must produce a diamond with a 3-row upper part and a 2-row lower part.
 // Input n=1: Must produce a single star *.
 // Input n=0: Should produce nothing.
@@ -397,19 +393,15 @@ function Diamondpattern(n) {
      console.error("Input must be a positive integer.");
      return;
    }
-=======
+  }
 function Diamondpattern(n) {
->>>>>>> 743a783653bd882a8488384dd794680a9146802f
   upperTriangle(n);
   lowerTriangle(n);
 }
 
-<<<<<<< HEAD
 let pattern7 = Diamondpattern(0);
-=======
-let pattern7 = Diamondpattern(5);
->>>>>>> 743a783653bd882a8488384dd794680a9146802f
-console.log(pattern7);
+let pattern7a = Diamondpattern(5);
+console.log(pattern7a);
 
 console.log("hourglass");
 //hour glass
@@ -546,11 +538,8 @@ console.log("2 Number pattern");
 //for every row we have space & number - for every row -loop
 //inside row we have spaces -loop
 //inside row we print number until number
-<<<<<<< HEAD
 console.log(" flawed  Triangle pattern");
-=======
 
->>>>>>> 743a783653bd882a8488384dd794680a9146802f
 function numtrialpattern15(n) {
   for (let row = 1; row <= n; row++) {
     let spacenum = "";
@@ -570,10 +559,7 @@ console.log(failedpattern15);
 //attach number to str & increment
 // string += number -> concatenates number to string changes its type
 //1st part
-<<<<<<< HEAD
 console.log(" Increasing Number Triangle pattern");
-=======
->>>>>>> 743a783653bd882a8488384dd794680a9146802f
 function numpattern15_1(n) {
   for (let row = 1; row <= n; row++) {
     let str = "";
@@ -591,10 +577,7 @@ function numpattern15_1(n) {
 let pattern15_1 = numpattern15_1(5);
 console.log(pattern15_1);
 
-<<<<<<< HEAD
 console.log(" pattern");
-=======
->>>>>>> 743a783653bd882a8488384dd794680a9146802f
 //2nd part  for loop decreasing number
 function numpattern15_2(n) {
   for (let row = 1; row <= n; row++) {
@@ -620,10 +603,7 @@ console.log(pattern15_2);
 // 21
 // 321
 // 4321
-<<<<<<< HEAD
 console.log("combinedTriangle");
-=======
->>>>>>> 743a783653bd882a8488384dd794680a9146802f
 function combinedTriangle(n) {
   numpattern15_1(n);
   numpattern15_2(n);
@@ -692,10 +672,7 @@ console.log("gcd:", p_16);
 //eliminate the extracted number
 
 function sumOfNumbers(x) {
-<<<<<<< HEAD
   //  x = Math.abs(x); // ed negative number 
-=======
->>>>>>> 743a783653bd882a8488384dd794680a9146802f
   let sum = 0;
   while (x) {
     lastdigit = x % 10;
@@ -708,28 +685,4 @@ let x = 4136;
 let p_17 = sumOfNumbers(x);
 console.log(`sum of numbers of ${x} is : ${p_17}`);
 
-<<<<<<< HEAD
 
-=======
-//Palindrome
-//Given the number x check if the number is a palindrome or not
->>>>>>> 743a783653bd882a8488384dd794680a9146802f
-
-//Quadratic problem
-//Given 3 number a,b,c which represent coefficient of quadratic equation
-//ax^2 + bx + c
-//fint the root of quadratic equation
-
-//approach
-//ip-a,b,c op-real roots
-//real roots (-b+srt(b^2 -4ac))/2a, (-b-srt(b^2 -4ac))/2a
-
-function solveroot(a, b, c) {
-  let sqrValue = Math.sqrt(b * b - 4 * a * c);
-  let root1 = (-b + sqrValue) / (2 * a);
-  let root2 = (-b - sqrValue) / (2 * a);
-
-  console.log(root1, root2);
-}
-
-solveroot(2, 5, 3);
