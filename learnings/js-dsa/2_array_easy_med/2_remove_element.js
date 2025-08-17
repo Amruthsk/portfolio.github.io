@@ -1,6 +1,7 @@
 // to remove elements matching a target value from an array using in-place operations and minimal extra space.
 //shift elements to left if it is not equal to val
 
+//copy
 function removeelement(num,val){
     let x = 0;
     for(let i = 0; i < num.length;i++){
