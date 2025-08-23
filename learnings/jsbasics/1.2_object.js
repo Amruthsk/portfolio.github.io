@@ -1,10 +1,15 @@
 //Object, Array, Function, Date, Promise
+
+const { ModuleDetectionKind, getLineAndCharacterOfPosition } = require("typescript");
+
  //A (The Primal Substance):The plain Object- fundamental data type - collection of properties - key - value pair
 const steelBlock = {};
-//[object]-{empty}
-//[steelBlock] <-> [object]-{empty}
+//[[object]|{empty}]
+//[steelBlock] ---address---> [[object]|{empty}]
+
+
 steelBlock.material = 'Carbon Steel';
-//{material}-{Carbon Steel}
+//[steelBlock] ---address--->[object | {material}--->[string|{Carbon Steel}]]
 console.log("Action 1: The Primal Substance");
 console.log(steelBlock);
 
@@ -14,6 +19,7 @@ console.log("---");
 //[steelBlock]
 // |
 //[is a fundamental object capable of holding {qualities}] 
+
 
 
  // B (The Inseparable Relationship - ↔): Every object in JavaScript has an inseparable internal link, denoted as [[Prototype]]
@@ -28,8 +34,8 @@ const ultimateBlueprint = Object.getPrototypeOf(steelBlockBlueprint);
 console.log("Blueprint of the blueprint:", ultimateBlueprint);
 console.log("---");
 
-//object ↔ [[Prototype]]
-//steelBlock ↔ [[Prototype]]
+
+
 // [My steelBlock (Pakṣa)]
 // |
 // ( prototype exists, but its prototype's prototype is null )
@@ -37,15 +43,15 @@ console.log("---");
 // [is part of a finite chain of prototype] 
 
 
-
-
- //D (The Illusion of Many datatypes): Array, Function, Date, and Promise - not fundamentally different kinds of data types - but all at their core specialized Objects
+ //D (The Illusion of Many datatypes): 
+ // Array, Function, Date, and Promise - not fundamentally different kinds of data types - but all at their core specialized Objects
  //E (The Power of Specialization): The unique behaviors and methods of these specialized objects -are not qualities they possess directly
  // they inherit these powers via the prototype chain from a master blueprint object (e.g., Array.prototype, Function.prototype).
  //F (Array Specialization): Object with internally optimized for holding an ordered, numerically indexed collection of data
  //inherits its special powers (like .map(), .filter(), .push()) from Array.prototype.
 
  const gearbox = [10, 20, 30];
+ //[label:gearbox] ---address--->[object |[10,20,30]]
 
 console.log("Action 3: The Gearbox (Array)");
 
@@ -57,7 +63,7 @@ console.log(
  console.log(
    "Blueprint has .map?",
    Object.getPrototypeOf(gearbox).hasOwnProperty("map")
- ); 
+ );//true
 
 
 const gearboxBlueprint = Object.getPrototypeOf(gearbox);
@@ -86,13 +92,16 @@ console.log("---");
 //|
 //derives its power from its prototype, not from itself
 
+
+
+
  //G (Function Specialization):Object with the unique, special quality of being callable (it contains executable code)
  //inherits contextual powers (like .call(), .apply(), .bind()) from Function.prototype
 
 function motor(power) {
   return `Motor running at ${power}W`;
 }
-//[motor]-(set of instruction)
+//[label:motor]---->[function|{[motor]-(set of instruction)}]
 motor.housing = "Cast Iron";
 ////[motor]-{property}
 console.log("Action 4: The Motor (Function)");
@@ -119,6 +128,9 @@ console.log(
   Object.getPrototypeOf(chronometer).hasOwnProperty("getFullYear")
 );//true
 
+//const chronometer = new Date();
+//[label:chronometer]-------->[Date|{new Date()}]
+
 //.getFullYear(), .getMonth() <-> Date.prototype
 
 // I (Promise Specialization): Object  designed to be a placeholder for a future value, managing the states of an asynchronous operation.
@@ -132,6 +144,92 @@ console.log(
  ); 
 
 //  .then(), .catch(), .finally() <-> Promise.prototype.
+
+//[[object]|{empty}]
+//[steelBlock] ---address---> [[object]|{empty}]
+//[steelBlock] ---address--->[object | {material}--->[string|{Carbon Steel}]]
+//object ↔ [[Prototype]](blueprint)
+//steelBlock ↔ [[Prototype]] finite chain of prototype
+//Array, Function, Date, and Promise - specialized objects -  (unique* behaviors and methods)<----> prototype chain
+//blueprints holds behaviours and methods
+
+
+//object ↔ [[Prototype]](blueprint)↔ [[Prototype]](blueprint)↔ [[Prototype]](blueprint)↔ [[Prototype]](blueprint)--null
+
+//Array object ↔ direct properties & method [[Prototype]](blueprint)↔  inherited properties & method (special powers-like .map(), .filter(), .push()) <----> Array.prototype.
+
+//function object ↔ direct properties & method[[Prototype]](blueprint)↔  inherited properties & method(contextual powers- like .call(), .apply(), .bind()) <----> function.prototype.
+
+//Date object ↔ direct properties & method[[Prototype]](blueprint)↔  inherited properties & method(time-related powers-like .getFullYear(), .getMonth() )<----> Date.prototype.
+
+//Promise object ↔ direct properties & method[[Prototype]](blueprint)↔  inherited properties & method(time-related powers-like  .then(), .catch(), .finally()) <----> Promise.prototype.
+
+
+// //const steelBlock = {};
+// [steelBlock] ──> [[Object] | { (empty) }]
+
+// steelBlock.material = 'Carbon Steel';
+// [steelBlock] ──> [Object] | { material: 'Carbon Steel' }
+
+// const gearbox = [10, 20, 30];
+// [gearbox] ──> [Array] | { 0:10, 1:20, 2:30, length:3 }
+
+// function motor(power) {
+//   return `Motor running at ${power}W`;
+// }
+// [motor] ──> [Function] | { name:'motor', length:1, code: {...} }
+
+// const chronometer = new Date();
+// [chronometer] ──> [Date] | { internal_time_value: 167... }
+
+// const workOrder = new Promise((resolve) => resolve("Job Done"));
+
+// { (<pending>, <fulfilled>, or <rejected>} and its Result {(<undefined>, a value, or an error)}
+
+// Initially: [workOrder] ──> [Promise] | { State: '<pending>', Result: <undefined> }
+// After resolving: [workOrder] ──> [Promise] | { State: '<fulfilled>', Result: 'Job Done' }
+
+
+
+
+
+//plain object
+// [obj] ----> [[Prototype]] ----> [Object.prototype] ----> [[Prototype]] ----> null
+//   └- (has its own properties like .name)   └- (inherits methods like .toString(), .hasOwnProperty())
+
+//Property Lookup
+// // Accessing obj.name:
+// [obj]?name ---> Found! ---> Return value. (Search stops)
+
+// // Accessing obj.toString():
+// [obj]?toString ---> Not Found! ---> Follow [[Prototype]] link...
+//   [Object.prototype]?toString ---> Found! ---> Return method. (Search stops)
+
+
+
+// // Accessing obj.nonExistentProperty:
+// [obj]?prop ---> Not Found! ---> Follow [[Prototype]] link...
+//   [Object.prototype]?prop ---> Not Found! ---> Follow [[Prototype]] link...
+//     [null]?prop ---> End of chain. ---> Return undefined 
+
+//array
+// [myArray] -> [[Prototype]] -> [Array.prototype] -> [[Prototype]] -> [Object.prototype] -> [[Prototype]] -> null
+//    └- (has .length)            └- (inherits .map, .filter) └- (inherits .toString)
+
+
+
+// for all specialized objects
+//[Specific Instance] ---> [Specific.prototype] ---> [Object.prototype] ---> null
+
+
+// Array:
+// [myArray] --(has)--> .length | --(inherits from Array.prototype)--> .map(), .filter(), .push()
+// Function:
+// [myFunc] --(has)--> .name | --(inherits from Function.prototype)--> .call(), .apply(), .bind()
+// Date:
+// [now] --(inherits from Date.prototype)--> .getFullYear(), .getMonth(), .toISOString()
+// Promise:
+// [myPromise] --(inherits from Promise.prototype)--> .then(), .catch(), .finally()
 
 
 
@@ -167,13 +265,17 @@ function Engineer(name) {
   this.specialty = "Mechanical";
 }
 
-//([Engineer]) - {name}, {specialty}
-// Engineer <-> [.prototype]constructor
+//constructor function
+//[function|{code}]
+// [Engineer] ──> [Function] | { name:'Engineer', length:1, code: {...} }
+
 
 // adding new method to [.prototype]
 Engineer.prototype.build = function () {
   return ` ${this.name} is building a machine.`;
 };
+//[Engineer Function] { prototype: → } ──points_to──> [Engineer.prototype Object] { constructor: → }
+
 
 // Karma: The 'new' operator initiates the Four-Fold Path.
 // Step 1: An empty object `{}` is created.
@@ -182,6 +284,7 @@ Engineer.prototype.build = function () {
 // Step 4: The final object is assigned to the `[chiefEngineer]` .
 const chiefEngineer = new Engineer('Amruth S K');
 //// chiefEngineer <-> [.prototype] instance 
+//[New Empty Object] { __proto__: → } ──links_to──> [Engineer.prototype Object]
 console.log("Final Product:", chiefEngineer);
 console.log("Inherited Skill:", chiefEngineer.build());
 console.log("---");
@@ -192,7 +295,8 @@ console.log("---");
 // successfully created and imbued with both unique and inherited qualities
 
 
-// instance's [[Prototype]] <----(kw-"new")-----> constructor's .prototype 
+
+// instance's - uinque behaviours & methods[[Prototype]] <----(kw-"new")-----> inherited behaviours & methods constructor's .prototype 
 
 console.log("Action 2: Verifying the Blueprint Link");
 const instanceBlueprint = Object.getPrototypeOf(chiefEngineer);
@@ -270,3 +374,51 @@ console.log(
 //(check object's prototype chain contains the constructor's prototype)
 //|
 //can accurately trace an object's creation back to its blueprint 
+
+
+
+// [soldier Object]-------->[commander Object]-------->  [Object.prototype]---> null
+
+//[soldier instance -{properties and methods}] --[[Prototype]]--> [commander constructor function-{properties and methods}] --[[Prototype]]--> [Object.prototype] --[[Prototype]]--> null
+
+
+
+// [New Empty Object] { __proto__: → } ──links_to──> [Engineer.prototype Object]
+
+
+//Two Foundational Substances (Before new)
+// constructor function - []
+
+// [Engineer Function]────>{ name: "Engineer", length: 1, prototype: → }
+
+// Prototype Object - []
+
+// [Engineer.prototype Object]────>{ constructor: → }
+
+
+// [Engineer Function] <---{.constructor}--- [Engineer.prototype Object]
+//         |
+//         '--->{.prototype}--->'
+
+
+
+// new 
+//const chiefEngineer = new Engineer('ASK');
+
+//[new chiefEngineer Instance]──internal[[Prototype]]_link_is_forged_to──>[Engineer.prototype Object]
+
+//after new
+// Correct Prototype Chain for a single instance
+//[chiefEngineer Instance] --[[Prototype]]--> [Engineer.prototype Object] --[[Prototype]]--> [Object.prototype] --[[Prototype]]--> null
+
+
+
+//[soldier_instance] --[[Prototype]]--> [Soldier.prototype] --[[Prototype]]--> [Commander.prototype] --[[Prototype]]--> [Object.prototype] --> null
+
+//[Specific Instance] ---> [Specific.prototype] ---> [Object.prototype] ---> null
+
+
+
+
+
+

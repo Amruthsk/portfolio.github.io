@@ -12,6 +12,23 @@
 
 // A Global Context exists, and a new Function Context is created when a function is invoked, each with its own Lexical Environment."
 
+
+//Scope: [ ... a boundary defining visibility ... ] determines the accessibility of variables.
+
+//The rule is simple: a function's scope is determined by where it was written (lexically placed) in the code, not where it is called.
+//Lexical Scope: [ OuterScope [ InnerScope ] ] - This relationship is permanent.
+
+//Lexical Environment: { local variables } ----(one way)---> [ Parent Lexical Environment ]
+//Every time a function is called, a new Lexical Environment is created to enforce the rules for that call. 
+// It has two components: its local memory and a reference to its parent.
+
+
+//Closure: [ Function ] ---remembers---> { its birth environment's variables }
+//he function maintains its link to its parent's environment, forming a "backpack" of variables that it carries with it, no matter where it goes.
+
+
+
+
 let baseCampResource = "Global Intel"; 
 //[baseCampResource] -{Global Intel} - Global EC.
 
@@ -177,3 +194,23 @@ courier();
 courier();// state exhausted
 
 //  E (Factory Pattern): Closures are commonly used to create "factories"—functions that generate other functions, each with its own private, persistent state.
+
+
+// Global Scope
+let globalVar = "Sun";
+
+function outer() {
+  // Outer Scope
+  let outerVar = "Earth";
+
+  function inner() {
+    // Inner Scope
+    let innerVar = "Moon";
+    console.log(globalVar, outerVar, innerVar); // Accesses all three
+  }
+
+  return inner;
+}
+
+const myInnerFunc = outer(); // outer() executes and is gone
+myInnerFunc(); // "Sun Earth Moon"

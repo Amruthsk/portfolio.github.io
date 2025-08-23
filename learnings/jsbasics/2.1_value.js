@@ -137,3 +137,28 @@ console.log("Machine's Blueprint as text:", cncMachine.toString());
 
 
 //I {pending, fulfilled, or rejected}.
+
+
+
+// [Primitive] - {immutable, type of , reference - value, copy creates new [object] so any changes made wont affect the original}
+//[variable] ──holds──> {COIN}
+
+//  [string]|{"text"}
+//  [number]|{123}
+//  [boolean]|{true or false}
+//  [null]|{∅ }
+//  [undefined]|{?}
+//symbol
+//bigint|{9007...n}
+
+
+
+
+// [Object] - {mutable, instance of , reference - address, copy points to same address and same  [object] so any changes will  affect the original}
+//[variable] ──points_to──> {DATA}
+// [steelBlock] ──> [Object] | { material: 'Carbon Steel' }
+// [gearbox] ──> [Array] | { 0:10, 1:20, 2:30, length:3 }
+// [motor] ──> [Function] | { name:'motor', length:1, code: {...} }
+// [chronometer] ──> [Date] | { internal_time_value: 167... }
+// Initially: [workOrder] ──> [Promise] | { State: '<pending>', Result: <undefined> }
+// After resolving: [workOrder] ──> [Promise] | { State: '<fulfilled>', Result: 'Job Done' }

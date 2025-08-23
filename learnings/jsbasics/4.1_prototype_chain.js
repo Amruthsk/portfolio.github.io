@@ -1,7 +1,21 @@
 //  A (The Fundamental Link): Every JavaScript object has a private, internal property, often denoted as [[Prototype]], which is a link (a reference) to another object or to null.
 //  G (Direct Creation): The Object.create() method allows for the direct creation of a new object with its [[Prototype]] explicitly set to another object provided as its argument.
  //An object can be directly created with its [[Prototype]] linked to another existing object.
-const commander = {
+
+
+ //[Instance] --[[Prototype]]--> [PrototypeObject]
+// [soldier] →[[Prototype]]→ [commander] →[[Prototype]]→ [Object.prototype] →[[Prototype]]→ null
+
+//[soldier] --[[P]]--> [commander]::{standardProcedure} --[[P]]--> [Object.prototype]::{toString, ...} --[[P]]--> null
+// access: soldier.standardProcedure()
+// Result: 🔍[soldier]{}? (Not found) ↪️ →[[P]]→ 🔍[commander]{standardProcedure}? (Found! ✅) → Execute()
+
+
+// access: soldier.toString()
+// Result: 🔍[soldier]{}? (No) ↪️ →[[P]]→ 🔍[commander]{}? (No) ↪️ →[[P]]→ 🔍[Object.prototype]{toString}? (Yes! ✅) → Execute()
+
+
+ const commander = {
   
   standardProcedure: function() {
     console.log("Commander says: Execute standard procedure!");

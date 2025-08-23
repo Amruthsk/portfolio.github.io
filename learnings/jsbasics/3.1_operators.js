@@ -188,3 +188,45 @@ if (0 && true) {
 
 const result = {} && "The object was truthy";
 console.log("Empty object truthiness result:", result);
+
+
+/Category 1: Assignment Operator (=)
+//[ ]={} set gives {}
+//p = v1 -> v2
+//[] ←(=)← {}
+
+//[infantryDivision]-{5000}
+//Category 2: Arithmetic Operator (+, -, *, /, %)
+// { } (+, -, *, /, %) { } -> new { } direct order
+// coercion
+// {string} + { } -> string concatenation
+
+
+
+//Category 3: Comparison Operator (>, <, ==, ===)
+// // { } (>, <, ==, ===) { } ->  { True/ False } respond yes or no
+// { } (=== Strict Equality operator) { } ->  { True/ False }
+// { } (== Loose Equality operator) { } ->  { True/ False }performs Type Coercion before comparing the Guṇa. It attempts to make the types of the two Dravya the same before checking their value.
+
+
+
+
+
+//Category 4: Logical Operator (&&, ||, !)
+// {True/ False } (&&, ||, !) {True/ False }--->{True/ False }  go/no  go
+//// {non boolean } (&&, ||, !) {non boolean }
+//(Short-Circuiting): The Logical AND (&&) and Logical OR (||) operators exhibit "short-circuiting."
+
+// && will not evaluate its right side if its left side is false.
+//(Short-Circuiting)
+//&&: {falsy} (&&) { any} ~~→ {falsy}
+//||: {truthy} (||) {any} ~~→ {truthy Guṇa}
+
+//js engine - internal - Type coercion is the automatic, implicit conversion of a value from one data type into another by the JavaScript engine.
+//  G (The + Operator's Special Mission): If either operand of the addition operator (+) is a string, the other operand will be coerced into a string, and the action becomes string concatenation.
+//  H (The Mathematician's Rule): Most other mathematical operators (-, *, /, %) will attempt to coerce any non-number operand into a number before performing the calculation.
+//  I (The "Loose" Interrogation): The abstract equality operator (==) will perform type coercion if the two operands are of different types before comparing them for equality.
+//{5} (==?) {"5"} ⇒ ({"5"} → internal → {5}) ⇒ {5} (==?) {5} → {true}
+
+//  J (The "Strict" Interrogation): The strict equality operator (===) will not perform type coercion. If the types are different, it immediately concludes they are not equal.
+//{5} (===?) {"5"} ⇒ [number ≠ string] ⇒ → {false}

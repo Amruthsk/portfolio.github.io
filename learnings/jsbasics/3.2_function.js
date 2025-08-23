@@ -4,6 +4,36 @@
 
 
 
+//function - callable (action) and an [object]
+
+//[drillHole (Function Dravya)] | { code: "...", name: "drillHole", sopNumber: "SOP-101" }
+
+//(drillHole()) ──> "Drilling action initiated."
+
+//(assemblePart("A", "B")) ──> ["Assembled A and B." (String )]
+
+//(cleanStation()) ──> [undefined ]
+
+
+//[Global Scope] <═══ Fortified Perimeter ═══> { Scope of cleanStation: [message] }
+
+//[object] -> [method] -{this refers to the [object]}
+
+//[soldier_instance]──[[Prototype]]→[Soldier.prototype]──[[Prototype]]→[Object.prototype]──[[Prototype]]→ null
+
+//declaration - hoisted p1-{code} p2 - call, expression - not hoisted p1 - undefined, p2 assign
+
+//[Commander's Office (Scope): { this }] ═══> Arrow Fn { 'this' passes through transparently }
+//[Commander's Office (Scope): { this }] <══| Regular Fn { creates its own opaque 'this' boundary }
+
+
+//function inside... access its parent variable... function <-> the lexical environment.
+
+//(createCounter()) ──> RETURNS [inner function ([])] + [Backpack { count: 0 }]
+
+
+
+
 // However, in JavaScript, a [function] .
 //  It is a special type of [object], 
 // a "first-class citizen." This means it can be stored in variables, passed to other functions, and have properties attached to it, just like any other object.
@@ -16,6 +46,8 @@
 function drillHole() {
   console.log("Drilling action initiated.");
 }
+// [drillHole] ──> [Function] | { name:'drillHole', length:, code: {...} }
+
 //[drillHole] -{(callable)}
 //(console.log) defined within
 
@@ -53,6 +85,8 @@ drillHole();
 function assemblePart(partA, partB) {
   return `Assembled ${partA} and ${partB}.`;
 }
+// [assemblePart] ──> [Function] | { name:'drillHole', length:2, code: {...} ,return}
+
 //[assemblePart]
 //parameter - partA,partB
 //return
@@ -62,6 +96,8 @@ function cleanStation() {
   let message = "Station cleaned.";
 }
 // no return statement when called undefined
+// [cleanStation] ──> [Function] | { name:'cleanStation', length:, code: {...} }
+
 
 console.log("\n--- Perception Action 2 ---");
 //invocation with argument
