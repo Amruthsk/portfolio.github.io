@@ -140,7 +140,7 @@ WHERE dept_id = 101;
 
 
 
---[Child Table].[fk_col] 🔗 → [Parent Table].[pk_col]
+--[Child Table].[fk_col] <-> → [Parent Table].[pk_col]
 --The Law for the Child (Governs Child INSERT /UPDATE):
 --CHILD::
 -- INSERT(fk = X) → REQUIRES ∃ PARENT(pk = X) (
@@ -174,3 +174,7 @@ WHERE dept_id = 101;
 
 -- insert direction [parent] ----> [child]
 --[Parent Row] MUST EXIST ✅ ➡ ️ THEN [Child Row] can be created.
+--[Orders_Table].[Row₁₂] { user_id: 5 } ← --→ [Users_Table].[Row₅] {id: 5}
+
+
+

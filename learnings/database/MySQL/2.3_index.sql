@@ -152,4 +152,4 @@ WHERE category = 'Entertainment';
 -- index - groups the common and makes search easy
 -- with index --select - efficient  - becoz ref scan , type ref, some rows
 
--- [(SELECT) on 'Category'] → (Step 1: Index Seek) Find 'Entertainment' in [Index] → (Step 2: Table Jump) Instantly retrieve only [Row at Loc5, Loc22, Loc140...]
+
