@@ -1,6 +1,7 @@
 -- DML- 
 
 -- INSERT
+
 -- [Table] + (INSERT {new values}) → [Table + {New_Row}]
 -- [Table] + (INSERT {Q₁}, {Q₂}, {Q₃}) → [Table + {Row₁}, {Row₂}, {Row₃}]
 -- Explicit (Safe): (INSERT [col₂]:{val₂}, [col₁]:{val₁}) → SAFE MAPPING → [Table + {New_Row}
@@ -136,3 +137,73 @@ LIMIT 1;
 
 
 --  F (The Feedback - ): Upon execution, the MySQL server provides immediate, direct feedback  on the number of rows that were matched by the WHERE clause and how many were actually changed by the SET clause.
+
+
+Delete
+
+USE fintech_db;
+
+CREATE TABLE IF NOT EXISTS agents (
+    agent_id INT PRIMARY KEY AUTO_INCREMENT,
+    callsign VARCHAR(50),
+    status VARCHAR(20)
+);
+
+INSERT INTO agents (callsign, status)
+VALUES ('Raptor', 'ACTIVE'),
+    ('Ghost', 'ACTIVE'),
+    ('Viper', 'COMPROMISED');
+
+SELECT *
+FROM agents;
+
+--  A (The Action of Annihilation): The (DELETE) command is the specific  that removes one or more existing [Row]  (substances) from a [Table].
+
+--  B (The Critical Condition): The (WHERE) clause is the essential qualifier (H) that specifies which rows to delete by providing a logical condition. The () only acts upon the rows that satisfy this condition.
+
+DELETE FROM agents
+WHERE status = 'COMPROMISED';
+
+
+-- (DELETE FROM) [agents]
+-- (WHERE status = 'COMPROMISED -h);
+
+-- viper row -> specifically deleted - target h 
+
+--  C (The Unconditional Annihilation): Executing a DELETE command without a WHERE clause is a valid but extremely powerful  that removes all Row  from the table. The table's structure remains, but it becomes devoid of data.
+
+
+--  D (The Proof of ()): Upon successful execution, the DELETE command returns a value indicating the number of Row  that have been made absent (i.e., the number of rows deleted).
+
+--  E (The Resulting Absence): The outcome of a successful DELETE operation is absence of the row
+
+
+SELECT *
+FROM agents;
+
+DELETE FROM agents;
+-- delete without where delete completly
+
+--The result of an unconditional delete is an empty table, not a deleted table - structure exist
+
+DESCRIBE agents
+
+
+--[Row₁, Row₂, Row₃] --( Remove WHERE quality=X)--> [Row₁, ∅, Row₃]
+
+-- [Row₁, Row₂, Row₃] --(Remove ALL)--> [∅, ∅, ∅]
+
+
+
+-- bulldoze vs scalpel
+
+-- Truncate Table DDL vs Delete DML
+
+-- redefinition of table vs removal of row
+-- Cannot be undone.It is an implicit COMMIT. vs Can be undone (ROLLBACK)
+
+
+-- [Table Container + Rows] --( Demolish & Rebuild)--> [New Empty Table Container]
+
+--[Start] ---> ( DELETE) ---> [Rows Absent] <---( ROLLBACK)---> [Rows Restored
+-- [Start] ---> (TRUNCATE) ---> | [Point of No Return] ... [New Empty Table]
