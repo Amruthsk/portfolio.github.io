@@ -1,0 +1,4 @@
+# donot track
+.env
+
+node_modules

@@ -10,6 +10,21 @@
 const knex = require("knex");//knex imported - locate and load the 'knex' library module.
 
 
+const config = {
+  client: "mysql",
+  connection: {
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+  },
+};
+
+//[knex_function] + [config_object] → [commander_instance]- Query builder instance
+
+const commander = knex(config);
+
+console.log("Commander has been appointed. Awaiting orders.");
 
 //  C (The Locus of Power): The returned Knex instance is the central object—a "query builder"—and serves as the primary interface for all subsequent database actions (Karma).
 //  D (The Nature of Connection): The instance does not establish a connection to the database upon its creation. Connection is established "lazily" only when the first query is actually executed.
