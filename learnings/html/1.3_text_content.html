@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Experiment</title>
+    <!-- A simple style to make block/inline visible -->
+    <style>
+      div {
+        border: 2px solid blue;
+        margin: 5px;
+      }
+      span {
+        border: 2px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section>
+        <h1>Main Title</h1>
+        <h2>Subtitle</h2>
+        <p>
+          This is a paragraph describing the mission. It is a block of text that
+          stands on its own.
+        </p>
+        <h6>Footnote Title</h6>
+      </section>
+      <div>This is the first division. It has a blue border.</div>
+      <div>This is the second division. See how it starts on a new line.</div>
+      <p>
+        Here is some text with a
+        <span class="highlight">highlighted word</span> and another
+        <span class="highlight">highlighted phrase</span> right after it. They
+        stay in the same line.
+      </p>
+      <section></section>
+
+      <section>
+        <h1>Operation Thunderstrike</h1>
+        <p>
+          This is a paragraph describing the mission. It is a block of text that
+          stands on its own.
+        </p>
+      </section>
+
+      <section>
+        <h2>Mission Details</h2>
+        <div>This is the first division.</div>
+        <div>This is the second division.</div>
+        <p>
+          Here is some text with a <span>highlighted word</span> and another
+          <span>highlighted phrase</span>.
+        </p>
+      </section>
+
+      <section>
+        <h2>Logistics</h2>
+        <h3>Unordered Requirements</h3>
+        <ul>
+          <li>Rations</li>
+          <li>Medical Kit</li>
+        </ul>
+        <h3>Ordered Plan</h3>
+        <ol>
+          <li>First, secure the perimeter.</li>
+          <li>Second, advance to the objective.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>Intelligence</h2>
+        <h3>High Command Directive</h3>
+        <blockquote>
+          This is a direct order. The objective must be taken by 0600 hours.
+        </blockquote>
+      </section>
+    </main>
+  </body>
+</html>
+
+<h1>
+  -h6 are block-level headings of decreasing importance.
+  <p>is a block-level paragraph.</p>
+</h1>
+
+<!-- !{Instruction} → (Set Rendering Mode to 'Standards')
+
+[html: The Root Substance
+    [head: Metadata Substance { Tab Title, Stylesheet Links...}] → (Informs Browser Behavior)
+    [body: Content Substance {Text, Images, Forms...}]      → (Renders Visibly to Screen)
+] 
+
+inside the body content sectioning
+
+[div: generic container { hold content,text,image,links, separates content}] → (browser will render this as a simple block-level box)
+Generic Substance (<div>)
+[<div> { generic content}] → (Visual : Render as block box) + (Semantic : Assign 'generic' role)
+
+
+
+
+Semantic Substance (<main>)
+[<main> { main content}] → (Visual : Render as block box) + (Semantic : Assign 'main' role)
+
+[header: specific container { introductory content}] → (Semantic :Assign banner role)+ (Visual: Block) 
+[nav: specific container { major navigationt}] → (Semantic :Assign navigation role)+ (Visual: Block) 
+[main: specific container { dominant content}] → (Semantic :Assign main role)+ (Visual: Block)
+[article: specific container { self-contained}] → (Semantic :Assign article role)+ (Visual: Block)
+[aside: specific container { tangential}] → (Semantic :Assign complementary role)+ (Visual: Block)
+[footer: specific container { closing content}] → (Semantic :Assign contentinfo role)+ (Visual: Block)
+[<section> { thematic group}] → (Visual: Block) + ( Semantic :Assign 'region' role)+ (Visual: Block) -->
+
+<!-- inside the body substance 
+
+based on layout qualities - 2 types - block level elements - full width & new line & inline elements
+- flow within the text same line
+{Layout}
+Block Elements (<p>, <div>, <h1>, <ul>...) are BOXES. They demand their own space and stack vertically.
+Inline Elements (<span>, <a>, <strong>...) are HIGHLIGHTERS. They mark up text within an existing line without disrupting it.
+
+Semantic Elements (<h1>, <ul>, <blockquote>...) have a BUILT-IN MEANING.
+
+
+[HTML Element] { 1: Layout (Block | Inline)} + { 2: Meaning (Semantic | Generic)} 
+
+Semantic elements
+[p] → (I AM a paragraph)
+ [<h1- h6>{ Block, Semantic-Rank-#}] → (To structure a document's outline with a level-# heading) 
+[[p]{ Block, Semantic-Paragraph}] → (To group related sentences into a distinct, self-contained block of text)
+
+[[ul] ⊃ [li]{Block, Semantic-Unordered-List }]   → (To group related items where sequence is irrelevant)
+[[ol] ⊃ [li]{ Block, Semantic-Ordered-List}] → (To group related items where sequence is critical)
+[[blockquote]{Block, Semantic-Quotation}] → (Display indented block content as a quotation, visually indented)
+
+{Meaning}
+Generic Elements (<div>, <span>) are EMPTY VESSELS.-the architect, give meaning to with id and class attributes. This is why they are so powerful.
+generic containers
+[div] + {class="article-card"} → (I WILL BECOME an article card)
+
+[<div> { Block, Non-Semantic}] →  + (Semantic : Assign 'generic' role- Create a generic block-level box to group other elements)-->(To create a structural "box" for grouping elements, awaiting purpose from CSS/JS)
+[<span> { Inline, Non-Semantic}] →  + (Semantic : Assign 'span' role- arget a phrase inside text without breaking the line's flow)-->(To create a textual "highlighter" for a phrase, awaiting purpose from CSS/JS) -->

@@ -1,0 +1,83 @@
+ <!-- B (The Primary Substance - <main>): 
+    The <main> element represents the dominant, central content of the <body>. A document must not have more than one visible <main> element.
+ C (The Boundary Substances - <header> & <footer>):
+The <header> element represents introductory content, typically a group of introductory or navigational aids.
+The <footer> element represents the closing content for its nearest sectioning ancestor, typically containing authorship, copyright, or related document links.
+ D (The Navigational Substance - <nav>): The <nav> element represents a section of a page whose purpose is to provide major navigation links, either to other parts of the current document or to other documents.
+ E (The Self-Contained Substance - <article>): The <article> element represents a complete, self-contained composition that is, in principle, independently distributable or reusable (e.g., a forum post, a magazine or newspaper article, or a blog entry).
+ F (The Thematic Substance - <section>): The <section> element represents a generic standalone section of a document, which doesn't have a more specific semantic element to represent it. It typically includes a heading.
+ G (The Tangential Substance - <aside>): The <aside> element represents a section of a page that consists of content that is tangentially related to the content around it (e.g., a sidebar, pull quotes, or advertising) -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Operation Blueprint</title>
+    <style>
+        /* : Applying a border quality to ALL elements for demonstration */
+        body, header, nav, main, article, aside, footer, section { 
+            border: 2px solid darkblue; margin: 5px; padding: 5px; display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        :
+        -  A <header> element.
+        -   Its semantic role is "introductory content."
+        -  Browser recognizes this as the page's header region.
+    -->
+    <header>Operation 'Dawnbreaker' - Unit 7</header>
+
+    <!--  <nav>. : "major navigation".  Assign 'navigation' role. -->
+    <nav>Main Routes</nav>
+    
+    <!--  <main>. : "dominant content".  Assign 'main' role. -->
+    <main>
+        <h1>Main Theatre of Operations</h1>
+        <!--  <article>. : "self-contained".  Assign 'article' role. -->
+        <article>
+            <h2>After-Action Report: Hill 49</h2>
+            <p>The objective was taken with minimal resistance.</p>
+        </article>
+    </main>
+
+    <!--  <aside>. : "tangential".  Assign 'complementary' role. -->
+    <aside>Intel: Enemy morale is low.</aside>
+
+    <!--  <footer>. : "closing content".  Assign 'contentinfo' role. -->
+    <footer>C.O. - Gen. Smith</footer>
+</body>
+</html>
+
+
+<!-- [This semantically structured document ] → [is visually indistinguishable from the generic div-based document ] ∵ [ an identical layout of bordered rectangles in the browser viewport ]. -->
+
+
+
+<!-- !{Instruction} → (Set Rendering Mode to 'Standards')
+
+[html: The Root Substance
+    [head: Metadata Substance { Tab Title, Stylesheet Links...}] → (Informs Browser Behavior)
+    [body: Content Substance {Text, Images, Forms...}]      → (Renders Visibly to Screen)
+] 
+
+inside the body content sectioning
+
+[div: generic container { hold content,text,image,links, separates content}] → (browser will render this as a simple block-level box)
+Generic Substance (<div>)
+[<div> { generic content}] → (Visual : Render as block box) + (Semantic : Assign 'generic' role)
+
+
+
+
+Semantic Substance (<main>)
+[<main> { main content}] → (Visual : Render as block box) + (Semantic : Assign 'main' role)
+
+[header: specific container { introductory content}] → (Semantic :Assign banner role)+ (Visual: Block) 
+[nav: specific container { major navigationt}] → (Semantic :Assign navigation role)+ (Visual: Block) 
+[main: specific container { dominant content}] → (Semantic :Assign main role)+ (Visual: Block)
+[article: specific container { self-contained}] → (Semantic :Assign article role)+ (Visual: Block)
+[aside: specific container { tangential}] → (Semantic :Assign complementary role)+ (Visual: Block)
+[footer: specific container { closing content}] → (Semantic :Assign contentinfo role)+ (Visual: Block)
+[<section> { thematic group}] → (Visual: Block) + ( Semantic :Assign 'region' role)+ (Visual: Block) -->
