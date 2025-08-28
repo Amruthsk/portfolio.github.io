@@ -1,5 +1,5 @@
 -- Core {Qualities} of Data Integrity:
---  NOT NULL,
+-- NOT NULL,
 -- UNIQUE,
 -- PRIMARY KEY,
 -- FOREIGN KEY

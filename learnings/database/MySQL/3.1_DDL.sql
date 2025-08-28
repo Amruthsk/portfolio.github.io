@@ -65,7 +65,7 @@ SHOW DATABASES LIKE 'art_portfolio'
 --  C (The [Structured] ): The TABLE is the fundamental substance designed for storing structured data.Its structure is rigidly defined by a collection of named columns.
 --  D (The (Creation) for Structures): The CREATE TABLE statement is the action  that brings a new table substance into existence within a specific database.The statement must define the table 's name and the complete specification of its columns.
 
-CREATE TABLE forges a new structured Dravya (TABLE) with specific qualities (COLUMNS, Data Types, PRIMARY KEY).
+CREATE TABLE forges a new structured  (TABLE) with specific qualities (COLUMNS, Data Types, PRIMARY KEY).
 
 --∅ → (CREATE TABLE)->[Table]<----> { Column ₁, Column ₂...}{name,data type,constraints}
 

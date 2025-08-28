@@ -26,7 +26,7 @@ USE engineering_db; CREATE TABLE pistons_innodb (piston_id INT PRIMARY KEY, mate
 
 --[pistons_innodb] table
 --|
---the CREATE TABLE Karma, defining its columns, succeeded within the context of its database 
+--the CREATE TABLE , defining its columns, succeeded within the context of its database 
 --|
 --blueprint is created, but no physical parts exist yet.
 
@@ -40,7 +40,7 @@ USE engineering_db; CREATE TABLE brackets_myisam (bracket_id INT PRIMARY KEY, fi
 
 --brackets_myisam table
 --|
---the CREATE TABLE Karma, defining its columns,engine explicitENGINE=MyISAM succeeded within the context of its database
+--the CREATE TABLE , defining its columns,engine explicitENGINE=MyISAM succeeded within the context of its database
 --|
 --possesses the specific essence we assigned to it
 

@@ -101,7 +101,7 @@ SELECT part_id, part_id + 1 FROM part_inventory WHERE part_name = 'Oil Seal';
 --DDL-creation
 --CREATE → [New Table: Table ( [Column] + {DataType} )]
 
---DQL-mover
+--DmL-mover
 --INSERT(Value) → {Column's datatype} ?? Value → [Mismatch]  →  Error
 --INSERT(Value) → {Column's datatype} ?? Value → [Match]  → [New Dravya: Row]
 
