@@ -83,16 +83,4 @@ ORDER BY →
 SELECT →
 LIMIT
 
-[Table] → (
-    Filter ∵
-    WHERE
-) → [Set₁] → (
-    Sort ∵
-    ORDER BY
-) → [Set₂] → (
-    Reduce Qualities ∵
-    SELECT
-) → [Set₃] → (
-    Restrict Quantity ∵
-    LIMIT
-) → ⇒ [Final Result]
+[Table] → (Filter ∵WHERE) → [Set₁] → (Sort ∵ORDER BY) → [Set₂] → (Reduce Qualities ∵SELECT) → [Set₃] → (Restrict Quantity ∵LIMIT) → ⇒ [Final Result]
