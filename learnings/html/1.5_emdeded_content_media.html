@@ -1,0 +1,50 @@
+<!--  for <img> (The Image Substance)
+ A (Core Function): The <img> element is a [] that embeds an image into the document.
+ B (Essential {} - src): The src (source) attribute is a mandatory {} that contains the path or URL to the image to be displayed.
+ C (Accessibility {} - alt): The alt (alternative text) attribute is a mandatory {} that provides a textual description of the image for accessibility (e.g., screen readers) or if the image fails to load.
+ D (Inherent Form): The <img> element is an "empty" or "void" element, meaning it has no closing tag (</img>) and cannot contain child elements. Its existence is defined solely by its attributes.
+ for <video> & <audio> (The Time-Based Media Substances)
+ E (Core Function): The <video> and <audio> elements are [] that embed playable media (video and audio, respectively) into the document.
+ F (Essential {} - src or <source>): The source of the media is specified either with a src attribute on the element itself or via one or more child <source> elements.
+ G (Control {} - controls): The boolean controls attribute is a {} that, when present, causes the browser to supply its own user interface for controlling playback (e.g., play/pause buttons, volume). The absence (Abhāva) of this attribute results in no default controls being shown.
+ H (Fallback Content): Unlike <img>, these are not void elements. The content between the opening (<video>) and closing (</video>) tags is treated as fallback content, displayed only by browsers that do not support the element. -->
+
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Media Canvas</title>
+</head>
+<body>
+  <h1>The Multimedia Collage</h1>
+  <img 
+  src="https://via.placeholder.com/150" 
+  alt="A 150x150 placeholder image">
+
+<video 
+  width="320" 
+  src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+  controls>
+  Your browser does not support the video tag. This is fallback text.
+</video>
+
+</body>
+</html>
+
+<!-- [Media]{src: PATH} → (Browser.Fetch_And_Decode()) ⇒ [Perceptible_Reality] -->
+
+<!-- [[img]{ Inline, Semantic-image,src:source path* of the image data,alt:alternative text* when image fails to loadquality for accessibility}] → (Browser performs a *tonal change* on the text, usually rendering as italics) -->
+
+<!-- [[video]{ Inline, Semantic-video,src:video path* of the video data,width: size of display,control: video controls,fallback text}]
+
+[img]{src: VALID_PATH, alt: "..."} → (BROWSER: RENDER_IMAGE) ⇒ image
+[img]{src: BROKEN_PATH, alt: "..."} → (BROWSER: RENDER_ALT_TEXT) ⇒ "..."
+
+[video]{src} + {controls: absent} → (BROWSER: RENDER_POSTER_FRAME) ⇒  (Static, non interactive)
+[video]{src, controls} → (BROWSER: RENDER_PLAYER_UI) ⇒ ⏯ (Interactive)
+[video]...fallback text...[/video] + {BROWSER_SUPPORT: browser failsabsent} → (RENDER_FALLBACK_CONTENT) ⇒ "..."
+
+
+[audio]{src} + {controls: absent} → (BROWSER: LOAD_IN_MEMORY) ⇒ (loaded but Silent)
+[audio]{src, controls} → (BROWSER: RENDER_PLAYER_UI) ⇒  (Interactive)

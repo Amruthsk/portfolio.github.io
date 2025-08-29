@@ -1,0 +1,69 @@
+<!-- 
+Inseparable
+A (The Root Substance): The <table> element is the root container that represents all tabular data. All other table elements must be descendants of a <table>.
+ B (The Row Substance): The <tr> (table row) element defines a row of cells in a table. Its only valid children are <td> and <th> elements.
+ C (The Cell Substances): The <th> (table header) and <td> (table data) elements define the individual cells. They must be nested inside a <tr> element.
+Semantic Grouping 
+ D (The Header Group): The <thead> element encapsulates a block of rows (<tr>s) that constitute the header of the table. It provides semantic clarity.
+ E (The Body Group): The <tbody> element encapsulates a block of rows (<tr>s) that constitute the main data, or body, of the table.
+Qualitative Distinction  (Guṇa)
+ F (The Header Cell's Quality): The <th> element defines a cell that is a header for a group of cells. By default, browsers render its content as bold and centered, signifying its special role.
+ G (The Data Cell's Quality): The <td> element defines a standard data cell containing data. By default, browsers render its content as plain and left-aligned.
+<caption>: An element that provides a title or caption for the entire table. It is a critical [] for accessibility and context.
+<tfoot>: An element for grouping footer content in a table, analogous to <thead>. -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Table</title>
+  </head>
+  <body>
+    <table
+      style="border: 1px solid black; border-collapse: collapse; width: 300px"
+    >
+    <caption>Table</caption>
+      <thead>
+        <tr style="border: 1px solid black">
+          <th style="border: 1px solid black">Part Name</th>
+          <th style="border: 1px solid black">Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border: 1px solid black">
+          <td style="border: 1px solid black">M8 Bolt</td>
+          <td style="border: 1px solid black">16</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+
+<!-- 
+(Present_Data) ⇒ [<table>] ⊂ ([<thead>], [<tbody>], [<tfoot>]) ⊂ [<tr>] ⊂ [<td>|<th>]
+[<table>] ↔ (Root_Container) ⊂ ([<thead>], [<tbody>], [<tr>])
+
+[<table>]{style} ⊂ {data_values}
+
+
+
+semantic groupers
+[<thead>] ↔ (Header_Group) ⊂ [<tr>]
+[<tbody>] ↔ (Body_Group) ⊂ [<tr>]
+[<tfoot>] ↔ (Footer_Group) ⊂ [<tr>
+
+
+[<tr>] ↔ (Define_Row) ⊂ [<td>|<th>]
+[<th>] ↔ [Cell]{Semantic=Header, Style=Bold/Center}
+[<td>] ↔ [Cell]{Semantic=Data, Style=Normal/Left}
+
+
+[tr]{style} -> [th{style}, th{style}] -> [Header Row] 
+
+[tr]{style} -> [td{style}, td{style}] -> [normal Row] 
+ 
+
+
+
+-->

@@ -1,0 +1,68 @@
+<!-- // Core  (The Nature of Inline): Inline elements are substances that do not interrupt the flow of text; they do not start on a new line.
+//  A (<a>): The <a> element (or anchor element) creates a hyperlink to other web pages, files, locations within the same page, or email addresses.
+//  B (<em>): The <em> element marks text that has stress emphasis. This affects the meaning of the sentence.
+//  C (<strong>): The <strong> element indicates that its contents have strong importance, seriousness, or urgency.
+//  D (<code>): The <code> element displays a short fragment of computer code.
+//  E (<span>): The <span> element is a generic inline container that, by itself, represents nothing. It is used to group elements for styling purposes (using class or id attributes).
+//  F (<br>): The <br> element produces a line break in text. It is an empty element with no closing tag.
+//  G (<sub> / <sup>): The <sub> element specifies inline text that should be displayed as subscript, and the <sup> element specifies superscript. Both have semantic meaning (e.g., in mathematical formulas or chemical notations).
+//  H (<q>): The <q> element indicates that the enclosed text is a short inline quotation. Browsers often add quotation marks.
+//  I (<time>): The <time> element represents a specific period in time. Its datetime attribute allows for a machine-readable format of the date or time.
+ -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Engine Blueprint Notes</title>
+  </head>
+  <body>
+    <h1>Engine Assembly Notes</h1>
+    <p>
+      This document contains critical instructions for the V8 engine assembly.
+    </p>
+    <div>Inline</div>
+    <p>
+      This document contains <strong>critical</strong> instructions for the
+      <em>V8 engine</em> assembly.
+    </p>
+    <div>specialized text and flow</div>
+    <p>
+      The part number is <code>A4B-71-C</code>. The required tolerance is 10<sup
+        >-6</sup
+      >
+      mm. <br />Remember to check the H<sub>2</sub>O filtration system.
+    </p>
+    <div>reference - ( hidden semantic meaning) and date</div>
+    <p>
+      The director said <q>Ensure all surfaces are polished</q>. See the
+      <a href="drawing-f107.html">See Drawing #F-107</a> for details. This
+      revision was approved on
+      <time datetime="2025-08-29">August 29th, 2025</time>.
+    </p>
+  </body>
+</html>
+
+ <!-- [HTML Element] { 1: Layout (Block | Inline)} + { 2: Meaning (Semantic | Generic)}  -->
+
+ <!-- [Raw Text] { Is-Just-Characters } → (Browser renders it with default font)
+ 
+ [<em> [Text] </em>] 
+Inline nature
+[[em]{ Inline, Semantic-emphasis}] → (Browser performs a *tonal change* on the text, usually rendering as italics)
+[[strong]{ Inline, Semantic-importance}] → (Browser signals *urgency/seriousness*, usually rendering as bold)
+specialized text and flow
+[[code] {Inline, Semantic-code fragment }]   → (Browser uses a *monospace font* to distinguish it as code)
+[[sup] { Inline, Semantic--Superscript}] → (Browser *raises and shrinks* the text, as in E=mc²)
+
+[[sub]{Inline, Semantic-Subscript}] → (Browser *lowers and shrinks* the text, as in H₂O)
+
+[[br]{Inline, Semantic- LineBreak}] → (Browser *forces the subsequent text to a new line*)
+
+
+reference and date
+[[a] {Inline, Semantic-Hyperlink,href: "url"destination link }]   → Browser makes the text an *interactive portal* to the URL)
+[[q] { Inline, Semantic-InlineQuote}] → (Browser *wraps the text in quotation marks*, attributing it to a source)
+[[time]{Inline, Semantic-Time time,datetime= "ISO-8601" machinereadable}] → (Browser attaches *invisible, machine-readable time data* to human-readable text) -->
