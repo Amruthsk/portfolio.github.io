@@ -1,0 +1,8 @@
+
+Iron Ore Batch Report
+----------------------
+- Hematite content: 72%
+- Magnetite content: 25%
+- Silica impurities: 3%
+
+End of Report

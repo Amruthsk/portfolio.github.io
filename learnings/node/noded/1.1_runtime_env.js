@@ -26,20 +26,56 @@ console.log("Proof: Code Execution from a File.");
 
 // [The node executable ] → [can interpret and execute JavaScript files ] ∵ [because I  perceived the output of the console.log command contained within the app.js file ].
 
+
+
+
+// Car Engine
 // [Runtime Environment] ⊃ [node.exe]
+// [Runtime Env] ⊃  [Node.js Runtime: {V8 + Libuv + APIs}]
+
+//[Runtime Environment] - allows code to live and interact with computer
+// [Your Code] → { Execution Engine[v8] + System APIs[networks,TimeRanges.apply.apply.] } → [Machine Actions]
 
 
-// [node.exe] ∵ [V8 Engine ( for JS Execution)] + [libuv ( for Asynchronous I/O)]
+// Formula 1 Racing Engine
+//Node Runtime - server-side operations
+// [Node Runtime {has} V8 Engine, {has} libuv Library]
+//[Node.js Runtime] ⊃ { [V8 Engine], [libuv Library], [Node APIs (fs, http, etc.)] }
+
+// [Your JS Code] → { (V8 Engine) + [Libuv Event Loop] + [Node APIs: fs, http, crypto...] } → [Non-Blocking Server Actions]
+
+// [JS] → (V8) → [Machine Code]
+// V8 ↔ [Event Loop] delegates to → {Worker Threads}
+// [Your JS] calls → { fs(), http.createServer(), crypto.createHash() } -> access servers capabilities
+// [node.exe - node runtime] ∵ [V8 Engine ( for JS Execution)] + [libuv ( for Asynchronous I/O)]
 
 // [node.exe] { has_version, is_interactive_via_REPL } ∵ <-->  [V8 Engine]
 
-// [app.js file] → (node) → [Perceived Output]
+// [node.exe] { high scalability & concurrency } ∵ <--> [libuv ( for Asynchronous I/O)]
+//[Node Runtime].scalability ∵ [libuv].eventLoop
+
+// [app.js file-script] → (node execution) → [terminal Output]
 
 
-// node.exe] -> (h-Operates via Event Loop){: Non-Blocking I/O} → {s: Scalability}
+// node.exe -> (h-Operates via Event Loop){: Non-Blocking I/O} → {s: Scalability}
 //  v - High Concurrency & Scalability
 
 // [Runtime] ⊃ [node.exe {+V8}] + [app.js] → (Execution) ∵ (Internal Event Loop) → [Output]
 
 // [OS Process] ⊃ ( [node {V8+libuv}] + [script.js] ) → (K Execution) ∵ [h: The Event Loop cycles] → [s: Output]
 // [Operating System] ↔️ [process  { .argv, .cwd(), .env}] ↔️ [Your Script]
+
+
+//[Node.js Runtime] ⊃ { [V8 Engine], [libuv Library], [Node APIs (fs, http, etc.)] }
+
+//two path
+//Synchronous (CPU-bound) Action
+//[JS Code {sync}] → (Execute) @ [V8 Engine] → [Direct Output]
+
+// Asynchronous (I/O-bound) Action
+//JS Code {async}] → (V8 Executes) → (Hands Off Task) → [libuv Worker Thread] ⇒ (Task Complete) ⇒ (Queues Callback) @ [Event Loop] ⇒ (Executes Callback) @ [V8 Engine] → [Final Output]
+
+//[Node.js Runtime] { Non-Blocking Scalability} ∵ ( [Event Loop] (Delegates I/O) → [libuv Worker Threads] )
+
+//[Operating System] ⊃ [Process {[Node.js Runtime] @ [your_script.js]} {PID, env}] Process ID
+
