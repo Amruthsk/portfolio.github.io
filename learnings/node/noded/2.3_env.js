@@ -1,0 +1,6 @@
+// - ** A (The Core {}):** The global process object ([]) possesses a property named env ({}), which is an object containing a copy of the user's environment variables present when the Node.js process was initiated.
+// - ** B (String Conversion):** Assigning any non-string value (like a number or boolean) to a property on process.env will cause that value to be implicitly converted into a string.
+// - ** C (External Initialization):** Environment variables are primarily set in the shell or command line *before* the Node.js process is executed, providing an external configuration mechanism.
+// - ** D (Internal Mutability):** The process.env object can be modified from within the running Node.js script, allowing for the addition, alteration, or deletion of its properties.
+// - ** E (Scope Limitation):** Modifications made to process.env inside a Node.js script are local to that process only; they do not affect the environment of the parent shell or any other process.
+// - ** F (Case Sensitivity):** On POSIX systems (macOS, Linux), environment variable names are case-sensitive. While Windows is case-insensitive, the universal best practice (Vyāpti) is to always treat them as case-sensitive to ensure cross-platform compatibility.
