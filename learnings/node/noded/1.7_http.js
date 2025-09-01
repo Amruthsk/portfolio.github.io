@@ -26,7 +26,7 @@
 //('request' Event @ [Server]{listening}) ⇒ (execute{SOP} @ {[Request], [Response]})
 
 //[Request] ⊂ {.url, .method, .headers, ...}
-//[Response]{empty} --(writeHead, write, end)→ [Client]
+
 
 //(require)→[Module]--(createServer)→[Server]--(listen)→ ... [Event Loop] ... ⇐ ('request' Event) ⇒ ({SOP} @ {[Req],[Res]}) --(.end)→ [Client]
 
