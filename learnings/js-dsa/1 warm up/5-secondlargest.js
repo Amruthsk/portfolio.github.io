@@ -2,7 +2,10 @@
 // ✅ Approach: Loop through the array, intialize max number and keep track of the largest number found so far and swap whenever the largest number gets update
 // ✅ Time: O(n), Space: O(1)
 
-
+//array reduction pattern - count,max,min
+//[State]{Initial} → (Iterate @ [Input Array]) ⊂ { (Compare [Element] vs [State]) ⇒ (Update [State])? } ↻ → [*Final State]
+//[largest]{-infinity}, [seclargest]{-infinity} ->(Iterate @[inputarray])⊂ { (Compare [Element] > [largest State]) ⇒ (Update [seclargest] [largest state])? (Compare [Element] > [secState] || wrong [Element] != [largest] ) ⇒ (Update [seclargest])? }↻---->[seclargest]{number}
+// it wont work for duplicates
 function secondlargest(arr) {
  if (!Array.isArray(arr) || arr.length < 2) {
     return null; // A clear signal for the Abhāva of a second largest.
@@ -32,7 +35,18 @@ console.log(secondlargest([20, 20, 10]));
 
 //edge cases - empty array, negative numbers,duplicates,infinite numbers
 
+//[State]{Initial} → (Iterate @ [Input Array]) ⊂ { (Compare [Element] vs [State]) ⇒ (Update [State])? } ↻ → [*Final State]
 
+//([Input]) → (Gate: intialvalidation Check)? → [?absence] / ✔→ [*State]{Initial} → (∀ [E] ∈ [Input]) { (Logic @ E)? } ↻ → [*Final State]
+
+//[arr] ⇔ {Array ∧ length ≥ 2}? → [?null]
+// [E] ⇔ {number}? → (continue)
+
+//[L, SL]{-∞, -∞} → (∀ [E] ∈ [Array]) ⊂ { (Decision @ E) ⇒ (Update [L, SL])? } ↻ → [SL]
+//(Decision) → [E > L?] ?→ ([SL]←[L], [L]←[E]) : ([E < L?] && [E > SL?]) ?→ ([SL]←[E])
+//[SL] ⇔ {-Infinity}? → [?null] for duplicate
+
+// [L, SL]{-∞} → (∀ [E] ∈ arr) ⊂ { [E] ⇔ {num}?; [E > L?] ?→ ([SL]←[L],[L]←[E]) : [E > SL? & E < L?] ?→ ([SL]←[E]) } ↻ → ([SL] ⇔ {-∞}? → [?null])
 
 function findSecondLargest(arr) { 
 
