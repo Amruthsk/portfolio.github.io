@@ -1,0 +1,52 @@
+<!-- [<Tag> + [Attribute="Value"]] → {Text Node} ← [</Tag>] === ❖ The Element -->
+
+<!-- 
+u:([File] + {<!DOCTYPE>}) → [HTML Document] ↔ [<html> Element ⊂ {[<head>], [<body>]}]
+(Creation) @ [Text File] + {<!DOCTYPE>} ⇒ [HTML Document]
+[HTML Document] ⇔ {[<html>] as the single root}
+[<html>] ⊂ {[<head>], [<body>]}
+
+
+[ <!DOCTYPE html>]-rootelement contains all otherelements
+ [File] + [Declaration] → [HTML Document]
+ [document]<->[root element]
+ [html[head][body]]
+[head]{metadata}
+[body]{content} 
+
+
+
+u:[Element] ⇔ {([<Start Tag>] + [? Attribute]) ⊂ [Text Node]}
+[<Tag>] → {Text Node} ← [</Tag>] === ❖ The Element
+<Tag> </Tag>
+[[Tag]] ⊃ *<p> ⇒ (Creates) → [Paragraph Element]-specific type of element
+[Element] + [Attribute] → [Configured Element]
+[Attribute] ⇔ {name:"value" pair ⊂ [<Start Tag>]}
+
+{name:"value" pair}-additional information for an element
+
+[<VoidTag>] === [Complete Element](no closing tag & text content)
+content(text node)
+[Void Element] ⇔ {[<Single Tag>] ↔ [? Closing Tag] ↔ [? Text Node]}
+
+void elements - single tag<tag>{insert something into the document}
+(Insertion) @ [<Single Tag>] ⇒ [Rendered Object]
+
+[HTML Document] ↔ [<html> ⊂ {[<head>], [<body> ⊂ ([Element] | [Void Element])]}]
+
+-->
+
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="part-001">Piston head</p>
+    <br>
+    <hr>
+    
+</body>
+</html>

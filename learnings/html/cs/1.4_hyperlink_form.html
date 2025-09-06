@@ -1,0 +1,84 @@
+<!-- (hyperlink){request new resource} and (form){send data to server for processing}
+[User] → Action @ [<a>] or [<form>] → [Navigate] or [Submit Data] === ❖ U:[User] → (Click) @ ([[Interactive ]]) ⇒ ( HTTP Request)
+
+hyperlink -GET
+(User Click) @ [<a> Element ↔ {href: URL}] ⇒ (Navigate via GET)
+[a](Hyperlinking)->{searching and retriveing data}
+
+[a]{href- destination URL,GET request,target="blank"-new tab}(Hyperlinking)
+<a>visible content</a>
+
+[Hyperlink] ⇔ {[<a>] with {href}}
+
+(Click) @ [<a>] ⇒ (HTTP GET Request) @ {href URL}
+
+[<a>] + {target:"_blank"} ⇒ ( Navigate in New tab)
+
+
+From - POST
+U:(User Click) @ [Button] ⊂ [<form> {action, method} ⊂ {[Input]}] ⇒ ( Bundle & Submit Data)
+
+[form](submitting)->{change state on server}
+
+[form[input,label,button]](submission)
+[<form>] ⇔ {Container for [Inputs] with {action} & {method}}
+[form]-user input control
+[form]{action= url where the data to be sent,method= HTTP request method(get or post)}
+
+[<input>] ↔ {[name] ↔ {value}}
+[input]- collect data from user
+[input]{type-defines function and its appearance,name }
+
+[button]{type="submit"(submit)}
+
+(Click) @ [<button type="submit">] ⇒ (Initiate Submission) @ [Parent <form>]
+
+
+U:[Submit] + {Method} ⇒ [Data ⊂ (URL | Request Body)]
+GET -  searching or retrieving data.{url change}
+ [ Submit] + {Method:GET} → [Data ⊂ [URL]]
+POST - change state on the server, like creating a user or submitting data without using in url}
+[ Submit] + {Method:POST} → [Data ⊂ [Request Body]]
+
+static to dynamic
+
+[User] → (Click) ⇒ ( ([<a> ↔ {href}] → Navigate) | ([<form> ⊂ [Input]] → Submit) ) -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Field Operations Dashboard</h1>
+    <h3>Redeployment Orders</h3>
+    <!-- (Click) @ [<a> with {href}] ⇒ (Navigate) -->
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a">
+      Scout Hill 405 (MDN Reference)
+    </a>
+    <h3>Submit Sighting Report</h3>
+    <form action="/search" method="get">
+      <input type="text" name="sighting" placeholder="Enter sighting..." />
+      <!-- [Data] → (Click @ [Button]) ⇒ (Submit via GET)submits data by appending it to the URL url change-->
+      <button type="submit">File Report via Runner (GET)</button>
+    </form>
+    <h3>Submit Confidential Intel</h3>
+    <form action="/intel-hq" method="post">
+      <input
+        type="text"
+        name="intel"
+        placeholder="Enter confidential intel..."
+      />
+      <!-- [Data] → (Click @ [Button]) ⇒ (Submit via POST)submits data by no appending it to the URL url nochange-
+      <button type="submit">Dispatch Agent (POST)</button>
+    </form>
+    <a
+      href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a"
+      target="_blank"
+    >
+      Open Orders in New Tab
+    </a>
+  </body>
+</html>

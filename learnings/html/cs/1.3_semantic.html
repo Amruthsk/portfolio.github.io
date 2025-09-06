@@ -1,0 +1,80 @@
+<!-- Non-Semantic Element (<div>, <span>)
+[[Element]] ⊃ (*<div> | *<nav>) ⇒ ([? Landmark] | [Navigation Landmark]) @ [Accessibility Tree]
+U:[<div>] ⇔ {[Generic Container] ↔ [? Inherent Semantic Role]} - visual only
+cause of appearance:(Styling with CSS) @ [<div>] → {Visual Appearance}
+consequence of absence:{[? Inherent Semantic Role]} @ [<div>] ⇒ [? Landmark] @ [Accessibility Tree]
+
+Semantic Element (<nav>, <article>)
+U:[<nav>] ⇔ {{Inherent Role: "Navigation"}} ⇒ (Creation of) → [Navigation Landmark] @ [Accessibility Tree]
+U:[<nav>] ⇔ {[Container] ↔ {Inherent Role: "Navigation"}}
+causesaccessibility:({Inherent Role: "Navigation"}) @ [<nav>] ⇒ [Navigation Landmark] @ [Accessibility Tree]
+(<article>, <nav>, <aside>) → ❖ Semantic Meaning + Accessibilit
+
+{semantic + ARIA (Accessible Rich Internet Applications) attributes}->[Accessibility Tree]{enables keyboard navigation and screen readers}
+{semantic}-describes purpose and meaning 
+
+(Adding {ARIA Guṇa}) @ [Generic Dravya] ⇒ [Dravya with {Proxy Guṇa}] @ [Accessibility Tree]
+({Native Semantics} | (Adding {ARIA})) ⇒ [Well-formed Accessibility Tree] → (Usability) @ [Assistive Technology]
+ARIA:(Adding {role="button"}) @ [<span>] → [<span> with {Proxy Role: "Button"}]
+goal: [User] ↔ (Clear & Navigable Experience)
+
+Semantic Meaning <-> Accessibility 
+
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+      .header,
+      .nav,
+      .main,
+      .footer {
+        padding: 10px;
+        margin: 5px;
+        border: 1px solid #ccc;
+      }
+      .header {
+        background-color: #f0f0f0;
+      }
+      .nav {
+        background-color: #e0e0e0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">Operation Overlord</div>
+    <div class="nav">Supply Routes | Main Objective</div>
+    <div class="main">This is the primary area of operations.</div>
+
+    <header>Operation Overlord</header>
+    <nav>Supply Routes | Main Objective</nav>
+    <main>This is the primary area of operations.</main>
+    <div
+      onclick="alert('Launch!')"
+      style="
+        border: 1px solid black;
+        padding: 5px;
+        display: inline-block;
+        cursor: pointer;
+      "
+    >
+      Launch (Div)
+    </div>
+    <!-- [Semantic Button] ↔ {Focusable, Clickable -->
+    <button onclick="alert('Launch!')">Launch (Button)</button>
+    <img src="https://via.placeholder.com/50" alt="Map of Normandy landing beaches.">
+     <!-- [Generic Dravya] + {ARIA Guṇa} → [Semantic Proxy] -->
+    <span role="button" tabindex="0" aria-label="Retreat Button" style="border:1px solid red; padding:5px;">Retreat</span>
+
+
+
+
+  </body>
+</html>

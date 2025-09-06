@@ -1,0 +1,91 @@
+<!-- [Document] → [<html>] → ([<head>], [<body> → [Element] → [Child Element]]) === ❖ The DOM Tree
+
+U:(Parsing) @ [Document] ⇒ ([DOM Tree] + [CSSOM Tree]) → (Rendering) ⇒ [Visible Pixels]
+
+
+DOM<->
+[Tree[node]--([element,attribute,text])]{parent-chile,sibling relationship}
+
+U:(Parsing) @ [Document] ⇒ ([DOM Tree] + [CSSOM Tree]) → (Rendering) ⇒ [Visible Pixels]
+
+(Browser prasing)
+U:(Parsing) @ [HTML Document] ⇒ [DOM Tree] ⇔ {In-memory Representation ↔ Hierarchical Node Structure}
+Transform: [Linear Text] → (Parser) → [Hierarchical Tree]
+correction: [Malformed HTML] → (Parser) → [Valid DOM Tree]
+[html text]{Nesting Rules}
+[element]{content categories}
+U:[Parent Element] {Content Category} ⊂ [Child Element] {Content Category}
+valid nesting: [Flow Content Element] ⊂ [Phrasing Content Element]
+Invalid Nesting : [Phrasing Content Element] ⊂ [? Flow Content Element]
+
+
+
+
+[linear text]->(browser)(prasing)@[html document]->[DOM Tree]{ds-All elements hierarchy + styling info - only elements visibaly displayed}
+
+[DOM Tree] ⇔ {In-memory Representation ↔ Hierarchical Node Structure}
+parent-node:[Parent Node] ⊂ {[Child Node 1], [Child Node 2]}
+sibling:[Node 1] & [Node 2] are Siblings ⇔ {Same [Parent Node]}
+
+
+
+{Display behaviour}
+U:[[Visible Element]] ⊃ *Element ↔ {*display-type∈ {Block, Inline, ...}}
+Element
+visible element--<{[*Block Element] ⇔ {Forces Newline + Occupies Full Width},[*Inline Element] ⇔ {Flows with Content + Occupies Minimum Width}}
+
+
+
+(Rendering)
+U:(Rendering) @ ([DOM Tree] + [CSSOM Tree-elements that shouldn't be displayed]) ⇒ [Render Tree] → [Visible Pixels]
+combination:[DOM Tree] + [CSSOM Tree] → [Render Tree]
+hide:([Node in DOM] + {display:none in CSSOM}) → [? Node in Render Tree]
+
+
+[ in-memory DOM Tree ]->(browser)(rendering)@[DOM tree]->[Rendertree/Layouttree]{elements only no styling info}
+
+
+(Parsing) @ [Document] ⇒ ([DOM Tree] + [CSSOM Tree]) → (Rendering) ⇒ [Visible Pixels]
+
+DOM Tree
+CSSOM Tree (CSS Object Model)
+
+DOM Tree(all elements) + CSSOM Tree (CSS Object Mode- elements that should not be displayed) -> Render Tree
+
+Browser Parsing->tree structure
+
+DOM Tree-{hierarcy,parent-child relationship}
+
+[DOM]-logical vs [render tree]-sensory visual
+what is visible pixels?
+[Visible Pixels] ⇔ {The Final Sensory see ⇐ (Rendering @ [Render Tree])}
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #reserve-unit {
+        display: none;
+        /* cssom will read this */
+      }
+    </style>
+  </head>
+  <body>
+    <div id="parent">
+      <div>Armored Division (Block)</div>
+      <p id="child">1st Armored Division</p>
+      <div>Infantry Division (Block)</div>
+      <span>SF Team (Inline)</span>
+      <span>Recon Team (Inline)</span>
+      <div id="reserve-unit">This unit is in reserve.</div>
+      <a href="#"
+        >Link containing a
+        <p>paragraph</p></a
+      >
+    </div>
+  </body>
+</html>
