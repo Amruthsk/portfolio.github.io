@@ -1,0 +1,59 @@
+<!-- ❖ {The Cascade & Specificity }
+
+[Element] @ {Property} → {Final Value} ∵ (Cascade: (1. Importance?) → (2. Specificity?) → (3. Source Order?)) @ [[Set of Rules]] > {[Inherited Value]}
+
+The Cascade (The Three-Step Law)
+(Filter 1: Importance) → (Filter 2: Specificity) → (Filter 3: Source Order) ⇒ [Winning Rule]
+Specificity (The Scoring System)
+
+process itself. It is a series of three filters.
+Step 1 (Importance): [Rule] { !important} > [Rule] { normal}
+Step 2 (Specificity): [Rule] {Specificity: High} > [Rule] {Specificity: Low}
+{Specificity Score} ⇐ (Count: #ID > #Class > #Element)
+[Rule] { Selector(Class)} > [Rule] { Selector(Element)}
+[Rule for .urgent-order] {Specificity: 10} > [Rule for em] {Specificity: 1}
+
+Step 3 (Source Order): [Rule] {Source Order: Later} > [Rule] {Source Order: Earlier}
+style sheet  - 2 rules for 1 element - last one considered
+
+Inheritance (The Default Flow) confusion
+
+[Parent]{} → [Child]{} ∵ [? Absence of Direct Rule on Child]
+[Declared] {Specificity > 0} > [Inherited] {Specificity = 0}
+
+(Inheritance) @ [Parent] → [Child]
+
+[[div.platoon]] {color:blue} ⊃ [*p, *em, *em.urgent-order]
+The Inferences (Anumāna):
+For the <p> element: {*p} → {color: blue} ∵ (Inheritance from .platoon)
+For the first <em> element: {*em} → {color: blue} ∵ (Inheritance from .platoon)
+For the second <em class="urgent-order">: This creates a specificity conflict.
+[*em.urgent-order] ← {[Rule for em]} vs {[Rule for .urgent-order]}
+{*em.urgent-order} → {color: ?} ∵ ({Specificity of .urgent-order} > {Specificity of em})
+
+
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+                .platoon {
+            color: blue;
+            border: 1px solid black;
+        }
+    </style>
+    <link rel="stylesheet" href="1.2_specificity.css">
+</head>
+<body>
+        <div class="platoon">
+        <p>This is the paragraph for the officer.</p>
+        <em>This is the emphasis for the specialist.</em>
+        <em class="urgent-order">This is the emphasis for the specialist.</em>
+    </div>
+</body>
+</html>

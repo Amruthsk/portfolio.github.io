@@ -1,0 +1,19 @@
+em {
+    color: red;
+}
+
+.urgent-order {
+    color: orange;
+}
+
+p {
+    color: green;
+}
+p {
+    color: magenta;
+}
+
+
+em {
+    color: red !important;
+}

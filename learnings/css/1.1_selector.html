@@ -1,0 +1,74 @@
+<!-- 
+ ([CSS Rule] ⊂ [Stylesheet]) + [Element] ⊂ [HTML Doc] ⇒ (Selector Engine) → [Element]{New Style}
+
+[CSS Rule] ↔ [Selector] + [Declaration Block]
+
+[Selector]{Pattern} → (Creates a logical link to) → [Element]
+
+[Declaration] ↔ [Property] + [Value]
+
+[Declaration Block] ⊃ [Declaration]₁ + [Declaration]₂...
+
+[Stylesheet] ↔ ([<link> tag] @ [HTML Document])
+
+(Selector Engine) @ ([Selector], [DOM]) → [Matching Element(s)]
+
+[Element]{is Maroon} → {The Rule was Applied} ∵ (The Selector Engine Matched the 'h1' Selector)
+
+.css - battle plan     .html - battelfield
+directive - who it is for and what they must do
+[selector]-targeting parameter - {[Property]: [Value];specific order}
+
+(selector engine)-command and control system
+
+
+
+
+
+
+[Selector] { [Property]: [Value]; } ⇒ (: Selector Engine) → Applies to [Element]
+
+[Selector]-target html elements by{type (e.g., h1), class (e.g., .intro-text), or ID (e.g., #main-logo)}
+
+
+{ [Property]-feature: [Value]-specifi feature; }
+
+declaration block{[Declaration[[Property]-feature (:) [Value]-specifi feature;]]
+}
+
+[file.css]-collection of one or more css rules<->[file.html]
+
+[selector pattern] <--[<link>]-> [DOM elements]
+
+(selector engine)---(read)@[selector pattern-stylesheet]  ------(scan and match)@[DOM elements]----→ Applies to [Element]
+
+
+[element]-> recieves the style
+
+[battlefield.html] --rel="stylesheet"-> [plan.css] 
+
+
+< [Battle Plan] ⊃ {[Targeting Parameters] → [Specific Orders]} ⇒ (: C&C System) → [Action by Field Unit]
+
+
+(Selector Engine)
+
+[Battle Plan] ⊃ {[Directive] ↔ [Targeting Parameter] + [Specific Orders]} ⇒ ( C&C System) → [Field Unit]{Executes Order}
+  -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="1.1_selector.css">
+  <title>The Atom of Style</title>
+
+</head>
+<body>
+    <h1>Forward Observer Unit</h1>
+</body>
+</html>
