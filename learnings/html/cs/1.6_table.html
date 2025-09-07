@@ -1,0 +1,80 @@
+<!-- //❖ The Inseparable Row-Cell Matrix
+2d structue of row and columns
+[<table>] ⊂ {[? <thead>], [<tbody>], [? <tfoot>]}
+[<table> Element] ⇔ {Root container for a tabular data structure}
+(Structuring) @ [<table>] ⇒ [Creation of <thead>, <tbody>, <tfoot> zones]
+tr <-> th,td
+[table]root
+[thead]header rows
+[tbody]data rows
+
+table row
+[[Table Section]] ⊃ [<tr>] ⊂ {[Cell], ...}
+[<tr> Element] ⇔ {A horizontal container for one or more cells ([<th>] | [<td>])}
+[<tr>] ↔ [[Table Section]]
+
+[[Cell]] ⊃ (*<th> | *<td>) ⊂ [<tr>]
+[<th>] ⇔ {A cell containing header information}
+[<td>] ⇔ {A cell containing data}
+
+
+
+[<table>] ⊂ {[<thead>], [<tbody>]} ⊂ {[tr]}
+[table[tr[td or th]]]
+[tr]one row
+[<tr>] ⊂ {[<th>], [<th>], [<th>]} - 3 header columns{bold}
+[Grid] ⇐ ([<tr>] ⊂ {[<td>]}) + ([<tr>] ⊂ {[<th>]}
+
+
+[table[<thead>, <tbody>,<tfoot>]]
+
+{scope} defines the semantic relationship to the columns
+[<th>] + {scope: "col"} → [Semantically Linked Header]
+(Semantic Linking) @ [<th>] + {scope} ⇒ [<th> with defined data relationship] formal link to the data
+
+nesting
+[table[tr[td or th]]]
+
+[Grid] ⇔ {(The emergent alignment of [Cells]) ∵ ([Cell] ⊂ [Row] ⊂ [Section])}
+
+[<table> ⊂ {[Section] ⊂ [[<tr>] ⊂ {[Cell]}]}] ⇒ [Emergent Grid]
+
+
+[<table>] ⊂ {[<tbody>] ⊂ [[<tr>] ⊂ {[<td>]}]} 
+    
+    
+    
+    
+    
+    -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=
+    , initial-scale=1.0"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Unit</th>
+          <th scope="col">Commander</th>
+          <th scope="col">Strength</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Alpha Company</td>
+          <td>Capt. Miller</td>
+          <td>120</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

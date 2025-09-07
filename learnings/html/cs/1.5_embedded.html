@@ -1,0 +1,76 @@
+<!-- Embedding
+U:[Document] ⊂ [Media Element ↔ {src:URL}] ⇒ (Browser: Fetch → Decode → Render) → [Perceived Media]
+[browser](fetching,decoding,rendering)
+
+U:[Document] ⊂ [<img> ↔ {src: External URL}] ⇒ (Fetch & Render) → [Visible Media]
+
+[Media Element] ⇔ {A placeholder whose essence is a reference to an external resource}
+
+[Browser ] → {will render media } ∵ (it perceives a [Media Element] with a valid {src} 
+
+Media Elements
+U:[[Media Element]] ⊃ (*<img> | *<video> | *<audio>)
+
+[<img>] ⇔ {[<Single Tag>] ↔ [? Child Content]}
+[<video>/<audio>] ⇔ {[<Container Tags>] ⊂ ([<source>] | [Fallback Text])}
+[<source>] ⇔ {{src:URL} + {type:MIME}what is this}
+
+
+[Document] ⊂ ([<img> ↔ ({src} | ({srcset} + {sizes}))] | [<video> ⊂ [<source>]])
+
+
+1)[image,video,audio]
+[image]{void}
+[video,audio]{non void, source-multimple formats}
+
+2){src-url,alt-text,controls-video,audio display UI}
+ [Media Element] ↔ {src:URL}
+ [{alt} Text] ⇔ {The textual meaning-equivalent of its sibling [<img>]}
+ ([<img>] with {src → [? Resource]}) ⇒ (Render) → [{alt} Text]
+(Image Load → [? Image]) ⇒ (Render) → [{alt} Text]
+[<video>/<audio>] + {controls} ⇒ (Browser: Render UI) → [Interactive Player]
+
+
+adaptive system
+3)[ Responsive Images]{srcset:list of image,w:width,pixeldensity(x)}
+
+{sizes-layout}
+U:{[Viewport State]} + {[<img> with {sizes} & {srcset}]} ⇒ (Browser: Calculate → Select → Fetch) → [Optimal Image]
+
+ [srcset Attribute] ⇔ {A set of ([Image URL] ↔ {Width/Density Descriptor})}
+ [sizes Attribute] ⇔ {A set of ([Media Condition] → {Image Layout Width})} -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Mission Briefing</h1>
+    <!-- [<img> ↔ {src:"URL"}] ⇒ (Fetch & Render) -->
+    <img src="assets/recon_large.jpg" />
+    <!-- [<img /> ↔ {src:[absent]}] + {alt:"Text"} → [Rendered Text] -->
+    <hr />
+    <img
+      src="assets/broken_path.jpg"
+      alt="Aerial view of the northern ridge."
+    />
+    <hr />
+    <!-- [<video> + {controls}] ⇒ [Interactive Player UI] -->
+    <video controls> <source src="assets/drone_feed.mp4" type="video/mp4">
+    Your browser does not support the video tag. <!-- [Fallback] --></video>
+
+    <hr>
+    <!-- {Viewport Width} + {sizes rules} ⇒ (Selection) @ {srcset options} → (Fetch & Render) --> 
+     <img
+  srcset="assets/recon_small.jpg 480w,
+          assets/recon_large.jpg 800w"
+  sizes="(max-width: 600px) 480px,
+         800px"
+  src="assets/recon_large.jpg"
+  alt="Aerial view of the northern ridge.">
+
+  </body>
+</html>

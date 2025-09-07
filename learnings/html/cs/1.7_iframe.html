@@ -1,0 +1,44 @@
+<!-- ❖ The Encapsulated Browsing Context
+
+what is Browsing Context and  Encapsulated Browsing Context
+[Browser Tab/Window] ⇔ [Top-Level Browsing Context] ⊂ {[window], [document ↔ [DOM Tree]]}
+
+[Top-Level Browsing Context] ⊃ [Encapsulated Browsing Context]
+
+(Browser Parsing) @ [<iframe> + {src}] ⇒ (Creates) → [Encapsulated Browsing Context]
+
+
+[document]⊂[Encapsulated Browsing Context ⊂ {DOM tree}]
+
+[<iframe>] ⇔ {Capability to embed an independent [Browsing Context]}
+
+[iframe]{src="url",sandbox={"bland"|"allow-scrip"|"},title,allow}
+
+[<iframe>] + {src: URL} → [<iframe> ⊂ [Document from URL]]
+[Encapsulated Context] + {sandbox} → [Restricted Context ↔ [? Scripting execution]]
+[Restricted Context] + {sandbox: "allow-scripts"} → [Partially-Restricted Context ↔ (Scripting execution)]
+
+[Parent Document] ⊂ [<iframe> ↔ {src: Child Document URL}]
+
+[Parent Document] ⊂ ( [<iframe> ↔ {src, sandbox}] ⇒ [Encapsulated Browsing Context ⊂ {[Child Document], [? Prohibited Karma]}] )
+    [Parent] ⊂ [<iframe> ↔ {src: "embassy.html"}]
+     [<iframe>] + {sandbox} → [Restricted Context]
+        [{sandbox}] + {"allow-scripts"} → [Partially-Restricted Context] 
+        -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <iframe src="https://www.youtube.com/watch?v=fBNz5xF-Kx4" frameborder="0"title="Diplomatic Files from Nation B Embassy" sandbox="allow-scripts">
+        
+    </iframe>
+
+    
+</body>
+</html>
