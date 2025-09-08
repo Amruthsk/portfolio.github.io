@@ -1,0 +1,146 @@
+<!-- 
+❖ (Layout Systems)
+[Container] ⊂ [Children] ⇒ (Layout System) → [Arranged Children]
+
+[[Container]] ⊂ [Children] + (Layout) → [Arranged Children] ? ([Viewport State] ↔ @media)
+[[Layout System]] ⇔ (Arrange Children within a Container)
+
+[main layout]- {flexbox, grid} arranging methods
+[Flexbox Layout] ⇔ {Arrangement along a single, primary axis}
+[Flex Container] ⊂ [Flex Items] ⇒ (Alignment along a Single Axis)
+
+{flexbox}-{1d}-arrange in single row or column
+(flex-direction property sets the main axis, and (justify-content) and align-items control the alignment of items along the main and cross axes, r)
+[vertical column squad]- ( (display):{flex} )→ [horizontal row]
+[Flexbox Layout] ⇔ {Arrangement along a single, primary axis}
+(justify-content): {space-between}
+[Container] + (display: flex) → [Child Items] ↔ {1D Main Axis}
+
+
+[Container Element] → [Aligned Child Elements]
+[Container] + (display: flex) → [Child Items] ↔ {1D Main Axis}
+
+
+
+[Grid Container] ⊂ [Grid Items] ⇒ (Alignment along a 2D Grid)
+{grid}-{2d}- arrange in both rows and columns simultaneously
+[Grid Layout] ⇔ {Arrangement across a two-dimensional grid of rows and columns}
+[Container] + ( display: grid) → [Child Items] ↔ {2D Grid Tracks}
+
+
+(Positioning Scheme)- specific arrangingU:[Element] + {position: Y} → [New Placement Context & Behavior]
+
+{position:static}
+[Element] ⇔ {position: static} ≡ {Normal Document Flow}
+
+{position:relative-top, right, bottom, and left} with respect to a  reference point - remains in flow
+[Element] @ {Original Position} → [Offset Position] + [[Positioning Context for Children]]
+
+
+{position:absolute} with respect to overall arrangement - removed form the folw
+[Element] → [? Normal Flow] + [Position @ [[Nearest Positioned Ancestor]]]
+
+
+{position:fixed} stay no matter scrolling-[Position ↔ Viewport]
+[Element] → [? Normal Flow] + [Position ↔ Viewport]
+
+{position:sticky}
+[Element] @ {Flow} → [Scroll Threshold Reached] ⇒ {position: fixed}
+
+terrain based desgin
+([Responsive Design)- adapts to different size of devices
+tools to achieve - flexible gird based layour,flexible image,medial query}
+[Browser] + [Meta Tag] → [Correct Initial View]
+
+
+media query - condition based application od css rules
+[Browser] + [Meta Viewport Tag] → [Correct 1:1 Pixel View]
+
+@media
+[Pakṣa: The viewport] → [Sādhya: The squad layout will change] ∵ [Hetu: Its width has crossed the 700px threshold defined by the media query]
+media query<-> viewport,height, orientation, and resolution
+( Adapt Layout) ⇐ {[Flexible Layout] + [Flexible Media] + [@media Rules]}
+
+Your goal is to arrange them for maximum effectiveness on any terrain.
+[Commander] + (SOP: Battle Formation) → [Arranged Units] ? (Intel Report: Terrain Change)
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Canto 4 Pratyakṣa</title>
+    <style>
+      /* Basic Styling  */
+      body {
+        font-family: sans-serif;
+        background-color: #333;
+        color: #eee;
+        margin: 0;
+      }
+      .briefing-room {
+        border: 2px solid cyan;
+        padding: 10px;
+        margin: 10px;
+        min-height: 400px;
+        position: relative;
+        border: 2px solid cyan;
+        padding: 10px;
+        margin: 10px;
+        min-height: 400px;
+      }
+      .squad {
+        border: 2px solid lime;
+        padding: 10px;
+        display: grid;
+        /* display:flex */
+        justify-content: space-between;
+      }
+      .operator {
+        border: 1px solid white;
+        background-color: #555;
+        padding: 20px;
+        text-align: center;
+      }
+      #scout {
+        position: relative;
+        bottom: 10px; /* Offset from its original position */
+        background-color: orange;
+      }
+      #sniper {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: red;
+      }
+      #radio-op {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        background-color: steelblue;
+      }
+
+      /* when viewport width <= 700px this block activates */
+      @media (max-width: 700px){ 
+        .squad {
+            flex-direction: column;
+        }
+
+      }
+    </style>
+  </head>
+  <body>
+    <div class="briefing-room">
+      <div class="squad">
+        <div class="operator">Operator 1 (Static)</div>
+        <div class="operator">Operator 2 (Static)</div>
+        <div class="operator" id="scout">Operator 3 (Scout)</div>
+        <div class="operator" id="sniper">Operator 4 (Sniper)</div>
+      </div>
+    </div>
+    <div class="operator" id="radio-op">Radio Operator</div>
+  </body>
+</html>

@@ -1,0 +1,72 @@
+<!-- [Element Box] + (Apply Effects) ⇐ {{Colors, Gradients}, {Shadows, Filters}} → [Visually Enhanced Element]
+aesthetic qualities like color, depth, and texture.
+Forging base element
+
+[element box]{background,border-radius,box-shadow}
+
+{filter,mix-blend-mode}@[whole]
+
+
+[Element] ⇔ {Surface Filling}
+ Complex Backgrounds
+{background}
+
+[Box Background] ← "darkslateblue"
+[Element] ↔ {background-color: 'darkslateblue'}
+
+[Box Background] ← [Color Stop 1] ↔ [Color Stop 2]- linear-gradient()
+[Element] ↔ {background: (linear-gradient @ {[Color Stop 1] ↔ [Color Stop 2]})}
+
+[Box Background] ← RemoteImage(URL) -random 200x200 pixel photograph
+[Element] ↔ {background: (url @ '[Image Source]')}
+
+
+shaping corner
+[Box Corners] → Rounded(15px) 
+[Element's Corner] ⇔ {Degree of Curvature}
+[Element] ↔ {border-radius: '15px'}
+
+
+
+Adding Depth without Impacting Layout
+{box-shadow}
+[Box] + [Shadow(offset, blur, color)]
+[Element] ⇔ {Potential to cast a non-physical [Shadow]}
+[Element] + [Shadow ⊂ {offset, blur, color}] → [Final Rendered Appearance]
+
+
+Applying a Transparency Wash
+{opacity}
+opacity: 0.5;
+
+[Element + Children] * 0.5 Alpha → [Faded Element] -affect The entire box
+
+Applying a Post-Processing Filter - alters the final appearance
+
+filter: blur(2px) grayscale(100%);
+[Rendered Box] → Filter(blur) → Filter(grayscale) → [Final Output]blurred and desaturated
+
+
+blending with background
+
+[Box Pixels] ⊗ [Parent Pixels] → [Blended Output] 
+
+
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canto VI - The Alchemist's Touch</title>
+    <link rel="stylesheet" href="1.6_visual.css">
+</head>
+<body>
+    <div class="alchemist-box">
+        <p>The Stone</p>
+    </div>
+    <div class="sibling-box"></div>
+</body>
+</html>

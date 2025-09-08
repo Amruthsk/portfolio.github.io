@@ -1,0 +1,82 @@
+<!-- 
+[Text Content] + ( Apply Typography) ⇐ {[Font] + {Size, Weight, Color...}} → [Styled & Legible Text]
+
+(Typography & Text Styling )
+(styling)@[text content]
+[Text Content] + ( Apply Typography) ⇐ {[Font] + {Size, Weight, Color...}} → [Styled & Legible Text]
+
+( Typography) ⇔ ( Applying {}) @ [[Text]]
+
+link <-> external source
+link <-> internal source(.css stylesheet withn)
+
+(@font-face Declaration) → [New Font ] ⇔ {{font-family} + {src}}
+
+[<link> tag] ⇒ ( HTTP Request) → [External Resource is Loaded]
+
+[font[@font-face{font-family,src}]]
+
+[Selector] ⇒ ( Match) → ( Apply [Declaration]) @ [Element]
+
+[Declaration] ⇔ {[Property]: [Value]}
+
+( Set {text-decoration:none}) ⇒ [abscence of Underline Guṇa]
+
+
+[<body>] → (Set {css rule font-family}) → [<body> with {'Roboto'} ]
+
+
+{font-family,font-size,font-weight,color}
+{line-height}
+{letter-spacing,text-align,text-decoration}
+[h1]{normal}----({font-family,font-size,font-weight,color,letter-spacing,text-align})->[h1]{stylizedlarge,bold,dark grey,centered slightly spaced out}
+
+[<h1>] + {font-family,font-size,font-weight,color,letter-spacing,text-align} → [Stylistically Transformed <h1>
+
+[<p> lines] → (Add Vertical Space line-height ) → [Spaced-out <p> lines]
+[<a> with underline] → (Set text-decoration 'none') → [<a> without underline]
+
+
+
+scalable units<->{rem} global consistency and  {em}local variation
+[Scalable Units] ↔ {[rem] ⇒ [Global Consistency]} + {[em] ⇒ [Local Variation]}
+rem<->root font size- html{ font-size:16px} = > 1rem = 16px everywhere
+
+[1rem] ⇔ {font-size} @ [Root <html> Element]
+[Root] ↔ [rem] ⇒ [Global Consistency & Predictable Scale]
+
+em<-> parents{font-size} => 1em = parent font size
+[1em] ⇔ {font-size} @ [Direct Parent Element]
+[Parent] ↔ [em] ⇒ [Local Variation & Component Scalability]
+
+[rem] → (Looks Up) → [ROOT] | [em] → (Looks Up) → [PARENT]
+
+[Root Size] → [rem is stable] | [Parent Size] → [em is relative] 
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="1.5_text_styling.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <body>
+      <h1>OPERATION NIGHTFALL</h1>
+      <p>
+        Primary objective is to secure the bridge. This is critical.
+        <a>Reference Document A-113</a>.
+      </p>
+      <blockquote>
+        Secondary objective: neutralize communications tower. Note:
+        <span>Use minimal force.</span>
+      </blockquote>
+    </body>
+  </body>
+</html>

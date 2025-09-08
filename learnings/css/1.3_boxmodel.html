@@ -1,0 +1,71 @@
+<!-- 4 nested layers
+ The Definitive Structural Model:
+[Element] ≡ Margin( Border( Padding( Content ) ) )
+
+The Definitive Containment Model:
+[Margin Box] ⊃ [Border Box] ⊃ [Padding Box] ⊃ [Content Box]
+
+[[element]the content box,padding box, the border box, and the margin box]
+
+(sizing)
+width & height - default - but can be set- w- 300px,h-100px
+[content box]{width & height}
+box's total width is 300px + 40px padding + 10px border = 350px.
+
+[border box]{box-sizing-specifying the size }-> {borderbox-calculate- padding,border all total size  (content + padding + border) i within the w-300px , h-100px }
+
+Model for Default (content-box):
+([Render Engine]) @ [Element]{width: 300px} → [Content Box].width = 300px
+
+Model for border-box:
+([Render Engine]) @ [Element]{width: 300px, box-sizing: border-box} → [Border Box].width = 300px
+
+The Internal Buffer
+{padding}- inward push of content form its box edges- 20px around the content from all dierction
+[content]{padding-background of element}[border]
+
+[Element] → [Padding(Content)]
+[Element]{padding: 20px} ⇒ [Border] ←(Creates 20px Space)→ [Content]
+
+The Boundary
+{border}- drawn around the padding area - outside the 20px padded are
+{padding-background of element}[border-thickness,style,color]{margin}
+[Border(Padding(Content))
+
+[External Space :: Margin] ↔ [Border]{style, width, color} ↔ [Internal Space :: Padding]
+
+The External Separator
+{margin}- external buffer of 30px -outside border- away from its neighbors
+[content]{padding-background of element}[border]{margin-outside the border between elements}
+[Margin(Border(Padding(Content)))]
+[Element A]{margin: 30px} ⇒ (Pushes Away) → [Element B]
+
+
+Margin Collapse-The Law of Vertical Space
+{margin collapse - 2 different margins - larger of two considered} 
+collapser
+[Element A]{margin-bottom: 25px} + [Element B]{margin-top: 40px} ⇒ [Resulting Space] = 40px
+
+not A 40px + 25px = 65px 
+[Margin-Bottom:25] + [Margin-Top:40] ⇒ [Resulting-Space:40] 
+
+
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Box Model Experiment</title>
+    <link rel="stylesheet" href="1.3_boxmodel.css" />
+  </head>
+  <body>
+    <div class="box content-box">Content Box</div>
+    <div class="box border-box">Border Box</div>
+
+    <div class="collapser one"></div>
+    <div class="collapser two"></div>
+  </body>
+</html>
