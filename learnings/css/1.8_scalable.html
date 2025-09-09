@@ -1,0 +1,48 @@
+<!-- [[Project]] ⊂ [Many .css Files] + (Methodology: BEM) + {Variables} → [Maintainable & Scalable Styles]
+
+⊂ -files are contained in project - file subset of  project
+
+(Scalable Architecture) ⇒ {[Codebase] {Maintainable, Reusable, Conflict-Free}}
+
+variabl
+[CSS Custom Property] ⇔ {A name beginning with '--'}
+
+(:root ⊂ {[--name]: value}) ⇒ (var(--name) @ [Any Element] → {value})
+
+
+[Properties] {-- prefix are cs  reused throughout cssrule}
+
+
+[[bloc,element,modifier]] <-> html & css consisteny and rapic global update
+block  (e.g., .card, .menu).
+Element (e.g., .card__title, .menu__item)(inside block)
+Modifier (e.g., .card--dark, .menu__item--active)
+
+(BEM) ⇒ [HTML Structure] ↔ [CSS Selectors]
+
+[Block] ⊂ {[Element]}
+
+([Block] | [Element]) + {--Modifier} → [New Visual State]
+
+
+(Preprocessors)
+mixins 
+
+
+[Source .scss File] (Compile) → [Output .css File]
+
+(.parent ⊂ {.child}) @ [SCSS] (Compile) → [.parent .child] @ [CSS]
+
+(@mixin reusable-styles) ⇒ (@include reusable-styles) → {Set of CSS Rules}
+
+
+
+scalable Architecture	[Project] ⊂ { [Files], {Variables}, (BEM), (Preprocessing) } → [Scalable System]
+CSS Variables	(:root ⊂ {[--name]: value}) ⇒ (var(--name) → {value})
+BEM Structure	[Block] ⊂ {[Element]} + {--Modifier} → [New State]
+(Preprocessor) 	[Source .scss File] (Compile) → [Output .css File]
+
+-->
+
+
+
