@@ -17,7 +17,7 @@
 //  {function scope} [lexical scoping]{physical location}
 
 
-// [module]{private scope} ⊃ {[Internal Dravyas]}
+// [module]{private scope} ⊃ {[Internal ]}
 // [module[variable,function,classes]]{private scope & [? global visibility]}
 // [module[variable,function,classes]]{private scope --> global scope}---------(export)--------->[module(import)]{global scope----->private scope}
 //(export) @ [Internal Dravya] → [Public Interface] → (import) @ [Public Interface] → [Local Dravya]

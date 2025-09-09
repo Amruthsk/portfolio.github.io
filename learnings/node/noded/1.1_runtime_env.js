@@ -14,7 +14,7 @@
 
 //  Node.js uses the V8 engine to execute JavaScript code.
 
-// [This Node.js runtime ] → [is inseparably linked (Samavāya) to the V8 engine ] ∵ [because I can  perceive the V8 engine's version number from within the Node.js process itself ].
+// [This Node.js runtime ] → [is inseparably linked ) to the V8 engine ] ∵ [because I can  perceive the V8 engine's version number from within the Node.js process itself ].
 
 //  C (Purpose): Its primary design is for building scalable network applications.
 //  D (Operational Model): Node.js operates on an asynchronous, event-driven, non-blocking I/O model.
