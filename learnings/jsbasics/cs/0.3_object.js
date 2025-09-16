@@ -44,4 +44,4 @@ console.log("Calling greet() without context:");
 const standAloneGreet = alex.greet; // Extract the function itself.
 standAloneGreet(); // The context is lost. 'this' is no longer 'alex'.
 // In Node.js, 'this' becomes the global object, which has no .name property.
-// In browser strict mode, 'this' would be undefined, causing an error.
+// In browser strict mode, 'this' would be undefined, causing an error. 
