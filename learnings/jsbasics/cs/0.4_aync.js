@@ -25,3 +25,4 @@ async function runAsyncFunction() {
 // Call the async function and add a final log to prove non-blocking
 runAsyncFunction();
 console.log("3. Code outside the async function runs BEFORE await completes.");
+
