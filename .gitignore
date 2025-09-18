@@ -92,3 +92,4 @@ Thumbs.db
 # Testing (Jest) → ignores coverage/
 
 # Editor/System clutter → ignores .vscode/, .DS_Store, etc.
+# git rm -r --cached learnings/node/noded/node_modules 
