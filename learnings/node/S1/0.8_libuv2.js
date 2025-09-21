@@ -29,6 +29,10 @@ setTimeout(() => {
 
 process.nextTick(() => console.log("process.nextTick")); // libuv - 1
 
+setTimeout(() => {
+  console.log("Chief of Staff presents urgent message (from setTimeout).");
+}, 0);
+
 function printA() {
   console.log("a = ", a);
 }
