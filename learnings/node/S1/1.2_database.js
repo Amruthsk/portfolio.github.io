@@ -2,12 +2,10 @@ const { MongoClient } = require("mongodb");
 
 
 const url =
-  "mongodb+srv://Node_db_user:CLnpRVFJUi966gvs@nodecluster.ztj1nyo.mongodb.net/Helloworld?retryWrites=true&w=majority";
+  "mongodb+srv://Node_db_user:@nodecluster.ztj1nyo.mongodb.net";
 
 
-  const client = new MongoClient(url, {
-    tlsAllowInvalidCertificates: true,
-  });
+  const client = new MongoClient(url);
 
 
 // [our db name]
@@ -37,11 +35,11 @@ async function main() {
 
   //update
 
-  const updateResult = await collection.updateOne(
-    { firstname: "Amruth" },
-    { $set: { city: "Banglore" } }
-  );
-  console.log("Updated documents =>", updateResult);
+  // const updateResult = await collection.updateOne(
+  //   { firstname: "Amruth" },
+  //   { $set: { city: "Banglore" } }
+  // );
+  // console.log("Updated documents =>", updateResult);
 
   //read - find documents
   const findResult = await collection.find({}).toArray();

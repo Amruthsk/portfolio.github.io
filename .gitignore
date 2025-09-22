@@ -13,7 +13,8 @@ lerna-debug.log*
 # -------------------------
 # Keep one lockfile if you want reproducible installs
 # Remove from ignore list if team project
-package-lock.json
+# package.json
+# package-lock.json
 yarn.lock
 pnpm-lock.yaml
 
@@ -82,6 +83,11 @@ Thumbs.db
 #  files
 # -------------------------
 *.md
+
+# Dont ignore
+!README.md
+!.gitignore
+
 
 
 # React/Frontend → ignores build/, coverage/
