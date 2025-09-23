@@ -1,0 +1,23 @@
+{
+  "name": "devconnect",
+  "version": "1.0.0",
+  "description": "connecting point for devs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+     "dev" : "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git remote add origin https://github.com/Amruthsk/portfolio.github.io"
+  },
+  "keywords": [
+    "nodejs",
+    "javascript"
+  ],
+  "author": "Amruth S K",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
