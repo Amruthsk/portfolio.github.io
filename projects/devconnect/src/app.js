@@ -1,38 +1,31 @@
 console.log("starting a new project");
 const express = require("express");
 const app = express();
+const {adminAuth, userAuth} = require("./middlewares/auth.js")
 
 
-app.get("/user/:userId/:name/:password", (req, res) => {
-    console.log(req.parmas);
-    res.send({firstName: "Amruth" , lastName: "S K"});
+app.use("/admin", adminAuth);
+
+app.get("/admin/getdata",(req,res) => {
+  res.send("data send")
+})
+
+
+app.get("/user/getdata",userAuth, (req, res) => {
+  res.send("user data send");
 });
 
-app.post("/user", (req, res) => {
-  // (Execute this block) ∵ {[req.url] ↔ "/user"
-  console.log("save data to the database");
-  // (send)/[res object]
-  //logiv post
-  res.send("Data successfully saved to the database");
+app.get("/user/login", (req, res) => {
+  res.send("Login");
 });
 
-app.delete("/user", (req, res) => {
-  // (Execute this block) ∵ {[req.url] ↔ "/user"
-  // (send)/[res object]
-  //logic delete
-  res.send("Deleted Successfully" );
-});
-
-
-// Route for "/test"
-app.get("/test", (req, res) => {
-  res.send("Test from the Server");
+app.get("/user/profile",userAuth, (req, res) => {
+  res.send("profile data send");
 });
 
 
-app.get("/", (req, res) => {
-  res.send("Hello from the Server");
-});
+
+
 
 // Start server
 app.listen(9999, () => {
