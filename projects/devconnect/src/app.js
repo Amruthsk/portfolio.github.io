@@ -6,14 +6,41 @@ const {adminAuth, userAuth} = require("./middlewares/auth.js")
 
 app.use("/admin", adminAuth);
 
+
+
+
 app.get("/admin/getdata",(req,res) => {
   res.send("data send")
 })
 
+app.get("/connect/getdata", (req, res) => {
+  try{
+    //(Throw Error) @ [Sync Execution Path]
+    throw new Error("Synchronous Boom!");
+    res.send("data send");
+  }
+  catch(err){
 
-app.get("/user/getdata",userAuth, (req, res) => {
-  res.send("user data send");
+    res.status(500).send("server went wrong");
+  }
+  
 });
+
+
+//async errorhandling
+app.get("/user/getdata",userAuth, (req, res,next) => {
+   setTimeout(() => {
+      try {
+          //throw new Error("Async error!");
+          res.send("user gets data")
+      } catch(err) {
+          // (Propagate Error) / [next(err)]
+          next(err); 
+      }
+  }, 0);
+});
+
+
 
 app.get("/user/login", (req, res) => {
   res.send("Login");
@@ -23,6 +50,13 @@ app.get("/user/profile",userAuth, (req, res) => {
   res.send("profile data send");
 });
 
+
+app.use("/",(err,req,res,next) => {
+  if(err){
+      res.status(500).send("something went wrong");
+
+  }
+})
 
 
 
