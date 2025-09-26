@@ -23,6 +23,49 @@ catch(err){
 }
 
 });
+
+//async/await db operations
+app.get("/user", async ( req, res) => {
+  const userid = req.body._id;//get
+  try{
+    console.log(userid);
+
+    //find
+    const user = await User.find({ _id: userid });
+
+    //send possibilites from the database
+    if(!user|| user.length === 0){
+      res.status(404).send("User of no match found")
+
+    }else{
+      res.send(user);
+    }
+    
+
+  }catch(err){
+    res.status(404).send("User not found in db")
+
+  }
+})
+
+app.get("/user", async (req, res) => {
+  const userEmail = req.body.emailId; //get
+  try {
+    console.log(userEmail);
+
+    //find
+    const user = await User.find({ emailId: userEmail });
+
+    //send possibilites from the database
+    if (!user || user.length === 0) {
+      res.status(404).send("User of no match found");
+    } else {
+      res.send(user);
+    }
+  } catch (err) {
+    res.status(404).send("User not found in db");
+  }
+});
 //success|error
 connectDB()
   .then(() => {
