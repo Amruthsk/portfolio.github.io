@@ -4,14 +4,16 @@ const app = express();
 const connectDB = require("./config/database.js");
 const User = require("./models/user.js")
 
+//cant directly take in w/o converting to json
+
+app.use(express.json());
+
 app.post("/signup", async (req ,res) => {
-  const user = new User({
-    firstName:"Krish"  ,
-    lastName: "v" ,
-    emailId:  "krish@1234",
-    password: "45698",
-});
-try{
+const user = new User(req.body);
+console.log (req);
+//access the body of the req
+console.log(req.body);
+  try{
   //throw new Error("Async error!");
    await user.save();
     res.send("user adder succesfully");
