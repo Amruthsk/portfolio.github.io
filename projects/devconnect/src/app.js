@@ -2,51 +2,46 @@ console.log("starting devconnect project");
 const express = require("express");
 const app = express();
 const connectDB = require("./config/database.js");
-const User = require("./models/user.js")
+const User = require("./models/user.js");
 
 //cant directly take in w/o converting to json
 
 app.use(express.json());
 
 //post api - signup
-app.post("/signup", async (req ,res) => {
-const user = new User(req.body);
-console.log (req);
-//access the body of the req
-console.log(req.body);
-  try{
-  //throw new Error("Async error!");
-   await user.save();
+app.post("/signup", async (req, res) => {
+  const user = new User(req.body);
+  console.log(req);
+  //access the body of the req
+  console.log(req.body);
+  try {
+    //throw new Error("Async error!");
+    await user.save();
     res.status(201).send("user adder succesfully");
-}
-catch(err){
-  res.status(500).send({ message: "Error creating user", error: err.message });
-}
-
+  } catch (err) {
+    res
+      .status(500)
+      .send({ message: "Error creating user", error: err.message });
+  }
 });
 
 //get api - get user by id
-app.get("/user", async ( req, res) => {
-  const userid = req.body._id;//get
-  try{
-
+app.get("/user", async (req, res) => {
+  const userid = req.body._id; //get
+  try {
     //find
     const user = await User.find({ _id: userid });
 
     //send possibilites from the database
-    if(!user|| user.length === 0){
-      res.status(404).send("User of no match found")
-
-    }else{
+    if (!user || user.length === 0) {
+      res.status(404).send("User of no match found");
+    } else {
       res.send(user);
     }
-    
-
-  }catch(err){
+  } catch (err) {
     res.status(500).send("Server error");
-
   }
-})
+});
 
 //get api - get user by email
 app.get("/user", async (req, res) => {
@@ -71,9 +66,9 @@ app.get("/user", async (req, res) => {
 //delete api - delete user by id
 app.delete("/user", async (req, res) => {
   const userId = req.body._id; //get
-   if (!userId) {
-     return res.status(400).send("User ID is required");
-   }
+  if (!userId) {
+    return res.status(400).send("User ID is required");
+  }
   try {
     console.log(userId);
     //find and delete
@@ -91,28 +86,42 @@ app.delete("/user", async (req, res) => {
 });
 
 //update api - update user by id
-app.patch("/user", async(req, res) => {
-//get
-  const userId = req.body._id; //get
+app.patch("/user/:id", async (req, res) => {
+  //get
+  const userId = req.params?.id; //get
   const data = req.body;
-  try{
-//update
-    const user = await User.findOneAndUpdate({ _id: userId }, data);
-    
-      res
-        .status(200)
-        .send({ message: "User updated successfully", updatedUser: user });
-    
-  }
-  catch (err){
-    console.error("Error updating user:", err);
+  try {
+    const ALLOWED_UPDATES = ["photoUrl", "about", "gender", "age", "skills"];
+    //LOOP  ---->FIND boolean true/false
+    const isUpdateAllowed = Object.keys(data).every((k) =>
+      ALLOWED_UPDATES.includes(k)
+    );
+    if (!isUpdateAllowed) {
+      //throw new Error("Update not allowed");
+      return res.status(400).send({ error: "Invalid updates!" });
+    }
+    if (data?.skills.length > 10) {
+      //throw new Error("more than 10 skills are  not allowed");
+      return res.status(400).send({ error: "Cannot add more than 10 skills." });
+    }
 
-    res.status(500).send("Server side error")
+    //update
+    const user = await User.findOneAndUpdate({ _id: userId }, data, {
+      runValidators: true,
+    });
 
+    if (!user) {
+      return res.status(404).send("User of no match found");
+    }
+    res
+      .status(200)
+      .send({ message: "User updated successfully", updatedUser: user });
+  } catch (err) {
+    console.error("Error updating user failed:");
+
+    res.status(500).send("Server side error:" + err.message);
   }
 });
-
-  
 
 //success|error
 connectDB()
@@ -127,5 +136,3 @@ connectDB()
   .catch((err) => {
     console.log("database not connected");
   });
-
-
