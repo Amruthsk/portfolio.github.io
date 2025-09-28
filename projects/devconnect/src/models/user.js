@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema(
       required: true,
       minlength: 8,
       validate(value) {
-        if (validator.isStrongPassword(value)) {
+        if (!validator.isStrongPassword(value)) {
           throw new Error("Enter a Strong Password: " + value);
         }
       },
@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema(
       lowercase: true,
       //match: [/^\S+@\S+\.\S+$/, "Please use a valid email address."],
       validate(value) {
-        if (validator.isEmail(value)) {
+        if (!validator.isEmail(value)) {
           throw new Error("Invalid email address: " + value);
         }
       },
@@ -55,7 +55,7 @@ const userSchema = new mongoose.Schema(
       default:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDnAV2195eKjdsIWb9qODnuYgxUnwJ0exESA&s",
       validate(value) {
-        if (validator.isURL(value)) {
+        if (!validator.isURL(value)) {
           throw new Error("Invalid Phot url : " + value);
         }
       },
