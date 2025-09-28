@@ -3,26 +3,44 @@ const express = require("express");
 const app = express();
 const connectDB = require("./config/database.js");
 const User = require("./models/user.js");
-
+const {validateSignUpData} = require("./utils/validation.js")
+const  bcrypt  = require("bcrypt")
 //cant directly take in w/o converting to json
 
 app.use(express.json());
 
 //post api - signup
 app.post("/signup", async (req, res) => {
-  const user = new User(req.body);
-  console.log(req);
-  //access the body of the req
-  console.log(req.body);
-  try {
-    //throw new Error("Async error!");
-    await user.save();
-    res.status(201).send("user adder succesfully");
-  } catch (err) {
-    res
-      .status(500)
-      .send({ message: "Error creating user", error: err.message });
-  }
+    try { 
+      //1 validation of the data
+      validateSignUpData(req);
+
+      //extract
+      const {firstName, lastName, emailId, password} = req.body;
+      //2 Encrypt the password
+      const passwordHash = await bcrypt.hash(password, 10);
+      console.log(passwordHash);
+
+
+      //3 creating a new instanc of the user model
+      const user = new User({
+        firstName,
+        lastName,
+        emailId,
+        password: passwordHash,
+      });
+      console.log(req);
+      //access the body of the req
+      console.log(req.body);
+
+      //throw new Error("Async error!");
+      await user.save();
+      res.status(201).send("user adder succesfully");
+    } catch (err) {
+      res
+        .status(500)
+        .send({ message: "Error creating user", error: err.message });
+    }
 });
 
 //get api - get user by id
