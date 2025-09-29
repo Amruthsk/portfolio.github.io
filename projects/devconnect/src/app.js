@@ -43,6 +43,31 @@ app.post("/signup", async (req, res) => {
     }
 });
 
+//post api  - login 
+app.post("/login", async(req,res) => {
+  try{
+    const {emailId, password} = req.body;
+//email check
+    const user = await User.findOne({ emailId: emailId });
+    if(!user){
+      res.status(401).send("Invalid credentials");
+    }
+
+// password compare
+const isPasswordValid = await bcrypt.compare(password, user.password);
+
+ if (!isPasswordValid) {
+   res.status(401).send("Invalid credentials");
+ }
+ else{
+  res.status(200).send("Login Successfull")
+ }
+
+  }catch(err){
+    res.status(500).send("Server error");
+  }
+})
+
 //get api - get user by id
 app.get("/user", async (req, res) => {
   const userid = req.body._id; //get
