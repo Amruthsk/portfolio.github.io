@@ -5,9 +5,11 @@ const connectDB = require("./config/database.js");
 const User = require("./models/user.js");
 const {validateSignUpData} = require("./utils/validation.js")
 const  bcrypt  = require("bcrypt")
+const cookieParser = require("cookie-parser");
 //cant directly take in w/o converting to json
 
 app.use(express.json());
+app.use(cookieParser());
 
 //post api - signup
 app.post("/signup", async (req, res) => {
@@ -60,6 +62,13 @@ const isPasswordValid = await bcrypt.compare(password, user.password);
    res.status(401).send("Invalid credentials");
  }
  else{
+
+  //generate Token
+
+  // creating cookie using token & send cookie 
+ // res.cookie("myToken", "qwewelwqejwlkejqlkwjelqjwelqkjwelqj");
+  res.cookie("myToken", "qwewelwqejwlkejqlkwjelqjwelqkjwelqj");
+
   res.status(200).send("Login Successfull")
  }
 
@@ -67,6 +76,20 @@ const isPasswordValid = await bcrypt.compare(password, user.password);
     res.status(500).send("Server error");
   }
 })
+
+//get api - profile api
+app.get("/profile", async(req, res) => {
+  //get cookie
+  const cookies = req.cookies;
+  console.log(cookies);
+  const { token } = cookies;
+  //validate cookie
+
+  //responds
+  res.send("cookie deliverd");
+
+});
+
 
 //get api - get user by id
 app.get("/user", async (req, res) => {
