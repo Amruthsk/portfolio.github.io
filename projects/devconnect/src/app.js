@@ -3,93 +3,97 @@ const express = require("express");
 const app = express();
 const connectDB = require("./config/database.js");
 const User = require("./models/user.js");
-const {validateSignUpData} = require("./utils/validation.js")
-const  bcrypt  = require("bcrypt")
+const { validateSignUpData } = require("./utils/validation.js");
+const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
 //cant directly take in w/o converting to json
+
+const jwt = require("jsonwebtoken");
 
 app.use(express.json());
 app.use(cookieParser());
 
 //post api - signup
 app.post("/signup", async (req, res) => {
-    try { 
-      //1 validation of the data
-      validateSignUpData(req);
+  try {
+    //1 validation of the data
+    validateSignUpData(req);
 
-      //extract
-      const {firstName, lastName, emailId, password} = req.body;
-      //2 Encrypt the password
-      const passwordHash = await bcrypt.hash(password, 10);
-      console.log(passwordHash);
+    //extract
+    const { firstName, lastName, emailId, password } = req.body;
+    //2 Encrypt the password
+    const passwordHash = await bcrypt.hash(password, 10);
+    console.log(passwordHash);
 
+    //3 creating a new instanc of the user model
+    const user = new User({
+      firstName,
+      lastName,
+      emailId,
+      password: passwordHash,
+    });
+    console.log(req);
+    //access the body of the req
+    console.log(req.body);
 
-      //3 creating a new instanc of the user model
-      const user = new User({
-        firstName,
-        lastName,
-        emailId,
-        password: passwordHash,
-      });
-      console.log(req);
-      //access the body of the req
-      console.log(req.body);
-
-      //throw new Error("Async error!");
-      await user.save();
-      res.status(201).send("user adder succesfully");
-    } catch (err) {
-      res
-        .status(500)
-        .send({ message: "Error creating user", error: err.message });
-    }
+    //throw new Error("Async error!");
+    await user.save();
+    res.status(201).send("user adder succesfully");
+  } catch (err) {
+    res
+      .status(500)
+      .send({ message: "Error creating user", error: err.message });
+  }
 });
 
-//post api  - login 
-app.post("/login", async(req,res) => {
-  try{
-    const {emailId, password} = req.body;
-//email check
+//post api  - login
+app.post("/login", async (req, res) => {
+  try {
+    const { emailId, password } = req.body;
+    //email check
     const user = await User.findOne({ emailId: emailId });
-    if(!user){
+    if (!user) {
       res.status(401).send("Invalid credentials");
     }
 
-// password compare
-const isPasswordValid = await bcrypt.compare(password, user.password);
+    // password compare
+    const isPasswordValid = await bcrypt.compare(password, user.password);
 
- if (!isPasswordValid) {
-   res.status(401).send("Invalid credentials");
- }
- else{
+    if (!isPasswordValid) {
+      res.status(401).send("Invalid credentials");
+    } else {
+      //generate Token using userid _ secret key
+      const token = await jwt.sign({ _id: user.id }, "DEV@connect$9");
+      console.log(token);
+      // creating cookie using token & send cookie to browser
+      // res.cookie("myToken", "qwewelwqejwlkejqlkwjelqjwelqkjwelqj");
+      res.cookie("myTokencookie", token);
 
-  //generate Token
-
-  // creating cookie using token & send cookie 
- // res.cookie("myToken", "qwewelwqejwlkejqlkwjelqjwelqkjwelqj");
-  res.cookie("myToken", "qwewelwqejwlkejqlkwjelqjwelqkjwelqj");
-
-  res.status(200).send("Login Successfull")
- }
-
-  }catch(err){
+      res.status(200).send("Login Successfull");
+    }
+  } catch (err) {
     res.status(500).send("Server error");
   }
-})
+});
 
 //get api - profile api
-app.get("/profile", async(req, res) => {
+app.get("/profile", async (req, res) => {
+  //validate cookie
   //get cookie
   const cookies = req.cookies;
   console.log(cookies);
-  const { token } = cookies;
-  //validate cookie
+  //extract token form cookies
+  const { myTokencookie } = cookies;
+  //validate cookie response| login invalid
+  const decoded = await jwt.verify(myTokencookie, "DEV@connect$9");
 
+  console.log(decoded);
+  const{_id} = decoded;
+  console.log("Logged in id is "+ _id)
+ 
   //responds
   res.send("cookie deliverd");
-
 });
-
 
 //get api - get user by id
 app.get("/user", async (req, res) => {
