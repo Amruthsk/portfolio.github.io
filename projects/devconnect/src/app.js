@@ -74,6 +74,7 @@ app.post("/login", async (req, res) => {
   } catch (err) {
     res.status(500).send("Server error");
   }
+<<<<<<< HEAD
 });
 
 //get api - profile api
@@ -106,6 +107,29 @@ app.get("/profile", async (req, res) => {
   }
 });
 
+=======
+});
+
+//get api - profile api
+app.get("/profile", async (req, res) => {
+  //validate cookie
+  //get cookie
+  const cookies = req.cookies;
+  console.log(cookies);
+  //extract token form cookies
+  const { myTokencookie } = cookies;
+  //validate cookie response| login invalid
+  const decoded = await jwt.verify(myTokencookie, "DEV@connect$9");
+
+  console.log(decoded);
+  const{_id} = decoded;
+  console.log("Logged in id is "+ _id)
+ 
+  //responds
+  res.send("cookie deliverd");
+});
+
+>>>>>>> 8691244ee4a62af5a94c80874a99c6b480a5f97c
 //get api - get user by id
 app.get("/user", async (req, res) => {
   const userid = req.body._id; //get
