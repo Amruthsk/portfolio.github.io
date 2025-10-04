@@ -7,6 +7,8 @@ const { validateSignUpData } = require("./utils/validation.js");
 const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
 //cant directly take in w/o converting to json
+const {userAuth} = require("./middlewares/auth.js");
+
 
 const jwt = require("jsonwebtoken");
 
@@ -63,11 +65,17 @@ app.post("/login", async (req, res) => {
       res.status(401).send("Invalid credentials");
     } else {
       //generate Token using userid _ secret key
-      const token = await jwt.sign({ _id: user.id }, "DEV@connect$9");
+      const token = await jwt.sign(
+        { _id: user.id },
+        "DEV@connect$9",
+        { expiresIn: "1h" }
+      );
       console.log(token);
       // creating cookie using token & send cookie to browser
       // res.cookie("myToken", "qwewelwqejwlkejqlkwjelqjwelqkjwelqj");
-      res.cookie("myTokencookie", token);
+      res.cookie("mycookietoken", token, {
+        expires: new Date(Date.now() + 8 * 3600000), // cookie will be removed after 8 hours
+      });
 
       res.status(200).send("Login Successfull");
     }
@@ -76,134 +84,33 @@ app.post("/login", async (req, res) => {
   }
 });
 
-//get api - profile api
-app.get("/profile", async (req, res) => {
+//get api - profile
+app.get("/profile", userAuth, async (req, res) => {
   try {
     //validate cookie
     //get cookie
-    const cookies = req.cookies;
-    console.log(cookies);
+    
     //extract token form cookies
-    const { myTokencookie } = cookies;
-    if (!myTokencookie) {
-      throw new Error("No Token/Invalid token");
-    }
+    
     //validate cookie response| login invalid
-    const decoded = await jwt.verify(myTokencookie, "DEV@connect$9");
-
-    console.log(decoded);
-    const { _id } = decoded;
-    console.log("Logged in id is " + _id);
-    const user = await User.findById(_id);
-
-    //responds
-    if (!user) {
-      throw new Error("No user found");
-    }
-    res.send({ firstName: user.firstName, emailId: user.emailId });
+    
+    //after authentication form middleware responds
+  const user = req.user;
+    res.send(user);
   } catch (err) {
     res.status(401).send("Error: " + err.message);
   }
 });
 
-//get api - get user by id
-app.get("/user", async (req, res) => {
-  const userid = req.body._id; //get
-  try {
-    //find
-    const user = await User.find({ _id: userid });
 
-    //send possibilites from the database
-    if (!user || user.length === 0) {
-      res.status(404).send("User of no match found");
-    } else {
-      res.send(user);
-    }
-  } catch (err) {
-    res.status(500).send("Server error");
-  }
-});
-
-//get api - get user by email
-app.get("/user", async (req, res) => {
-  const userEmail = req.body.emailId; //get
-  try {
-    console.log(userEmail);
-
-    //find
-    const user = await User.find({ emailId: userEmail });
-
-    //send possibilites from the database
-    if (!user || user.length === 0) {
-      res.status(404).send("User of no match found");
-    } else {
-      res.status(200).send(user);
-    }
-  } catch (err) {
-    res.status(500).send("Server error");
-  }
-});
-
-//delete api - delete user by id
-app.delete("/user", async (req, res) => {
-  const userId = req.body._id; //get
-  if (!userId) {
-    return res.status(400).send("User ID is required");
-  }
-  try {
-    console.log(userId);
-    //find and delete
-    const user = await User.findByIdAndDelete(userId);
-
-    //send possibilites from the database
-    if (!user) {
-      res.status(404).send("User of no match found");
-    } else {
-      res.status(200).send("User deleted successfully");
-    }
-  } catch (err) {
-    res.status(500).send("Server error");
-  }
-});
-
-//update api - update user by id
-app.patch("/user/:id", async (req, res) => {
-  //get
-  const userId = req.params?.id; //get
-  const data = req.body;
-  try {
-    const ALLOWED_UPDATES = ["photoUrl", "about", "gender", "age", "skills"];
-    //LOOP  ---->FIND boolean true/false
-    const isUpdateAllowed = Object.keys(data).every((k) =>
-      ALLOWED_UPDATES.includes(k)
-    );
-    if (!isUpdateAllowed) {
-      //throw new Error("Update not allowed");
-      return res.status(400).send({ error: "Invalid updates!" });
-    }
-    if (data?.skills.length > 10) {
-      //throw new Error("more than 10 skills are  not allowed");
-      return res.status(400).send({ error: "Cannot add more than 10 skills." });
-    }
-
-    //update
-    const user = await User.findOneAndUpdate({ _id: userId }, data, {
-      runValidators: true,
-    });
-
-    if (!user) {
-      return res.status(404).send("User of no match found");
-    }
-    res
-      .status(200)
-      .send({ message: "User updated successfully", updatedUser: user });
-  } catch (err) {
-    console.error("Error updating user failed:");
-
-    res.status(500).send("Server side error:" + err.message);
-  }
-});
-
+//post api - profile api
+app.post("/sendConnectionRequest",userAuth, async (req,res) => {
+  //connection logic
+  console.log("sending connection request");
+const user = req.user;
+  res.send(user.firstName + " sending request");
+})
+    
 //success|error
 connectDB()
   .then(() => {
