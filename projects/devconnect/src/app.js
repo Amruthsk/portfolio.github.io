@@ -55,21 +55,16 @@ app.post("/login", async (req, res) => {
     //email check
     const user = await User.findOne({ emailId: emailId });
     if (!user) {
-      res.status(401).send("Invalid credentials");
+      return res.status(401).send("Invalid credentials");
     }
-
-    // password compare
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-
+ 
+    // password compare frpm user schema
+    const isPasswordValid = await user.validatePassword(password);
     if (!isPasswordValid) {
-      res.status(401).send("Invalid credentials");
+      return res.status(401).send("Invalid credentials");
     } else {
-      //generate Token using userid _ secret key
-      const token = await jwt.sign(
-        { _id: user.id },
-        "DEV@connect$9",
-        { expiresIn: "1h" }
-      );
+      //generate Token using userid _ secret key form userschema
+      const token = await user.getJWT();
       console.log(token);
       // creating cookie using token & send cookie to browser
       // res.cookie("myToken", "qwewelwqejwlkejqlkwjelqjwelqkjwelqj");
