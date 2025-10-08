@@ -5,7 +5,6 @@ const connectDB = require("./config/database.js");
 const cookieParser = require("cookie-parser");
 //cant directly take in w/o converting to json
 
-
 const jwt = require("jsonwebtoken");
 
 app.use(express.json());
