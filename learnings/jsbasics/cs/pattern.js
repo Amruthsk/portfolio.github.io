@@ -57,5 +57,40 @@ console.log(Object.hasOwn(obje, "value"));
 
 
 console.log("--------------------------------------------");
+//6
+let foo = function(){
+    console.log(1);
+};
+//reassignment
+foo = function () {
+  console.log(2);
+};
+  setTimeout(foo, 1000); //2
+//later reassignment
+foo = function () {
+  console.log(2);
+};
 
 console.log("--------------------------------------------");
+//7
+console.log("--------------------------------------------");
+console.log("9" > "19");
+console.log("09" > "19");
+console.log(1+2+"1");
+console.log("1" + 2 + 1);
+
+console.log("--------------------------------------------");
+//8
+var bar = function foo(){};
+
+console.log(bar == foo);
+
+console.log("--------------------------------------------");
+let obj1 = {
+    timeoutId: setTimeout(() => {
+        console.log("hi");
+    },1000)
+};
+
+delete obj1.timeoutId;
+obj1 = null;
