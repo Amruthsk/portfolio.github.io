@@ -29,8 +29,9 @@ const userSchema = new mongoose.Schema(
     emailId: {
       type: String,
       required: true,
-      unique: true,
+      unique: true, //This already creates an index implicitly
       lowercase: true,
+      index:true,
       //match: [/^\S+@\S+\.\S+$/, "Please use a valid email address."],
       validate(value) {
         if (!validator.isEmail(value)) {
