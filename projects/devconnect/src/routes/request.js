@@ -55,7 +55,7 @@ requestRouter.post("/send/:status/:toUserId", userAuth, async (req, res) => {
     await newRequest.save();
 
     res.status(201).json({
-      message: `Request with status '${status}' sent successfully.From ${toUserId.firstName} to ${req.user.firstName} `,
+      message: `Request with status '${status}' sent successfully.From  ${req.user.firstName} `,
       data: newRequest,
     });
   } catch (err) {
