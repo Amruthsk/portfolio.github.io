@@ -5,18 +5,20 @@ const connectionRequestSchema = new mongoose.Schema(
     fromUserId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
+      ref: "User", // This creates the reference link to the User model
     },
     toUserId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
+      ref: "User",
     },
     status: {
       type: String,
       required: true,
       enum: {
-        values: ["PENDING", "ACCEPTED", "REJECTED","INTERESTED", "IGNORED"],
+        values: ["PENDING", "ACCEPTED", "REJECTED", "INTERESTED", "IGNORED"],
         message: `{VALUE} is not a valid status`,
-    },
+      },
       default: "PENDING",
     },
   },
