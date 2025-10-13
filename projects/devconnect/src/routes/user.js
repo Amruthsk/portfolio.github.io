@@ -70,10 +70,51 @@ userRouter.get("/user/connections", userAuth, async (req, res) => {
       message: "Connections fetched successfully.",
       data: connectedUsers,
     });
-
   } catch (err) {
     res.status(500).json({
       message: "Server error while fetching connections.",
+      error: err.message,
+    });
+  }
+});
+
+userRouter.get("/user/feed", userAuth, async (req, res) => {
+  try {
+    //user
+    const loggedInUserId = req.user._id;
+    // find all connections
+    const allConnections = await ConnectionRequest.find({
+      $or: [{ fromUserId: loggedInUserId }, { toUserId: loggedInUserId }],
+    });
+
+    console.log("All related connections:", allConnections);
+
+    //transforming list
+
+    const excludedUserIds = new Set();
+
+    excludedUserIds.add(loggedInUserId);
+
+    allConnections.forEach((connection) => {
+      excludedUserIds.add(connection.fromUserId);
+      excludedUserIds.add(connection.toUserId);
+    });
+
+    console.log("Exclusion List:", Array.from(excludedUserIds));
+
+    const feedUsers = await User.find({
+      _id: { $nin: Array.from(excludedUserIds) },
+    })
+      .limit(20)
+      .select(userSafeData);
+
+    res.status(200).json({
+      message: "Feed fetched Successfully",
+      data: feedUsers,
+    });
+  } catch (err) {
+    res.json({
+      message: "Server Error",
       error: err.message,
     });
   }
