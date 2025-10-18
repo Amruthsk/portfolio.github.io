@@ -1,6 +1,13 @@
 const express = require("express");
+const morgan = require("morgan");
+const config = require("config")
+
+console.log(`Application Name: ${config.get("name")}`);
 const app = express();
 
+// app.use(morgan('tiny'));
+
+app.use(morgan(config.get("morgan.format")));
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -12,6 +19,15 @@ const genres = [
   { id: 2, name: "Comedy" },
   { id: 3, name: "Thriller" },
 ];
+
+function validateGenre(req, res, next) {
+    if (!req.body.name || req.body.name.length < 3) {
+ return res
+   .status(400)
+   .send("Name required and should be more than 3 characters");
+    }
+    next();
+} 
 
 //get api - resource from db
 app.get("/genres", (req, res) => {
@@ -27,10 +43,7 @@ app.get("/genres/:id", (req, res) => {
   res.send(genre);
 });
 
-app.post("/genres", (req, res) => {
-  if (req.body.name.length < 3 || !req.body.name) {
-    res.status(400).send("Name required and should be more tha 3 characters");
-  }
+app.post("/genres",validateGenre, (req, res) => {
   const genre = {
     id: genres.length + 1,
     name: req.body.name,
@@ -40,7 +53,7 @@ app.post("/genres", (req, res) => {
 });
 
 //update
-app.put("/genres/:id", (req, res) => {
+app.put("/genres/:id",validateGenre, (req, res) => {
   const genreid = parseInt(req.params.id);
 
   const genre = genres.find((g) => g.id === genreid);
@@ -51,9 +64,6 @@ app.put("/genres/:id", (req, res) => {
       .send(" data not found The genre with the given id was not found");
   }
 
-  if (!req.body.name || req.body.name.length < 3) {
-    res.status(400).send("Bad request from clien name minimum 3");
-  }
 
   genre.name = req.body.name;
   res.send(genre);
