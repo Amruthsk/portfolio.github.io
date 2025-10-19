@@ -94,3 +94,21 @@ let obj1 = {
 
 delete obj1.timeoutId;
 obj1 = null;
+----------------------
+
+const multiply = (a) => (b) => (c) => a * b * c;
+
+const step1 = multiply(2);
+const step2 = step1(3);
+const result1 = step2(4);
+
+const partialMult = multiply(5)(6);
+const result2 = partialMult(7);
+
+const directResult = multiply(1)(8)(9);
+
+console.log(result1);
+console.log(result2);
+console.log(directResult);
+console.log(typeof step1);
+console.log(typeof partialMult);
