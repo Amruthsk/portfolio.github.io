@@ -112,3 +112,24 @@ console.log(result2);
 console.log(directResult);
 console.log(typeof step1);
 console.log(typeof partialMult);
+------------------------------------
+
+const arr = [1, 2, 3, 4, 5];
+const obj = { a: 1, b: 2, c: 3 };
+
+const result1 = Object.keys(obj).length;
+const result2 = arr.length;
+
+delete obj.b;
+obj.d = 4;
+
+const result3 = Object.keys(obj).length;
+const result4 = arr.push(6);
+
+arr.length = 3;
+
+const result5 = arr.length;
+const result6 = Object.keys(obj).join('');
+
+console.log(result1, result2, result3, result4, result5, result6);
+-----------------------------------
