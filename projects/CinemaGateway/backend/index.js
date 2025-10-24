@@ -1,27 +1,22 @@
 const express = require("express");
 const config = require("config");
 const mongoose = require("mongoose");
+const Genre = require("./models/genre");
+
 const app = express();
 
 app.use(express.json());
 
-const genres = [
-  { id: 1, name: "Action" },
-  { id: 2, name: "Horror" },
-  { id: 3, name: "Thriller" },
-];
-
-app.get("/api/genres", (req, res) => {
+app.get("/api/genres", async (req, res) => {
+  const genres = await Genre.find().sort("name");
   res.send(genres);
 });
 
-app.post("/api/genres", (req, res) => {
-  throw new Error("This is a controlled demolition.");
-  const genre = {
-    id: genres.length + 1,
-    name: req.body.name,
-  };
-  genres.push(genre);
+app.post("/api/genres", async (req, res) => {
+  let genre = new Genre({ name: req.body.name });
+
+  genre = await genre.save();
+
   res.send(genre);
 });
 
