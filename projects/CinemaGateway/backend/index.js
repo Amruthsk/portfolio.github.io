@@ -1,7 +1,7 @@
 const express = require("express");
 const config = require("config");
 const mongoose = require("mongoose");
-const Genre = require("./models/genre");
+const { Genre, validate } = require("./models/genre");
 
 const app = express();
 
@@ -13,6 +13,9 @@ app.get("/api/genres", async (req, res) => {
 });
 
 app.post("/api/genres", async (req, res) => {
+  const { error } = validate(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
+
   let genre = new Genre({ name: req.body.name });
 
   genre = await genre.save();
@@ -20,7 +23,7 @@ app.post("/api/genres", async (req, res) => {
   res.send(genre);
 });
 
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   console.error(err.message, err);
   res.status(500).send("Something failed.");
 });
