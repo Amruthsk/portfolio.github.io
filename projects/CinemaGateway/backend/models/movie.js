@@ -1,6 +1,41 @@
 const mongoose = require("mongoose");
 const Joi = require('joi');
+Joi.objectId = require("joi-objectid")(Joi);
+
+const { genreSchema } = require("./genre"); ;
 
 
-const { genreSchema } from './genre';
+const movieSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 1,
+    maxlength: 255,
+  },
+  genre: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Genre",
+    required: true,
+  },
 
+  accessLevel: {
+    type: String,
+    enum: ["Free", "Subscription"],
+    default: "Subscription",
+  },
+});
+
+
+const Movie = mongoose.model("Movie", movieSchema);
+function validateMovie(movie) {
+    const schema = Joi.object({
+      title: Joi.string().min(1).max(255).required(),
+      genreId: Joi.objectId().required(),
+      accessLevel: Joi.string().valid("Free", "Subscription"),
+    });
+    return schema.validate(movie);
+}
+
+exports.Movie = Movie;
+exports.validateMovie = validateMovie;
