@@ -1,27 +1,14 @@
 const express = require("express");
 const config = require("config");
 const mongoose = require("mongoose");
-const { Genre, validate } = require("./models/genre");
-
+const genres = require("./routes/genres");
+const customer = require('./routes/customers')
 const app = express();
 
 app.use(express.json());
 
-app.get("/api/genres", async (req, res) => {
-  const genres = await Genre.find().sort("name");
-  res.send(genres);
-});
-
-app.post("/api/genres", async (req, res) => {
-  const { error } = validate(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
-
-  let genre = new Genre({ name: req.body.name });
-
-  genre = await genre.save();
-
-  res.send(genre);
-});
+app.use("/api/customers", customer);
+app.use("/api/genres", genres);
 
 app.use((err, req, res) => {
   console.error(err.message, err);
