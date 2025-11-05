@@ -66,8 +66,7 @@ function getEvenNumbers(inputArray) {
 
   //  Handle the "not an array" edge case.
   if (!Array.isArray(inputArray)) {
-    console.error("Invalid input: An array is required.");
-    return; // Return an empty [] to prevent errors.
+    console.error("Invalid input: An array is required."); // Return an empty [] to prevent errors.
   }
 
   // a: Create the new  to hold the result.
@@ -97,3 +96,4 @@ console.log(getEvenNumbers([])); // Expected: []
 console.log(getEvenNumbers([2, "a", 4, null, 8])); // Expected: [2, 4, 8]
 console.log(getEvenNumbers("not an array")); // Expected: []
 console.log(getEvenNumbers([null, undefined, 4, 6]));
+console.log(getEvenNumbers([null, undefined]));

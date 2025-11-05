@@ -84,3 +84,5 @@ eligibilty(9);//not Eligible
 eligibilty(18);//not Eligible
 eligibilty(19);// Eligible
 eligibilty(90);// Eligible
+eligibilty(-5);//Invalid Input
+eligibilty(null);//not Eligible
