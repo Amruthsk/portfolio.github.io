@@ -71,7 +71,7 @@ voteeligibilty(19);
 voteeligibilty(90);
 
 function eligibilty(age) {
-  if (age < 0) console.log("Invalid Input");
+  if (age < 0 || age == null) console.log("Invalid Input");
   else if (age <= 18) console.log("not Eligible");
   else console.log("Eligible");
 }
