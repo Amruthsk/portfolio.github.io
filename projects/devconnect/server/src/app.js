@@ -3,10 +3,12 @@ const express = require("express");
 const app = express();
 const connectDB = require("./config/database.js");
 const cookieParser = require("cookie-parser");
+const cors = require('cors');
 //cant directly take in w/o converting to json
 
 const jwt = require("jsonwebtoken");
 
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
