@@ -8,10 +8,16 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post("http://localhost:9999/login", {
-        emailId,
-        password,
-      });
+      const res = await axios.post(
+        "http://localhost:9999/login",
+        {
+          emailId,
+          password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
       console.log(res.data);
     } catch (err) {
       console.error(err);
