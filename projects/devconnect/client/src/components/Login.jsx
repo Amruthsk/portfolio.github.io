@@ -25,7 +25,6 @@ const Login = () => {
         }
       );
 
-      console.log("User : ", res.data);
       dispatch(addUser(res.data));
       return navigate("/");
     } catch (err) {

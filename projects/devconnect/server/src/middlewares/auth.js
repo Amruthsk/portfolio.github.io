@@ -45,7 +45,7 @@ const userAuth = async (req, res, next) => {
     //read token from the deconstruct req.cookies
     const { mycookietoken } = req.cookies;
     if (!mycookietoken) {
-      throw new Error("No Token/Token not valid");
+      return res.status(401).send("Please Login")
     }
 
     //validate token jwt.verify
