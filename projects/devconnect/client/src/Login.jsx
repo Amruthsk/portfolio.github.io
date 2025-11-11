@@ -3,9 +3,12 @@ import { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addUser } from "./utils/userSlice";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  
    const dispatch = useDispatch();
+   const navigate = useNavigate();
   const [emailId, setEmailId] = useState("");
   const [password, setPassword] = useState("");
 
@@ -22,6 +25,7 @@ const Login = () => {
         });
         console.log("User : ", res.data);
         dispatch(addUser(res.data));
+        return navigate("/");
       
       
     } catch (err) {
