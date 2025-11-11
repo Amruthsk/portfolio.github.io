@@ -14,14 +14,18 @@ const Body = () => {
   const navigate = useNavigate();
   const user = useSelector(store => store.user);
   const fetchUser = async () => {
+    if (user) return;
     try{
       const res = await axios.get(BASE_URL + "/profile/view",
         {withCredentials:true,});
         dispatch(addUser(res.data));
 
     } catch (err){
+      if(err.status === 401){
+         navigate("/login");
+      }
       console.error("Authentication failed:", err);
-      navigate("/login");
+     
     }
   }
 
