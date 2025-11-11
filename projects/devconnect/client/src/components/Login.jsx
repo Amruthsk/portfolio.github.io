@@ -1,4 +1,5 @@
 import React from "react";
+
 import { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
@@ -11,9 +12,11 @@ const Login = () => {
   const navigate = useNavigate();
   const [emailId, setEmailId] = useState("");
   const [password, setPassword] = useState("");
+  const [error,setError] = useState("");
 
   const handleLogin = async () => {
     try {
+      setError(""); 
       const res = await axios.post(
         BASE_URL + "/login",
         {
@@ -28,7 +31,9 @@ const Login = () => {
       dispatch(addUser(res.data));
       return navigate("/");
     } catch (err) {
-      console.error(err);
+       setError(
+         err?.response?.data || "Something went wrong. Please try again."
+       );
     }
   };
   return (
@@ -68,6 +73,9 @@ const Login = () => {
           </div>
 
           <div className="card-actions justify-center">
+            {error && (
+              <p className="text-red-500 text-xs bold mt-2">{error}</p>
+            )}
             <button className="btn btn-primary" onClick={handleLogin}>
               Login
             </button>
