@@ -1,14 +1,12 @@
-import Body from "./Body";
+import Body from "./components/Body.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./Login";
-import Profile from "./Profile";
-import Feed from "./Feed";
+import Login from "./components/Login.jsx";
+import Profile from "./components/Profile.jsx";
+import Feed from "./components/Feed.jsx";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore.js";
 
 function App() {
- 
-
   return (
     <>
       <Provider store={appStore}>
@@ -26,4 +24,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
