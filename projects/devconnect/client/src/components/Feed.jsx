@@ -2,13 +2,16 @@ import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { BASE_URL } from "../utils/constants";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addFeed } from "../utils/feedSlice";
+import UserCard from "./UserCard"
 
 const Feed = () => {
   const dispatch = useDispatch();
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState(null);
+ const feed = useSelector((store) => store.feed);
+
 
   const getFeed = async () => {
     setStatus("loading");
@@ -17,10 +20,14 @@ const Feed = () => {
       const res = await axios.get(BASE_URL + "/user/feed", {
         withCredentials: true,
       });
-      dispatch(addFeed(res.data));
+      dispatch(addFeed(res.data.data));
+
 
       setStatus("succeded");
-      console.log("feed data retrived: ", res.data);
+     
+      console.log("API response:", res.data);
+      console.log("Payload being dispatched:", res.data.data);
+
     } catch (err) {
       console.error(err);
       setStatus("failed");
@@ -31,10 +38,10 @@ const Feed = () => {
     }
   };
   useEffect(() => {
-    if (status === "idle") {
+    if (!feed) {
       getFeed();
     }
-  }, [status]);
+  }, [feed]);
 
   if (status === "loading") {
     return <div>Loading your feed...</div>;
@@ -43,7 +50,15 @@ const Feed = () => {
     return <div className="text-red-500">Error: {error} </div>;
   }
 
-  return <div>Feed</div>;
+  return (
+  
+  <div className="flex justify-center items-center p-4">
+    
+    {feed && feed.length > 0 && (
+      <UserCard user={feed[0]} />
+    )}
+  </div>
+);
 };
 
 export default Feed;

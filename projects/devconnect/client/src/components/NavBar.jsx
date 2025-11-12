@@ -48,25 +48,44 @@ const NavBar = () => {
                   <img alt="User Photo" src={user.photoUrl} />
                 </div>
               </div>
-              <ul
-                tabIndex="-1"
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-              >
-                <li>
-                  <a className="justify-between">
-                    <Link to="/profile" className="hover:text-gray-300">
+              <div className="dropdown dropdown-end">
+                <div tabIndex={0} role="button" className="btn btn-ghost">
+                  Menu
+                </div>
+
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                >
+                  <li>
+                    <Link
+                      to="/profile"
+                      className="flex justify-between items-center hover:text-gray-300"
+                    >
                       Profile
+                      <span className="badge">New</span>
                     </Link>
-                    <span className="badge">New</span>
-                  </a>
-                </li>
-                <li>
-                  <a>Settings</a>
-                </li>
-                <li>
-                  <a onClick={handleLogout}>Logout</a>
-                </li>
-              </ul>
+                  </li>
+
+                  <li>
+                    <Link
+                      to="/settings"
+                      className="flex justify-between items-center hover:text-gray-300"
+                    >
+                      Settings
+                    </Link>
+                  </li>
+
+                  <li>
+                    <button
+                      onClick={handleLogout}
+                      className="flex justify-between items-center hover:text-gray-300 text-left w-full"
+                    >
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         )}
