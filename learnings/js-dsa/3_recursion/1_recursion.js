@@ -107,3 +107,18 @@ print1(1);
 //1) problem can be broken into sub problem - whenever reduce the sample space 
 //2) Trees & graphs
 //3)backtracking,DP,divide and conquer
+
+
+//reversing the flow
+
+function print1toN(x) {
+  if (x => 1) {
+    return;
+  } // base case last
+  console.log(x);
+  
+  
+  print1toN(x - 1);
+}
+
+print1toN(9);
