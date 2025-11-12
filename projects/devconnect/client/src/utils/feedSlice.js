@@ -1,6 +1,6 @@
 import React from 'react'
 import { createSlice } from '@reduxjs/toolkit'
-const feedSlice = () => createSlice ( {
+const feedSlice = createSlice ({
    name: "feed",
   initialState: null,
   reducers: {
@@ -10,6 +10,7 @@ const feedSlice = () => createSlice ( {
   removeFeed: () => {
       return null;
   }
+}
 });
 
 export const{ addFeed, removeFeed } = feedSlice.actions;

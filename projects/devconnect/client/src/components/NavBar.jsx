@@ -13,14 +13,13 @@ const NavBar = () => {
 
   const handleLogout = async () => {
     try {
-      const res = await axios.post(
+       await axios.post(
         BASE_URL + "/logout",
         {},
         {
           withCredentials: true,
         }
       );
-      console.log("Server Purge Successful:", res.data);
       dispatch(removeUser());
       return navigate("/login");
     } catch (err) {
