@@ -16,6 +16,7 @@ const validatePatchProfile = (req) => {
     "lastName",
     "photoUrl",
     "about",
+    "gender",
     "skills",
     "age",
   ];

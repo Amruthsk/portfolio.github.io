@@ -1,7 +1,10 @@
 import React from 'react'
 import { useState, useEffect } from "react";
 import UserCard from "./UserCard";
-
+import axios from "axios"
+import { BASE_URL } from '../utils/constants';
+import { useDispatch } from 'react-redux';
+import { updateUser } from "../utils/userSlice";
 
 
 const EditProfile = ({ currentUser }) => {
@@ -11,7 +14,8 @@ const EditProfile = ({ currentUser }) => {
   const [gender, setGender] = useState("Male");
   const [about, setAbout] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
-
+  const [error,setError] = useState("")
+ const dispatch = useDispatch();
 
   
   useEffect(() => {
@@ -32,12 +36,41 @@ const EditProfile = ({ currentUser }) => {
     gender,
     about,
     photoUrl,
+
+
   };
+
+
+  const saveProfile = async (e) => {
+
+     e.preventDefault();
+   
+    const updatedProfile = {
+      firstName,
+      lastName,
+      age,
+      gender,
+      about,
+      photoUrl,
+    };
+        try{
+        const res = await axios.patch(
+          BASE_URL + "/profile/edit",
+          updatedProfile,
+          { withCredentials: true }
+        );
+        dispatch(updateUser(res.data.data));
+    }
+    catch(err){
+        setError(err.message)
+    }
+  }
 
 
   return (
     <div className="flex flex-col md:flex-row gap-8 p-4 justify-center">
-      <form className=" md:flex-1 space-y-3 p-4 bg-base-200 rounded-lg">
+      <form className=" md:flex-1 space-y-3 p-4 bg-base-200 rounded-lg"
+      >
         <h1 className="text-2xl font-bold">Edit Your Profile</h1>
         {/* First Name Input */}
         <div>
@@ -105,7 +138,7 @@ const EditProfile = ({ currentUser }) => {
           />
         </div>
 
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary" onClick = {saveProfile}>
           Save Profile
         </button>
       </form>
