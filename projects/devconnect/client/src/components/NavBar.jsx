@@ -13,7 +13,7 @@ const NavBar = () => {
 
   const handleLogout = async () => {
     try {
-       await axios.post(
+      await axios.post(
         BASE_URL + "/logout",
         {},
         {
@@ -38,42 +38,31 @@ const NavBar = () => {
         {user && (
           <div className="flex gap-2">
             <span className="font-medium">Welcome, {user.firstName}</span>
-            <div className="dropdown dropdown-end mx-10">
+            <div className="dropdown dropdown-end  dropdown-bottom mx-10">
               <div
                 tabIndex={0}
                 role="button"
                 className="btn btn-ghost btn-circle avatar"
               >
-                <div className="w-10 rounded-full">
-                  <img alt="User Photo" src={user.photoUrl} />
-                </div>
-              </div>
-              <div className="dropdown dropdown-end">
-                <div tabIndex={0} role="button" className="btn btn-ghost">
-                  Menu
+               
+                  <div className="w-10 rounded-full">
+                    <img alt="User Photo" src={user.photoUrl} />
+                  </div>
                 </div>
 
                 <ul
                   tabIndex={0}
-                  className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                  className="menu menu-sm dropdown-content mt-3 z-1 p-2 shadow bg-base-100 rounded-box w-52"
                 >
                   <li>
-                    <Link
-                      to="/profile"
-                      className="flex justify-between items-center hover:text-gray-300"
-                    >
+                    <Link to="/profile" className="justify-between">
                       Profile
                       <span className="badge">New</span>
                     </Link>
                   </li>
 
                   <li>
-                    <Link
-                      to="/settings"
-                      className="flex justify-between items-center hover:text-gray-300"
-                    >
-                      Settings
-                    </Link>
+                    <Link to="/settings">Settings</Link>
                   </li>
 
                   <li>
@@ -87,7 +76,6 @@ const NavBar = () => {
                 </ul>
               </div>
             </div>
-          </div>
         )}
       </div>
     </nav>
