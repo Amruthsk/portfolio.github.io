@@ -5,12 +5,6 @@ let arr = [5,3,2,0,1]
 // first find the sub problem
 
 
-// function sum(arr) {
-//   for (let i = 0; i > arr.length; i++) {
-//     if (i <= 0) return a[i];
-//     return a[i] + sum(i+1);
-//   }
-// }
 
 // sum(arr)
 
@@ -36,12 +30,30 @@ function sum(n){
 console.log(sum(arr.length - 1));
 
 
+let testarray = [10, 20, 30, 40];
+
+// function sumarr(arr,n){
+//     if(n===0){ return arr[n]}
+//     return arr[n] + sumarr(arr, n-1);
+
+// }
+
+// console.log(sumarr(testarray, testarray.length - 1));
 
 // sum of all the odd numbers in the array
 // n
 // isOdd =(arr[i]%2 !== 0);
-//base -  last  
+//base condition -  last  
 // -odd{add}
 // -notodd{0}
 
+const testArray = [11, 20, 31, 40, 5];
+
+function sumOdd(arr,n){
+    if( n===0 ){return arr[n]%2 !== 0 ? arr[n] : 0}
+    return (arr[n] % 2 !== 0 ? arr[n] : 0) + sumOdd(arr, n - 1);
+
+}
+
+console.log(sumOdd(testArray, testArray.length - 1));
 
