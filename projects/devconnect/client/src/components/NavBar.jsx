@@ -44,38 +44,40 @@ const NavBar = () => {
                 role="button"
                 className="btn btn-ghost btn-circle avatar"
               >
-               
-                  <div className="w-10 rounded-full">
-                    <img alt="User Photo" src={user.photoUrl} />
-                  </div>
+                <div className="w-10 rounded-full">
+                  <img alt="User Photo" src={user.photoUrl} />
                 </div>
-
-                <ul
-                  tabIndex={0}
-                  className="menu menu-sm dropdown-content mt-3 z-1 p-2 shadow bg-base-100 rounded-box w-52"
-                >
-                  <li>
-                    <Link to="/profile" className="justify-between">
-                      Profile
-                      <span className="badge">New</span>
-                    </Link>
-                  </li>
-
-                  <li>
-                    <Link to="/settings">Settings</Link>
-                  </li>
-
-                  <li>
-                    <button
-                      onClick={handleLogout}
-                      className="flex justify-between items-center hover:text-gray-300 text-left w-full"
-                    >
-                      Logout
-                    </button>
-                  </li>
-                </ul>
               </div>
+
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content mt-3 z-1 p-2 shadow bg-base-100 rounded-box w-52"
+              >
+                <li>
+                  <Link to="/profile" className="justify-between">
+                    Profile
+                    <span className="badge">New</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/connections">Connections</Link>
+                </li>
+
+                <li>
+                  <Link to="/settings">Settings</Link>
+                </li>
+
+                <li>
+                  <button
+                    onClick={handleLogout}
+                    className="flex justify-between items-center hover:text-gray-300 text-left w-full"
+                  >
+                    Logout
+                  </button>
+                </li>
+              </ul>
             </div>
+          </div>
         )}
       </div>
     </nav>
