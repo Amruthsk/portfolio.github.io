@@ -67,6 +67,10 @@ authRouter.post("/login", async (req, res) => {
       // creating cookie using token & send cookie to browser
       // res.cookie("myToken", "qwewelwqejwlkejqlkwjelqjwelqkjwelqj");
       res.cookie("mycookietoken", token, {
+        path: "/",
+        httpOnly: true,
+        sameSite: "lax",
+        secure: false, // (for localhost)
         expires: new Date(Date.now() + 8 * 3600000), // cookie will be removed after 8 hours
       });
 
