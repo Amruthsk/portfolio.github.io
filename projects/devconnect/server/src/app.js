@@ -1,13 +1,15 @@
 console.log("mainhub devconnect project");
 const express = require("express");
 const app = express();
-const connectDB = require("./config/database.js");
+const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const cors = require('cors');
+const connectDB = require("./config/database.js");
+
 //cant directly take in w/o converting to json
 
 const jwt = require("jsonwebtoken");
 
+app.use(cookieParser());
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -15,7 +17,7 @@ app.use(
   })
 );
 app.use(express.json());
-app.use(cookieParser());
+
 
 
 const authRouter = require("./routes/auth.js");

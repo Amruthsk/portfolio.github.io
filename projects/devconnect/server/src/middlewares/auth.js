@@ -45,7 +45,7 @@ const userAuth = async (req, res, next) => {
     //read token from the deconstruct req.cookies
     const { mycookietoken } = req.cookies;
     if (!mycookietoken) {
-      return res.status(401).send("Please Login")
+      return res.status(401).send("Please Login: Session token not found.");
     }
 
     //validate token jwt.verify
@@ -56,14 +56,16 @@ const userAuth = async (req, res, next) => {
     //find user using user model
     const user = await User.findById(_id);
     if (!user) {
-      throw new Error("User not found");
+       return res
+         .status(401)
+         .send("Authentication Error: User not found for this token.");
     }
 
     req.user = user;
     next();
   } catch (err) {
     //catch
-    res.status(401).send("Error :" + err.message);
+    res.status(401).send("Authentication  Error :" + err.message);
   }
 };
 
