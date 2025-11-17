@@ -1,16 +1,5 @@
 // ✅ Problem: Print all possible pairs of numbers from two different arrays.
 
-//[State]{Initial} → (Iterate @ [Input Array]) ⊂ { (Compare [Element] vs [State]) ⇒ (Update [State])? } ↻ → [*Final State]
-
-//(Outer Loop ↻ @ [Collection₁]) ⊂ { (Inner Loop ↻ @ [Collection₂]) ⇒ ( //[State]{Initial} → (Iterate @ [Input Array]) ⊂ { (Compare [Element] vs [State]) ⇒ (Update [State])? } ↻ → [*Final State]}
-
-//time O(n^2)
-//The Nested Loop (The Multiplier())
-
-//[[collection1]]{len:N} + [[collection2]]{len:M} ⇒ (Nested Loop) → [*Result newcollection]{len: N×M}
-
-//(Nested Loop)
-//(Outer Loop (Iterate @ [[Collection₁]])↻ ) ⊂ { (Inner Loop ↻ @ [Collection₂]) ⇒ ( //[State]{Initial} → (Iterate @ [collection2]) ⊂ { (Compare [Element] vs [State]) ⇒ (Update [State])? } ↻ → [*Final State]}
 
 let players = ["Virat", "Rohit"];
 let opponents = ["AUS", "ENG", "SA"];
@@ -55,7 +44,7 @@ for (let i = 0; i < 3; i++) {
   }
 }
 
-console.log("<i limit");
+console.log("<i limit dependent dynamic");
 for (let i = 0; i < 3; i++) {
   for (let j = 0; j < i; j++) {
     console.log(i, j);
@@ -79,6 +68,13 @@ for (let i = 0; i < 3; i++) {
 console.log("i=5 ; i > 0; i--");
 for (let i = 5; i > 0; i--) {
   for (let j = 0; j < i; j++) {
+    console.log(i, j);
+  }
+}
+
+console.log("sum 7")
+for(let i=0; i< 5; i++){
+  for(let j=0; j < i; j++){
     console.log(i, j);
   }
 }

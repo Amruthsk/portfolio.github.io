@@ -5,10 +5,10 @@
 // loop to repeate task for n rows- for each row
 // inside row do Loop column repeate task for n columns  concatenate string of * stars n times
 function oneLine(n) {
-  //loop each row
+  //loop each row Row Iteration
   // n=4,row = single row =1 ->  ****
   for (let row = 1; row <= 1; row++) {
-    //loop to concatenate n star in each row
+    //loop to concatenate n star in each row  Column Concatenation
     let rowstar = "";
     for (let col = 1; col <= n; col++) {
       rowstar += "*";
