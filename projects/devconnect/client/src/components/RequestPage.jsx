@@ -3,13 +3,13 @@ import axios from 'axios';
 import { BASE_URL } from  '../utils/constants'
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { addRequests } from "../utils/requestSlice";
+import { addRequests, removeRequest } from "../utils/requestSlice";
 
 const RequestPage = () => {
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
-  const requests = useSelector((store) => store.requests?.data);
+  const requests = useSelector((store) => store.requests);
 
   const getRequests = async() =>{
      setStatus("loading");
@@ -30,6 +30,21 @@ const RequestPage = () => {
         setStatus("failed");
         setError(err.response?.data?.message || "Failed to fetch requests.");
 
+    }
+  }
+
+  const reviewRequest = async (status, _id) => {
+    try{
+       await axios.post(
+        BASE_URL + "/request/review/" + status + "/" + _id,
+        {},
+        { withCredentials: true }
+      );
+       dispatch(removeRequest(_id));
+
+    }
+    catch(err){
+console.error(`Judgment (${status}) on ${_id} failed:`, err);
     }
   }
 
@@ -70,8 +85,18 @@ const RequestPage = () => {
                 </div>
               </div>
               <div className="flex gap-2">
-                <button className="btn btn-sm btn-success">Accept</button>
-                <button className="btn btn-sm btn-error">Decline</button>
+                <button
+                  className="btn btn-sm btn-success"
+                  onClick={() => reviewRequest("accepted", request._id)}
+                >
+                  Accept
+                </button>
+                <button
+                  className="btn btn-sm btn-error"
+                  onClick={() => reviewRequest("rejected", request._id)}
+                >
+                  Decline
+                </button>
               </div>
             </div>
           ))}
