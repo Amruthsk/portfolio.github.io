@@ -37,8 +37,17 @@ authRouter.post("/signup", async (req, res) => {
     console.log(req.body);
 
     //throw new Error("Async error!");
-    await user.save();
-    res.status(201).send("user adder succesfully");
+    const savedUser = await user.save();
+    const token = await savedUser.getJWT();
+    res.cookie("mycookietoken", token, {
+      path: "/",
+      httpOnly: true,
+      sameSite: "lax",
+      secure: false, // For localhost
+      expires: new Date(Date.now() + 8 * 3600000), // 8 hours
+    });
+
+    res.status(201).send(savedUser);
   } catch (err) {
     res
       .status(500)

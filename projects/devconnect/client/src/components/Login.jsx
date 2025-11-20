@@ -55,7 +55,7 @@ const Login = () => {
        );
        console.log("Signup successful, user created:", res.data);
 
-       dispatch(addUser(res.data.data));
+       dispatch(addUser(res.data));
        return navigate("/profile");
      } catch (err) {
        setError(err?.response?.data || "Signup failed. Please try again.");
