@@ -49,6 +49,15 @@ const Feed = () => {
   if (status === "failed") {
     return <div className="text-red-500">Error: {error} </div>;
   }
+  if (feed.length === 0) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <h2 className="text-2xl font-semibold text-gray-500">
+          No new users found. Check back later!
+        </h2>
+      </div>
+    );
+  }
 
   return (
   
