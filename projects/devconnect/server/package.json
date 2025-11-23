@@ -18,6 +18,8 @@
   "author": "Amruth S K",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.937.0",
+    "@aws-sdk/client-ses": "^3.936.0",
     "@reduxjs/toolkit": "^2.10.1",
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",

@@ -4,6 +4,7 @@ const express = require("express");
 const requestRouter = express.Router();
 const { userAuth } = require("../middlewares/auth.js");
 const ConnectionRequest = require("../models/connectionrequest.js");
+const sendEmail = require("./utils/sendEmail");
 
 //post api - profile api
 requestRouter.post(
@@ -54,6 +55,11 @@ requestRouter.post(
       });
 
       await newRequest.save();
+  
+
+      const emailRes = await sendEmail.run();
+      console.log(emailRes);
+
 
       res.status(201).json({
         message: `Request with status '${status}' sent successfully.From  ${req.user.firstName} `,

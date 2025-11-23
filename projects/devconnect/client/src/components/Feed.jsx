@@ -38,10 +38,9 @@ const Feed = () => {
     }
   };
   useEffect(() => {
-    if (!feed) {
       getFeed();
-    }
-  }, [feed]);
+   
+  }, []);
 
   if (status === "loading") {
     return <div>Loading your feed...</div>;
@@ -49,7 +48,7 @@ const Feed = () => {
   if (status === "failed") {
     return <div className="text-red-500">Error: {error} </div>;
   }
-  if (feed.length === 0) {
+  if (!feed || feed.length === 0) {
     return (
       <div className="flex justify-center items-center h-64">
         <h2 className="text-2xl font-semibold text-gray-500">
