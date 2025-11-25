@@ -49,7 +49,7 @@ const userAuth = async (req, res, next) => {
     }
 
     //validate token jwt.verify
-    const decoded = await jwt.verify(mycookietoken, "DEV@connect$9");
+    const decoded = await jwt.verify(mycookietoken, process.env.JWT_SECRET);
 
     const { _id } = decoded;
 

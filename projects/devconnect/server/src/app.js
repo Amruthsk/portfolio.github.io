@@ -4,6 +4,8 @@ const app = express();
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const connectDB = require("./config/database.js");
+require("dotenv").config();
+console.log(process.env);
 
 //cant directly take in w/o converting to json
 
@@ -38,7 +40,7 @@ connectDB()
     console.log("database connected");
 
     // Start server
-    app.listen(9999, () => {
+    app.listen(process.env.PORT, () => {
       console.log("Server is successfully listening on port 9999");
     });
   })
