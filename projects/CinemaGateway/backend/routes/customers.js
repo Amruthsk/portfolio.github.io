@@ -7,7 +7,7 @@ const express = require("express");
 const customerRouter = express.Router();
 
 customerRouter.get("/", async (req, res) => {
-  const customers = await Customer.find().sort("name");
+  const customers = await Customer.find().sort("name"); //lexical sorting
   res.send(customers);
 });
 

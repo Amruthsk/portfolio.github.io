@@ -89,6 +89,16 @@ const diameter = function (radius) {
   return radius * 2;
 };
 
+
+
+
+// The proof of the internal mechanism:
+function customMapper(arr,fun){
+    let result = [];
+    for (let i = 0; i < arr.length; i++){ 
+        result.push(fun(arr[i],i))       
+    return result;                        
+}
 // higher order function similar to map  which iterates over an array
 const calculate = function (radius, logic) {
   const output = [];

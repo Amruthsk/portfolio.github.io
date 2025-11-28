@@ -5,7 +5,7 @@ const express = require("express");
 const movieRouter = express.Router();
 
 movieRouter.get("/", async (req, res) => {
-  const movies = await Movie.find().sort("title");
+  const movies = await Movie.find().sort("title");//lexical sorting
   res.send(movies);
 });
 movieRouter.get("/:id", async (req, res) => {

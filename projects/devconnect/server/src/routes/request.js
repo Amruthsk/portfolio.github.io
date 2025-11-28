@@ -4,7 +4,7 @@ const express = require("express");
 const requestRouter = express.Router();
 const { userAuth } = require("../middlewares/auth.js");
 const ConnectionRequest = require("../models/connectionrequest.js");
-const sendEmail = require("./utils/sendEmail");
+//const sendEmail = require("./utils/sendEmail");
 
 //post api - profile api
 requestRouter.post(
@@ -56,9 +56,9 @@ requestRouter.post(
 
       await newRequest.save();
   
-
-      const emailRes = await sendEmail.run();
-      console.log(emailRes);
+// for email AWS SES
+      // const emailRes = await sendEmail.run();
+      // console.log(emailRes);
 
 
       res.status(201).json({

@@ -4,7 +4,7 @@ const express = require("express");
 const genreRouter = express.Router();
 
 genreRouter.get("/", async(req, res) => {
-  const genres = await Genre.find().sort("name");
+  const genres = await Genre.find().sort("name");//lexical sorting
   res.send(genres);
 });
 

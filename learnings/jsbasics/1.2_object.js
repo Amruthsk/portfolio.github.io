@@ -216,7 +216,12 @@ console.log(
 // [myArray] -> [[Prototype]] -> [Array.prototype] -> [[Prototype]] -> [Object.prototype] -> [[Prototype]] -> null
 //    └- (has .length)            └- (inherits .map, .filter) └- (inherits .toString)
 
+function oddOrEven(x) {
+  return x % 2 == 0; //returns a boolean
+}
 
+let arr = [1, 2, 3, 4, 5];
+const result3 = arr.filter(oddOrEven);
 
 // for all specialized objects
 //[Specific Instance] ---> [Specific.prototype] ---> [Object.prototype] ---> null

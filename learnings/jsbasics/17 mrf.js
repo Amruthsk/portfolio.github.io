@@ -44,6 +44,13 @@ const arr = [5,1,2,3,4];
 
 //filter- used to filter
 
+function oddOrEven(x) {
+  return x % 2 == 0; //returns a boolean
+}
+
+let arr = [1, 2, 3, 4, 5];
+const result3 = arr.filter(oddOrEven);
+
 
 // function isOdd(x){
 //     return x%2

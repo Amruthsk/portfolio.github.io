@@ -49,17 +49,6 @@ while (i < 5) {
 
 //high level
 
-// [[Function]] ⊃ *getEvenNumbers* ⇔ {Input: [Array], Output: [Array]} @ [Execution Context] ⇒ (Process [InputArray] → (Filter {Even Numbers}) → (Return [EvenNumbers]))
-
-//Function Definition: [[Function]] ⊃ *getEvenNumbers* ⇔ {Parameters: [inputArray], Returns: [evenNumbers]} @ [Scope]
-// /Input Validation: (Check: !Array.isArray @ [inputArray]) ⇒ {Invalid Input} → (Action: console.error) → (Action: return)
-//Result Initialization: [evenNumbers: Array] ⊂ {}
-//[[Loop]] ⊃ *for-of loop* @ [item] ∈ [inputArray] ⇒ {Condition: typeof item === 'number' && item % 2 === 0} → (Action: evenNumbers.push @ [item])
-//(Action: return @ [evenNumbers])
-
-//[[Function Class]] ⊃ *getEvenNumbers* ⇔ {length:1 (x),code: ()} → [label:getEvenNumbers]
-
-//[[Function]] ⊃ *getEvenNumbers ⇔ {Parameters: [inputArray], Returns: [evenNumbers]} @ [Scope]
 
 function getEvenNumbers(inputArray) {
   // p `inputArray`

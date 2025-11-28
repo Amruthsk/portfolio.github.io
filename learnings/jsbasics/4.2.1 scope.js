@@ -1,10 +1,7 @@
 //Basics of js
+//- Scope
 
-//file-contains code - program
-//run
-//run program - inside Ram
-//-> Process - program in running state
-//software (program)run - process - ram allocates(memory-storage area)
+
 
 var n = 2; //1-global
 
@@ -89,64 +86,7 @@ console.log(veryBigNumber);
 let veryBigInt = 789454548787797979797979797979979797979865656n;
 console.log(veryBigInt);
 //-----------------------------------------------------------------------------------------
-//scope - visibility- where to look  for things- is created by { }
 
-// visibility of variables and functions
-
-//any variable or function inside code will be used in one of the following 2 ways
-//1) get value or  some value assigned to it
-//2) some value will be retrieved from it
-
-//js compiled? or interpretted?
-//compiled - C, C++ - Read once and executed
-//read all code at once - throws error - recomplie - check - no error execute
-//interpreter - executed line by line
-//  read code one by one line - error - stop - dont move forward - shell
-//hybrid - java
-
-//java script - hybrid - compiled and interpretted - read 1st & throws error & not puerely compiled & not puerly interpreted
-// it has 2 phase
-//phase 1 - parsing
-//phase 2 - execution
-
-//Parsing - scope resolution - variable & fuction - assign particular scope
-// 3 types of scope 1)global 2)function 3) block 4) module(node.js)
-
-//1)global - acessible everywhere - range of visibility
-
-//2)function - within whole function- range of visibility
-
-//3)block - available only within block only for let and var (not for var)
-
-//1)global - acessible everywhere
-
-
- 
-console.log(subject); // -not avaiable before intialization /decralarion - let
-//for let - error
-//for var - undefined
-//let subject = "js" //global - acessible everywhere
-var subject = "js"; //global - acessible everywhere even
-function fun() {
-  console.log(subject); //global - within
-}
-
-fun();
-console.log(subject); //global - acessible outside
-
-// function - creates a scope
-
-
-//var - only available in for function scope or global scope only - no block or module scoping
-//var supports hoisting - processecd before execution
-
-
-//Declaration Grammar - keywords - own purpose/speacial meaning, usecase - cant be used as variable
-
-// few are let,const,for,if,else,return
-
-//n:store values inside a program
-//variables- memory buckets that stores values & has name & 
 
 //let - block scoped - only belongs to the block
 
@@ -431,3 +371,4 @@ console.log(obj.x)
 //let & const - block scope declarations are hoisted and are in TDZ
 //[Access `var` before assignment-p1 hoisted and initialized to `undefined] → [Perceive `undefined`]
 //[Access `let` in TDZ-p1-hoisted (their names are known to the scope), but they are not initialized ] → [ReferenceError]
+
