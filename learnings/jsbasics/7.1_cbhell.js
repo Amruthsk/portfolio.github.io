@@ -1,4 +1,23 @@
-//callback - to execute after 5 sec
+// //callback - to execute after 5 sec
+
+
+// readability problem
+// - Problem with callback  - callback hell
+// - solution : Promise
+// - Problem with Promise  - Promise hell
+// - solution : async await
+// - Problem with async await  - async await hell
+// - solution : 
+
+
+
+// Major problem :
+// 1) Inversion of control
+// 2) callback hell - readability problem 
+
+
+// 1 0r 2 level ok 
+// callback hell(nested structure calback inside(inside(inside)) - pyramid like formation)
 
 console.log('Javascript');
 
