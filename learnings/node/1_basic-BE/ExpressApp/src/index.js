@@ -33,6 +33,32 @@ app.post("/data", (req, res) => {
   return res.json({ msg: "Data received successfully", data: req.body });
 });
 
+function m1(req, res, next) {
+  console.log("inside m1: Authenticating user");
+  req.authStatus = "Authenticated";
+  next();
+}
+
+function m2(req, res, next) {
+  console.log("inside m2: Checking role for access");
+  if (req.authStatus !== "Authenticated") {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+  console.log("inside m2: Access granted");
+  next();
+}
+
+function m3(req, res, next) {
+  console.log("inside m3: Performing final validation");
+  next();
+}
+
+// Route to  Middleware Chaining
+app.get("/chained-home", m1, m2, m3, (req, res) => {
+  console.log("/chained-home called: Final Handler");
+  return res.json({ msg: `Welcome, Authentication Status: ${req.authStatus}` });
+});
+
 // Server binding to port
 app.listen(PORT, () => {
   console.log(`server started at ${PORT}`);
