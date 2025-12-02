@@ -1,0 +1,7 @@
+# .gitignore
+# Exclude dynamic/built files
+/node_modules
+/dist
+
+# Exclude security/environment variables
+.env
