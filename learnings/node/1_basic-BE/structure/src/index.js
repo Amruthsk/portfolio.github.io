@@ -2,10 +2,13 @@
 const express = require("express"); 
 const { PORT } = require("../config/server.config"); 
 const homePingController = require("../controllers/ping.controller"); 
+const v1Router = require("../routes/v1.routes");
 
 const app = express(); 
 // Use the controller directly on the base route
-app.get("/", homePingController); 
+//app.get("/", homePingController); 
+
+app.use("/api/v1", v1Router);  
 
 app.listen(PORT, () => {
   console.log(`Started server at port: ${PORT}`);  
