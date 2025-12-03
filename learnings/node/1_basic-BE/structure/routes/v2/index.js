@@ -1,11 +1,11 @@
 // routes/v1.routes.js
 const express = require("express"); 
-const homePingController = require("../controllers/ping.controller"); 
+const homePingController = require("../../controllers/ping.controller"); 
 const {
   productGetByIdController,
   categoryGetByIdController,
   userGetByIdController,
-} = require("../controllers/resource.controller");
+} = require("../../controllers/resource.controller");
 
 const v2Router = express.Router(); 
 // Register the controller function to a specific path on the router
