@@ -8,7 +8,8 @@ const app = express();
 //app.get("/", homePingController);
 
 app.use(express.json());
-
+app.use(express.urlencoded({ extended: true }));
+app.use(express.text());
 
 app.use("/api", apiRouter);
 
