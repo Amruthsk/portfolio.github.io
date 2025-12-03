@@ -6,11 +6,12 @@ const {
   productCreateController,
   categoryGetByIdController,
 } = require("../../controllers/resource.controller");
+const todoRouter = require("../todo.routes");
 
 const v1Router = express.Router();
 // Register the controller function to a specific path on the router
 v1Router.get("/ping", homePingController);
-
+v1Router.use("/todos", todoRouter);
 v1Router.get("/products/:id", productGetByIdController);
 v1Router.post("/products", productCreateController);
 v1Router.get("/category/:id", categoryGetByIdController);

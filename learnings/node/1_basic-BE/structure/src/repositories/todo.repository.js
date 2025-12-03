@@ -9,11 +9,17 @@ class TodoRepository {
   }
 
   getAll() {
+    console.log(
+      "Repository: Current todos state (should not be empty):",
+      todos
+    );
     return todos;
   }
 
   get(id) {
-    return todos.filter((todo) => todo.id === id)[0];
+      const targetId = parseInt(id);
+
+    return todos.find((todo) => todo.id === targetId);
   }
 }
 
