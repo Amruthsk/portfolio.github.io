@@ -1,21 +1,21 @@
 
-// type conversion
+// type conversion - Abstract
 console.log(10 == 10);
 console.log('10' == 10);
 console.log("---------------------------------------------------")
 
-// No type conversion
+// No type conversion - Strict
 console.log(10 === 10);
 console.log("10" === 10);
 console.log("---------------------------------------------------");
 
 
-
+//Abstract
 console.log(10 != 10);
 console.log("10" != 10);
 console.log("---------------------------------------------------");
 
-
+//Strict
 console.log(10 !== 10);
 console.log("10" !== 10);
 console.log("---------------------------------------------------");
